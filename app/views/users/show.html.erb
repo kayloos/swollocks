@@ -3,3 +3,12 @@
   <%= h @user.name %>
 </h2>
 <%= @user.email %>
+<h2>
+  Her er dine aktier
+</h2>
+<%= link_to "Tilføj aktier", :controller => "stocks", :action => "new" %>
+<p>
+<% @stock.each do |stock| %>
+  <%= stock.name %><br />
+<% end %>
+</p>

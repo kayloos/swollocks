@@ -1,0 +1,13 @@
+<h2>Tilføj aktie</h2>
+
+<% form_for(@stock) do |f| %>
+  <%= f.error_messages %>
+  <div class="field">
+    <%= f.label :name %><br />
+    <%= f.text_field :name %>
+  </div>
+  <%= f.hidden_field :user_id, :value => 1 %>
+  <div class="actions">
+    <%= f.submit "Tilføj aktie" %>
+  </div>
+<% end %>

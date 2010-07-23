@@ -1,6 +1,7 @@
 ActionController::Routing::Routes.draw do |map|
   map.resources :users
   map.resources :sessions, :only => [:new, :create, :destroy]
+  map.resources :stocks,   :only => [:new, :create, :destroy]
   map.contact '/contact', :controller => 'pages', :action => 'contact'
   map.about   '/about',   :controller => 'pages', :action => 'about'
   map.help    '/help',    :controller => 'pages', :action => 'help'
@@ -25,7 +26,7 @@ ActionController::Routing::Routes.draw do |map|
 
   # Sample resource route with sub-resources:
   #   map.resources :products, :has_many => [ :comments, :sales ], :has_one => :seller
-  
+
   # Sample resource route with more complex sub-resources
   #   map.resources :products do |products|
   #     products.resources :comments
