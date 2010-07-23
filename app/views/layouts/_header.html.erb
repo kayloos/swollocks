@@ -3,6 +3,9 @@
   <ul class="navigation round">
     <li><%= link_to "Home", root_path %></li>
     <li><%= link_to "Help", help_path %></li>
+    <% if signed_in? %>
+    <li><%= link_to "Portefølje", "#" %></li>
+    <% end %>
     <li>
     <% if signed_in? %>
     <%= link_to "Sign out", signout_path %>
