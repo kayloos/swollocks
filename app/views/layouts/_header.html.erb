@@ -4,7 +4,8 @@
     <li><%= link_to "Home", root_path %></li>
     <li><%= link_to "Help", help_path %></li>
     <% if signed_in? %>
-    <li><%= link_to "Portefølje", "#" %></li>
+      <% user = user_from_remember_token %>
+    <li><%= link_to "Portefølje", user %></li>
     <% end %>
     <li>
     <% if signed_in? %>
