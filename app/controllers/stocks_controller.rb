@@ -19,4 +19,14 @@ class StocksController < ApplicationController
     end
   end
 
+  def destroy
+    if Stock.destroy(params[:id])
+      flash[:success] = "Aktie smidt ud"
+      redirect_to current_user
+    else
+      flash[:error] = "Aktien blev ikke smidt ud"
+      redirect_to current_user
+    end
+  end
+
 end

@@ -6,9 +6,9 @@
 <h2>
   Her er dine aktier
 </h2>
-<%= link_to "Tilføj aktier", :controller => "stocks", :action => "new" %>
+<%= link_to "Tilføj aktier", :controller => "stocks", :action => "new", :user_id => @user.id %>
 <p>
 <% @stock.each do |stock| %>
-  <%= stock.name %><br />
+  <%= stock.name %><span style="width:100px"></span><%= link_to "x", stock, :method => "delete", :confirm => "Sure?" %><br />
 <% end %>
 </p>
