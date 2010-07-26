@@ -14,7 +14,6 @@
 #
 
 class StockYank < ActiveRecord::Base
-require 'ruby-debug'
   def yank_data
     require 'iconv'
     require 'open-uri'
@@ -50,7 +49,5 @@ require 'ruby-debug'
                               :stock_id => i + 1
                              )
     end
-
-    return stock_array
   end
 end
