@@ -16,7 +16,7 @@ class PagesController < ApplicationController
   end
 
   def yank_stock_data
-    hej = StockYank.new.sort_data
+    hej = StockYank.new.sort_data_and_save
     @output = hej
   end
 

@@ -9,7 +9,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20100726014541) do
+ActiveRecord::Schema.define(:version => 20100726133641) do
 
   create_table "lists", :force => true do |t|
     t.string   "name"
@@ -20,12 +20,13 @@ ActiveRecord::Schema.define(:version => 20100726014541) do
 
   create_table "stock_yanks", :force => true do |t|
     t.string   "name"
-    t.string   "low"
-    t.string   "high"
-    t.string   "latest"
-    t.string   "turnover"
+    t.integer  "low",        :limit => 255
+    t.integer  "high",       :limit => 255
+    t.integer  "latest",     :limit => 255
+    t.integer  "turnover",   :limit => 255
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.integer  "stock_id"
   end
 
   create_table "stocks", :force => true do |t|
