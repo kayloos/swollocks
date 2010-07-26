@@ -12,7 +12,7 @@ class StocksController < ApplicationController
     @stock = Stock.new(params[:stock])
     if @stock.save
       flash[:success] = "Aktie tilføjet!"
-      redirect_to User.find(@stock.user_id)
+      redirect_to current_user
     else
       @title = "Tilføj aktie"
       render 'new'

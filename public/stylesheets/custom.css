@@ -1,5 +1,36 @@
-*	{ };
-HTML	{ };
-BODY	{ };
-
-
+*	{ }
+HTML	{ width: 100%; }
+BODY	{
+  background-color: #DFE9FF;
+}
+#header {
+  width: 600px;
+  margin: 10px auto;
+  position:relative;
+}
+#header ul {
+  margin:0;
+  position:absolute;
+  list-style: none;
+  bottom:0;
+  right:0;
+}
+#header ul li {
+  display:inline;
+  margin: 0 5px 0 5px;
+}
+#header ul li a {
+  font-size:16px;
+  text-decoration:none;
+}
+#main {
+  width: 600px;
+  margin:0 auto;
+  border :2px solid black;
+  padding:20px;
+  background:white;
+}
+.debug_dump {
+  margin:10px auto;
+  width:600px;
+}

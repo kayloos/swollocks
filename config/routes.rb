@@ -2,6 +2,7 @@ ActionController::Routing::Routes.draw do |map|
   map.resources :users
   map.resources :sessions, :only => [:new, :create, :destroy]
   map.resources :stocks,   :only => [:new, :create, :destroy]
+  map.resources :lists,    :only => [:new, :create, :destroy]
   map.contact '/contact', :controller => 'pages', :action => 'contact'
   map.about   '/about',   :controller => 'pages', :action => 'about'
   map.help    '/help',    :controller => 'pages', :action => 'help'

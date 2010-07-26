@@ -3,7 +3,7 @@ class UsersController < ApplicationController
   def show
     @user = User.find(params[:id])
     @title = @user.name
-    @stock = Stock.find_all_by_user_id(@user.id)
+    @list = List.find_all_by_user_id(@user.id)
   end
 
   def new

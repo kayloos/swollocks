@@ -15,4 +15,9 @@ class PagesController < ApplicationController
     @title = "Help"
   end
 
+  def yank_stock_data
+    hej = StockYank.new.sort_data
+    @output = hej
+  end
+
 end

@@ -1,0 +1,15 @@
+# Read about fixtures at http://ar.rubyonrails.org/classes/Fixtures.html
+
+one:
+  name: MyString
+  low: MyString
+  high: MyString
+  latest: MyString
+  turnover: MyString
+
+two:
+  name: MyString
+  low: MyString
+  high: MyString
+  latest: MyString
+  turnover: MyString

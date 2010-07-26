@@ -9,13 +9,30 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20100723022245) do
+ActiveRecord::Schema.define(:version => 20100726014541) do
+
+  create_table "lists", :force => true do |t|
+    t.string   "name"
+    t.integer  "user_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "stock_yanks", :force => true do |t|
+    t.string   "name"
+    t.string   "low"
+    t.string   "high"
+    t.string   "latest"
+    t.string   "turnover"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
 
   create_table "stocks", :force => true do |t|
     t.string   "name"
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.integer  "user_id"
+    t.integer  "list_id"
   end
 
   create_table "users", :force => true do |t|
