@@ -1,7 +1,7 @@
 <h1>Din side<h1>
 <h2>
   <%= h @user.name %>, <%= @user.email %><br />
-  <%= gravatar_for @user %>
+  <%= gravatar_for @user, :size => 200 %>
 </h2>
 <%= link_to "Ny liste", :controller => "lists", :action => "new" %>
 <% @list.each do |list| %>

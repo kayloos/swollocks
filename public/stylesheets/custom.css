@@ -34,3 +34,9 @@ BODY	{
   margin:10px auto;
   width:600px;
 }
+ul.users {
+  margin-top:1em;
+}
+.users li {
+  list-style:none;
+}
