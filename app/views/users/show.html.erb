@@ -18,7 +18,7 @@
       <%= link_to "delete", stock, :method => "delete", :confirm => "Sure?" %><br /></h3>
      Lav-høj: (<%= stock_yank.low.to_s + ' - ' + stock_yank.high.to_s %>), 
      Seneste: <%= stock_yank.latest %>, 
-     Omsætning: <%= stock_yank.turnover.to_s %>
+     Omsætning: <%= add_whitespace(stock_yank.turnover.to_s) %>
 <% end %>
 </p>
 <% end %>
