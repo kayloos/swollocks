@@ -25,7 +25,7 @@ class StockYank < ActiveRecord::Base
   end
 
   def sort_data_and_save
-    if ! StockYank.find(:first)
+    if StockYank.find(:first)
       StockYank.delete_all
       StockYank.connection.execute 'delete from sqlite_sequence where name = "stock_yanks"'
     end
