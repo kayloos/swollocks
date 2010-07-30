@@ -3,6 +3,13 @@ HTML	{ width: 100%; }
 BODY	{
   background-color: #DFE9FF;
 }
+h1 {
+}
+h2 {
+}
+h3 {
+  margin: 10px 0 0 0;
+}
 #header {
   width: 600px;
   margin: 10px auto;

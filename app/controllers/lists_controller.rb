@@ -1,4 +1,5 @@
 class ListsController < ApplicationController
+  before_filter :signed_in
   def new
     @list = List.new(params[:id])
   end

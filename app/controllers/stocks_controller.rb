@@ -1,4 +1,5 @@
 class StocksController < ApplicationController
+  before_filter :signed_in
   def show
     @title = "Stocks!"
   end
@@ -28,5 +29,4 @@ class StocksController < ApplicationController
       redirect_to current_user
     end
   end
-
 end

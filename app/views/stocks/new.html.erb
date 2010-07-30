@@ -3,8 +3,13 @@
 <% form_for(@stock) do |f| %>
   <%= f.error_messages %>
   <div class="field">
-    <%= f.label :name %><br />
-    <%= f.text_field :name %>
+    <% stocks = StockYank.find(:all, :conditions => { :id => 1..75 }) %>
+    <%= f.collection_select(
+                 :stock_id,
+                 stocks,
+                 :stock_id,
+                 :name
+                ) %>
   </div>
   <%= f.hidden_field :list_id, :value => params[:list_id] %>
   <div class="actions">

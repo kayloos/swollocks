@@ -5,15 +5,20 @@
 </h2>
 <%= link_to "Ny liste", :controller => "lists", :action => "new" %>
 <% @list.each do |list| %>
-  <h2><%= list.name %><%= link_to "x", list, :method => "delete", :confirm => "Sikker på at du vil slette listen?" %></h2>
+  <h2><%= list.name %> | <%= link_to "delete", list, :method => "delete", :confirm => "Sikker på at du vil slette listen?" %></h2>
   <% if signed_in? %>
 <%= link_to "Tilføj aktier", :controller => "stocks", :action => "new", :list_id => list.id %>
   <% end %>
 <p>
 <%
   stock = Stock.find_all_by_list_id(list.id)
-  stock.each do |stock| %>
-  <%= stock.name %><span style="width:100px"></span><%= link_to "x", stock, :method => "delete", :confirm => "Sure?" %><br />
+  stock.each do |stock| 
+    stock_yank = StockYank.find(:first, :conditions => { :stock_id => stock.stock_id }) %>
+    <h3><%= stock_yank.name %> | 
+      <%= link_to "delete", stock, :method => "delete", :confirm => "Sure?" %><br /></h3>
+     Lav-høj: (<%= stock_yank.low.to_s + ' - ' + stock_yank.high.to_s %>), 
+     Seneste: <%= stock_yank.latest %>, 
+     Omsætning: <%= stock_yank.turnover %>
 <% end %>
 </p>
 <% end %>

@@ -24,6 +24,11 @@ module SessionsHelper
     !current_user.nil?
   end
 
+# For use in the lists and stocks controller before_filter
+  def signed_in
+    redirect_to(root_path) unless signed_in?
+  end
+
   def sign_out
     cookies.delete(:remember_token)
     self.current_user = nil

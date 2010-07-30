@@ -9,4 +9,5 @@ module ApplicationHelper
       "#{base_title} | #{h(@title)}"
     end
   end
+
 end
