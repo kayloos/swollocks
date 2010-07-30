@@ -13,7 +13,7 @@
 <%
   stock = Stock.find_all_by_list_id(list.id)
   stock.each do |stock| 
-    stock_yank = StockYank.find(:first, :conditions => { :stock_id => stock.stock_id }) %>
+    stock_yank = StockYank.find(:first, :conditions => { :id => stock.stock_id }) %>
     <h3><%= stock_yank.name %> | 
       <%= link_to "delete", stock, :method => "delete", :confirm => "Sure?" %><br /></h3>
      Lav-høj: (<%= stock_yank.low.to_s + ' - ' + stock_yank.high.to_s %>), 

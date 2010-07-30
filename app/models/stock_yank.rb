@@ -25,6 +25,8 @@ class StockYank < ActiveRecord::Base
   end
 
   def sort_data_and_save
+    StockYank.delete_all
+    StockYank.connection.execute 'delete from sqlite_sequence where name = "stock_yanks"'
     workstring = (yank_data/"tbody").to_html
     stock_array = Array.new
     for i in (0..74)
@@ -45,8 +47,7 @@ class StockYank < ActiveRecord::Base
                               :latest => stock_array[i][1],
                               :high => stock_array[i][2],
                               :low => stock_array[i][3],
-                              :turnover => stock_array[i][4],
-                              :stock_id => i + 1
+                              :turnover => stock_array[i][4]
                              )
     end
   end

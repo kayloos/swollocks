@@ -9,7 +9,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20100730005231) do
+ActiveRecord::Schema.define(:version => 20100730161905) do
 
   create_table "lists", :force => true do |t|
     t.string   "name"
@@ -28,10 +28,7 @@ ActiveRecord::Schema.define(:version => 20100730005231) do
     t.integer  "turnover"
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.integer  "stock_id"
   end
-
-  add_index "stock_yanks", ["stock_id"], :name => "index_stock_yanks_on_stock_id"
 
   create_table "stocks", :force => true do |t|
     t.datetime "created_at"
