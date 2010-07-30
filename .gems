@@ -1,3 +1,6 @@
+rails --version 2.3.8
 hpricot --version 0.8.2
 will_paginate --version 2.3.12
 faker
+open-uri
+iconv
