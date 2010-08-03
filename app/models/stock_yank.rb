@@ -30,7 +30,8 @@ class StockYank < ActiveRecord::Base
         StockYank.delete_all
         ActiveRecord::Base.connection.execute "delete from sqlite_sequence where name = 'stock_yanks'"
       else
-        ActiveRecord::Base.connection.execute "TRUNCATE TABLE stock_yanks RESTART IDENTITY"
+        ActiveRecord::Base.connection.execute "TRUNCATE TABLE stock_yanks"
+        ActiveRecord::Base.connection.execute "ALTER SEQUENCE stock_yanks_id_seq RESTART WITH 1"
       end
     end
     workstring = (yank_data/"tbody").to_html
