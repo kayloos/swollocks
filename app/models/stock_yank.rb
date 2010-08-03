@@ -25,6 +25,8 @@ class StockYank < ActiveRecord::Base
   end
 
   def sort_data_and_save
+    # This code is solely to deal with the different SQL syntax between SQLite (which I use on my dev comp) and PostgreSQL
+    # (which is used on my deployment server)
     if StockYank.exists?
       if Rails.env == "development"
         StockYank.delete_all
@@ -34,9 +36,11 @@ class StockYank < ActiveRecord::Base
         ActiveRecord::Base.connection.execute "ALTER SEQUENCE stock_yanks_id_seq RESTART WITH 1"
       end
     end
+    # Getting the data using the "yank_data" method
     workstring = (yank_data/"tbody").to_html
     stock_array = Array.new
     for i in (0..74)
+      # underline is a class name used to find the right place for extracting the info
       name_pos = workstring.index("underline")
       workstring = workstring.slice(name_pos+11..-1)
       end_of_a_tag = workstring.index("</a>")
