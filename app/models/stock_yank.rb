@@ -27,7 +27,11 @@ class StockYank < ActiveRecord::Base
   def sort_data_and_save
     if StockYank.exists?
       StockYank.delete_all
-      ActiveRecord::Base.connection.execute "delete from sqlite_sequence where name = 'stock_yanks'"
+      if Rails.env == "development"
+        ActiveRecord::Base.connection.execute "delete from sqlite_sequence where name = 'stock_yanks'"
+      else
+        ActiveRecord::Base.connection.execute "truncate table stock_yanks"
+      end
     end
     workstring = (yank_data/"tbody").to_html
     stock_array = Array.new
