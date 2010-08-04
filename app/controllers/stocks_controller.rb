@@ -13,7 +13,7 @@ class StocksController < ApplicationController
     @stock = Stock.new(params[:stock])
     if @stock.save
       flash[:success] = "Aktie tilføjet!"
-      redirect_to current_user
+      redirect_to :action => 'new', :list_id => @stock.list_id
     else
       @title = "Tilføj aktie"
       render 'new'
@@ -21,12 +21,13 @@ class StocksController < ApplicationController
   end
 
   def destroy
+    list_id = Stock.find(params[:id]).list_id
     if Stock.destroy(params[:id])
       flash[:success] = "Aktie smidt ud"
-      redirect_to current_user
+      redirect_to :action => 'new', :list_id => list_id
     else
       flash[:error] = "Aktien blev ikke smidt ud"
-      redirect_to current_user
+      redirect_to :action => 'new', :list_id => list_id
     end
   end
 end

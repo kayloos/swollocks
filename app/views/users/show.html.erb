@@ -3,22 +3,35 @@
   <%= h @user.name %>, <%= @user.email %><br />
   <%= gravatar_for @user, :size => 200 %>
 </h2>
-<%= link_to "Ny liste", :controller => "lists", :action => "new" %>
+<%= link_to "Rediger lister", :controller => "lists", :action => "new" %>
 <% @list.each do |list| %>
-  <h2><%= list.name %> | <%= link_to "delete", list, :method => "delete", :confirm => "Sikker på at du vil slette listen?" %></h2>
+  <h2><%= list.name %></h2>
   <% if signed_in? %>
-<%= link_to "Tilføj aktier", :controller => "stocks", :action => "new", :list_id => list.id %>
+    <p style="margin:0; padding:0;">
+<%= link_to "Rediger aktier for denne liste", :controller => "stocks", :action => "new", :list_id => list.id %>
+    </p>
   <% end %>
-<p>
 <%
   stock = Stock.find_all_by_list_id(list.id)
   stock.each do |stock| 
     stock_yank = StockYank.find(:first, :conditions => { :id => stock.stock_id }) %>
-    <h3><%= stock_yank.name %> | 
-      <%= link_to "delete", stock, :method => "delete", :confirm => "Sure?" %><br /></h3>
-     Lav-høj: (<%= stock_yank.low.to_s + ' - ' + stock_yank.high.to_s %>), 
-     Seneste: <%= stock_yank.latest %>, 
-     Omsætning: <%= add_whitespace(stock_yank.turnover.to_s) %>
+    <div class="stock_box">
+      <h3><%= stock_yank.name %></h3><hr />
+      <table>
+        <tr>
+          <th>Lav-høj:</th>
+          <td>(<%= stock_yank.low.to_s + ' - ' + stock_yank.high.to_s %>)</td>
+        </tr>
+        <tr>
+          <th>Seneste:</th>
+          <td><%= stock_yank.latest %></td>
+        </tr>
+        <tr>
+          <th>Omsætning:</th>
+          <td><%= add_whitespace(stock_yank.turnover.to_s) %></td>
+        </tr>
+     </table>
+   </div>
 <% end %>
-</p>
+<div style="clear:both"></div>
 <% end %>

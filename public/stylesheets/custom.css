@@ -10,7 +10,7 @@ h2 {
   margin: 10px 0 0 0;
 }
 h3 {
-  margin: 10px 0 0 0;
+  margin: 0 0 0 0;
 }
 #header {
   width: 600px;
@@ -48,4 +48,28 @@ ul.users {
 }
 .users li {
   list-style:none;
+}
+.stock_box {
+  width:268px;
+  padding: 5px;
+  margin: 5px 15px 5px 5px;
+  float:left;
+}
+.stock_box table {
+  margin:0;
+  padding:5px 10px 0 0;
+  border-right:1px solid #ddd;
+}
+.stock_box td, .stock_box th, .stock_box tr {
+  margin:0;
+  padding:0;
+}
+.stock_box td {
+  text-align:right;
+}
+.stock_box hr {
+  margin: 10px 0 0 0;
+}
+.edit_stock_th {
+  width:150px;
 }

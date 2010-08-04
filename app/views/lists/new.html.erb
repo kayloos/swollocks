@@ -10,3 +10,6 @@
     <%= f.submit "Tilføj liste" %>
   </div>
 <% end %>
+<% @lists.each do |list| %>
+  <h2><%= link_to list.name, :controller => 'stocks', :action => 'new', :list_id => list.id  %> | <%= link_to "delete", list, :method => "delete", :confirm => "Sikker på at du vil slette listen?" %></h2>
+<% end %>

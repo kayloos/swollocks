@@ -2,6 +2,7 @@ class ListsController < ApplicationController
   before_filter :signed_in
   def new
     @list = List.new(params[:id])
+    @lists = List.find_all_by_user_id(current_user.id)
   end
 
   def create
@@ -9,7 +10,7 @@ class ListsController < ApplicationController
     @list.user_id = current_user.id
     if @list.save
       flash[:success] = "Du har tilføjet listen #{@list.name}"
-      redirect_to current_user
+      redirect_to :action => 'new'
     else
       render 'new'
     end
@@ -19,12 +20,12 @@ class ListsController < ApplicationController
   end
 
   def destroy
-    if List.destroy(params[:id])
+    if List.destroy(params[:id]) && Stock.delete_all(["list_id = ?", params[:id]])
       flash[:success] = "Listen er blevet smidt ud"
-      redirect_to current_user
+      redirect_to :action => 'new'
     else
       flash[:error] = "Listen blev ikke smidt ud"
-      redirect_to current_user
+      redirect_to :action => 'new'
     end
   end
 
