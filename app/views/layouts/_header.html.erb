@@ -1,24 +1,26 @@
-<div id="header">
-	<h1>
-		Lisduck
-	</h1>
-	<p>
-		Listings stocks made<br /><b>easy</b> and <b>accessible</b>
-	</p>
-	<ul id="nav">
-	    <li><%= link_to "Home", root_path %></li>
-	    <li><%= link_to "Help", help_path %></li>
-	    <% if signed_in? %>
-	    <li><%= link_to "Users", users_path %></li>
-	    <li><%= link_to "Profile", current_user %></li>
-	    <li><%= link_to "Settings", edit_user_path(current_user) %></li>
-	    <% end %>
-	    <li>
-	    <% if signed_in? %>
-	    <%= link_to "Sign out", signout_path %>
-	  <% else %>
-	    <%= link_to "Sign in", signin_path %>
-	  <% end %>
-	    </li>
-	</ul>
+<div id="header_cont">
+	<div id="header">
+		<h1>
+			Lisduck
+		</h1>
+		<p>
+			Listings stocks made<br /><b>easy</b> and <b>accessible</b>
+		</p>
+		<ul id="nav">
+		    <li><%= link_to "Home", root_path %></li>
+		    <li><%= link_to "Help", help_path %></li>
+		    <% if signed_in? %>
+		    <li><%= link_to "Users", users_path %></li>
+		    <li><%= link_to "Profile", current_user %></li>
+		    <li><%= link_to "Settings", edit_user_path(current_user) %></li>
+		    <% end %>
+		    <li>
+		    <% if signed_in? %>
+		    <%= link_to "Sign out", signout_path %>
+		  <% else %>
+		    <%= link_to "Sign in", signin_path %>
+		  <% end %>
+		    </li>
+		</ul>
+	</div>
 </div>

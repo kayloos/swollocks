@@ -39,5 +39,5 @@ Rails::Initializer.run do |config|
   # config.i18n.load_path += Dir[Rails.root.join('my', 'locales', '*.{rb,yml}')]
   # config.i18n.default_locale = :de
   config.gem 'will_paginate', :version => '2.3.12'
-  config.gem 'hpricot', :version => '0.8.2'
+  config.gem 'hpricot'
 end
