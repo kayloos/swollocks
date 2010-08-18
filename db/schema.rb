@@ -9,7 +9,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20100730161905) do
+ActiveRecord::Schema.define(:version => 20100818183501) do
 
   create_table "lists", :force => true do |t|
     t.string   "name"
@@ -25,7 +25,7 @@ ActiveRecord::Schema.define(:version => 20100730161905) do
     t.decimal  "low"
     t.decimal  "high"
     t.decimal  "latest"
-    t.integer  "turnover"
+    t.integer  "turnover",   :limit => 7
     t.datetime "created_at"
     t.datetime "updated_at"
   end
