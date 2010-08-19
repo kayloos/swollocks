@@ -6,7 +6,7 @@ HTML {
 body {
 	font-size:14px;
 	margin:0;
-	background:#FAFAFA;
+	background:#FFF;
 }
 h1 {
 	margin: 10px 0 0 0;
@@ -34,11 +34,9 @@ a:hover {
 
 #header_cont {
 	width:100%;
-	background: #EEE;
 }
 #header {
 	width: 640px;
-	background: #EEE;
 	margin:0 auto;
 	padding:25px;
 }

@@ -17,7 +17,7 @@
     stock_yank = StockYank.find(:first, :conditions => { :id => stock.stock_id }) 
 %>
     <div class="stock_box">
-      <h3><%= stock_yank.name %></h3>
+      <h3><%= h stock_yank.name %></h3>
       <table>
         <tr>
           <th>Lav-høj:</th>
