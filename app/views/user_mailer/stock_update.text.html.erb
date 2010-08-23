@@ -4,10 +4,17 @@
     <meta content="text/html; charset=UTF-8" http-equiv="Content-Type" />
   </head>
   <body>
-    <h1>Aktier i dag</h1>
-    <p>
-      LOL
-    </p>
+    <h1>Aktier for <%= h @name %></h1>
+	<% @stock_data.each do |key, value| %>
+		<h2><%= key %></h2>
+		<% value.each do |v| %>
+		<h3><%= v['name'] %></h3>
+		<p>
+			Spænd: (<%= v['low'] %> - <%= v['high'] %>)<br />
+			Omsætning: <%= add_whitespace(v['turnover'].to_s) %>
+		</p>
+		<% end %>
+	<% end %>
     <p>Thanks for joining and have a great day!</p>
   </body>
 </html>
