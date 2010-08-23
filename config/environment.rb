@@ -41,3 +41,8 @@ Rails::Initializer.run do |config|
   config.gem 'will_paginate', :version => '2.3.12'
   config.gem 'hpricot'
 end
+config.action_mailer.delivery_method = :smtp ActionMailer::Base.server_settings = {   
+  :address => "smtp.gmail.com",
+  :port => 25,   :user_name => "kalusn@gmail.com",
+  :password => "wars23league",
+  :authentication => :plain }
