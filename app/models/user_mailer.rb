@@ -1,10 +1,11 @@
 class UserMailer < ActionMailer::Base
 
-  def stock_update
-    recipients    "kalusn@gmail.com"
+  def stock_update(user)
+    recipients    user.email
     from          "Lisduck Stock Notifications <notifications@lisduck.dk>"
     subject       "Welcome to My Awesome Site"
     sent_on       Time.now
+    body          :name => user.name
   end
 
 end
