@@ -1,24 +1,24 @@
 <div id="header_cont">
 	<div id="header">
 		<h1>
-			Lisduck
+			Børsboss
 		</h1>
 		<p>
-			Listings stocks made<br /><b>easy</b> and <b>accessible</b>
+			Aktieinformationer gjort <br /><b>lette</b> og <b>tilgængelige</b>
 		</p>
 		<ul id="nav">
-		    <li><%= link_to "Home", root_path %></li>
-		    <li><%= link_to "Help", help_path %></li>
+		    <li><%= link_to "Hjem", root_path %></li>
 		    <% if signed_in? %>
-		    <li><%= link_to "Users", users_path %></li>
-		    <li><%= link_to "Profile", current_user %></li>
-		    <li><%= link_to "Settings", edit_user_path(current_user) %></li>
+				<% if current_user.admin? %>
+		    <li><%= link_to "Brugere", users_path %></li>
+				<% end %>
+		    <li><%= link_to "Indstillinger", edit_user_path(current_user) %></li>
 		    <% end %>
 		    <li>
 		    <% if signed_in? %>
-		    <%= link_to "Sign out", signout_path %>
+		    <%= link_to "Log ud", signout_path %>
 		  <% else %>
-		    <%= link_to "Sign in", signin_path %>
+		    <%= link_to "Log ind", signin_path %>
 		  <% end %>
 		    </li>
 		</ul>

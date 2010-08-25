@@ -12,7 +12,7 @@ module ApplicationHelper
 
 # this adds proper whitespace to numbers (which is beforehand converted to strings)
   def add_whitespace(string_nr)
-    string_nr.to_s
+    string_nr = string_nr.to_s
     if string_nr.length >= 3
       counter = 4
       stop = false
@@ -24,6 +24,6 @@ module ApplicationHelper
         counter += 4
       end
     end
-    return string_nr
+    string_nr
   end
 end

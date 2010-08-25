@@ -1,8 +1,7 @@
-<h1>Din side<h1>
-<h2>
+<h1>
   <%= h @user.name %>, <%= @user.email %><br />
   <%= gravatar_for @user, :size => 200 %>
-</h2>
+</h1>
 <%= link_to "Rediger lister", :controller => "lists", :action => "new" %>
 <% @list.each do |list| %>
   <h2><%= list.name %></h2>
@@ -29,7 +28,7 @@
         </tr>
         <tr>
           <th>Omsætning:</th>
-          <td><%= stock_yank.turnover.to_s %></td>
+          <td><%= add_whitespace(stock_yank.turnover) %></td>
         </tr>
      </table>
    </div>
