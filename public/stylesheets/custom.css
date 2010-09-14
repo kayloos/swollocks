@@ -50,10 +50,10 @@ a:hover {
 #header p {
 	margin: -10px 0 0 0;
 	padding: 0;
-	font-family: Baskerville;
-	font-size: 38px;
+	font-family: Georgia, Baskerville;
+	font-size: 34px;
 	font-color: #CCC;
-	line-height: 27px;
+	line-height: 30px;
 }
 #nav {
 	list-style: none;
@@ -140,6 +140,17 @@ ul.users {
 .edit_stock_th {
 	width: 150px;
 }
+.stock_list {
+  width:200px;
+}
+.new_list_divider {
+  margin: 15px 0;
+  height:1px;
+  width:350px;
+  color: gray;
+  background:gray;
+  border:0;
+ }
 .error, .notice, .success {padding:.8em;margin-bottom:1em;border:2px solid #ddd;}
 .error {background:#FBE3E4;color:#8a1f11;border-color:#FBC2C4;}
 .notice {background:#FFF6BF;color:#514721;border-color:#FFD324;}

@@ -12,6 +12,7 @@
 				<% if current_user.admin? %>
 		    <li><%= link_to "Brugere", users_path %></li>
 				<% end %>
+        <li><%= link_to "Aktielister", :controller => "lists", :action => "new" %></li>
 		    <li><%= link_to "Indstillinger", edit_user_path(current_user) %></li>
 		    <% end %>
 		    <li>

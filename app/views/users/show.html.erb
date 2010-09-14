@@ -2,14 +2,8 @@
   <%= h @user.name %>, <%= @user.email %><br />
   <%= gravatar_for @user, :size => 200 %>
 </h1>
-<%= link_to "Rediger lister", :controller => "lists", :action => "new" %>
 <% @list.each do |list| %>
   <h2><%= list.name %></h2>
-  <% if signed_in? %>
-    <p style="margin:0; padding:0;">
-<%= link_to "Rediger aktier for denne liste", :controller => "stocks", :action => "new", :list_id => list.id %>
-    </p>
-  <% end %>
 <%
   stock = Stock.find_all_by_list_id(list.id)
   stock.each do |stock| 
@@ -35,5 +29,3 @@
 <% end %>
 <div style="clear:both"></div>
 <% end %>
-
-	

@@ -3,6 +3,7 @@ class ListsController < ApplicationController
   def new
     @list = List.new(params[:id])
     @lists = List.find_all_by_user_id(current_user.id)
+    @stock = Stock.new
   end
 
   def create

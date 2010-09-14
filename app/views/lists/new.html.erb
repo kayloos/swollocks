@@ -1,15 +1,59 @@
 <h2>Ny liste</h2>
 
-<% form_for(@list) do |f| %>
+<%
+render 'layouts/new_list'
+## Lister outputtes med tilhørende aktier
+@lists.each do |list| %>
+<table>
+	<tr>
+		<td class="stock_list"><h2><%= link_to list.name, 	
+        :controller => 'stocks',
+				:action     => 'new', 
+				:list_id    => list.id %></h2></td>
+		<td style="vertical-align:bottom;"><%= link_to "Fjern liste",
+        list, 
+				:method     => "delete", 
+				:confirm    => "Sikker på at du vil slette listen?" %></td>
+	</tr>
+</table>
+<%
+## Form for at tilføje nye aktier
+  list_id = list.id
+  form_for(@stock) do |f| %>
   <%= f.error_messages %>
   <div class="field">
-    <%= f.label :name %><br />
-    <%= f.text_field :name %>
+    <% stocks = StockYank.find(:all, :conditions => { :id => 1..75 }) %>
+    <%= f.collection_select(
+                 :stock_id,
+                 stocks,
+                 :id,
+                 :name
+                ) %>
   </div>
-  <div class="field">
-    <%= f.submit "Tilføj liste" %>
+  <%= f.hidden_field :list_id, :value => list_id %>
+  <div class="actions">
+    <%= f.submit "Tilføj aktie" %>
   </div>
-<% end %>
-<% @lists.each do |list| %>
-  <h2><%= link_to list.name, :controller => 'stocks', :action => 'new', :list_id => list.id  %> | <%= link_to "delete", list, :method => "delete", :confirm => "Sikker på at du vil slette listen?" %></h2>
+<% end
+
+## Aktier for en given liste outputtes
+  stock = Stock.find_all_by_list_id(list.id)
+  stock.each do |stock| 
+    stock_yank = StockYank.find(:first, :conditions => { :id => stock.stock_id }) 
+%>
+    <table>
+      <tr>
+      	<td class="stock_list">
+<%= h stock_yank.name %>
+        </td>
+        <td>
+<%= link_to 'Fjern aktie',
+            stock,
+            :method     => "delete",
+            :confirm    => "Sure?" %>
+        </td>
+      </tr>
+    </table>
+  <% end %>
+  <hr class="new_list_divider">
 <% end %>
