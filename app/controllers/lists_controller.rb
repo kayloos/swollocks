@@ -30,4 +30,9 @@ class ListsController < ApplicationController
     end
   end
 
+  def toggle_mail
+    List.find(params[:list_id]).toggle!(:deliver_mail)
+    redirect_to :controller => 'lists', :action => 'new'
+  end
+
 end
