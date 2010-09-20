@@ -2,8 +2,8 @@ class UserMailer < ActionMailer::Base
 	helper ApplicationHelper 
   def stock_update(user)
     recipients    user.email
-    from          "Lisduck Stock Notifications <notifications@lisduck.dk>"
-    subject       "Welcome to My Awesome Site"
+    from          "Børsboss Aktiemail <notifications@lisduck.dk>"
+    subject       "Aktieopdatering"
     sent_on       Time.now
   # This code creates a hash, where the hash key becomes the list name, and the value
   # becomes an array of stocks and the data linked to each stock
