@@ -6,22 +6,6 @@
 		<p>
 			Aktieinformationer gjort <br /><b>lette</b> og <b>tilgængelige</b>
 		</p>
-		<ul id="nav">
-		    <li><%= link_to "Hjem", root_path %></li>
-		    <% if signed_in? %>
-				<% if current_user.admin? %>
-		    <li><%= link_to "Brugere", users_path %></li>
-				<% end %>
-        <li><%= link_to "Aktielister", :controller => "lists", :action => "new" %></li>
-		    <li><%= link_to "Indstillinger", edit_user_path(current_user) %></li>
-		    <% end %>
-		    <li>
-		    <% if signed_in? %>
-		    <%= link_to "Log ud", signout_path %>
-		  <% else %>
-		    <%= link_to "Log ind", signin_path %>
-		  <% end %>
-		    </li>
-		</ul>
-	</div>
+    <%= render 'layouts/menu' %>
+  </div>
 </div>
