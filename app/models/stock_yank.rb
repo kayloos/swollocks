@@ -35,7 +35,7 @@ class StockYank < ActiveRecord::Base
 # Getting the data using the "yank_data" method
     workstring = (yank_data/"tbody").to_html
     stock_array = Array.new
-    for i in (0..74)
+    for i in (0..77)
 # underline is a class name used to find the right place for extracting the info
       name_pos = workstring.index("underline")
       workstring = workstring.slice(name_pos+11..-1)

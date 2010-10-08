@@ -22,7 +22,7 @@
   form_for(@stock) do |f| %>
   <%= f.error_messages %>
   <div class="field">
-    <% stocks = StockYank.find(:all, :conditions => { :id => 1..75 }) %>
+    <% stocks = StockYank.all %>
     <%= f.collection_select(
                  :stock_id,
                  stocks,

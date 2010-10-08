@@ -8,8 +8,8 @@ class UserMailer < ActionMailer::Base
         from          "Børsboss Aktiemail <notifications@boersboss.dk>"
         subject       "Aktieopdatering"
         sent_on       Time.now
-      # This code creates a hash, where the hash key becomes the list name, and the value
-      # becomes an array of stocks and the data linked to each stock
+# This code creates a hash, where the hash key becomes the list name, and the value
+# becomes an array of stocks and the data linked to each stock
         stock_data = Hash.new
         list.each do |l|
           stock_data[l.name] = Array.new
