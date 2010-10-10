@@ -1,7 +1,7 @@
 class UsersController < ApplicationController
-  before_filter :authenticate, :only => [:index, :show, :edit, :update]
+  before_filter :authenticate, :only => [:show, :edit, :update]
   before_filter :correct_user, :only => [:show, :edit, :update]
-  before_filter :admin_user,   :only => [:destroy]
+  before_filter :admin_user,   :only => [:index, :destroy]
 
   def index
     @title = "All users"
@@ -61,7 +61,7 @@ class UsersController < ApplicationController
 
     def correct_user
       @user = User.find(params[:id])
-      unless current_user?(@user)
+      unless current_user?(@user) || current_user.admin?
         redirect_to(root_path)
         flash[:error] = "Not allowed"
       end 

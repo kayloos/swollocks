@@ -9,11 +9,11 @@ body {
 	background:#FFF;
 }
 h1 {
-	margin: 10px 0 0 0;
+	margin: 10px 0 10px 0;
   font-size: 24px;
 }
 h2 {
-	margin: 10px 0 0 0;
+	margin: 10px 0 10px 0;
 	font-size:20px;
 }
 h3 {
@@ -97,13 +97,12 @@ a:hover {
 }
 .signup_button {
 	display:block;
-	width:150px;
-	font-size:150%;
+	width:180px;
+	font-size:140%;
 	font-weight:bold;
-	margin:0 auto;
-	padding: 20px;
+	margin: 15px auto;
+	padding: 15px;
 	text-align:center;
-	background:#EBEBEB;
 }
 #footer {
 	width: 100%;
@@ -158,6 +157,17 @@ ul.users {
   background:gray;
   border:0;
  }
+ /* Front page */
+.home_box, .home_box_right {
+  width:250px;
+  margin: 25px 0;
+  padding:10px;
+  float:left;
+  background: white;
+}
+.home_box_right {
+  float:right
+}
 .error, .notice, .success {padding:.8em;margin-bottom:1em;border:2px solid #ddd;}
 .error {background:#FBE3E4;color:#8a1f11;border-color:#FBC2C4;}
 .notice {background:#FFF6BF;color:#514721;border-color:#FFD324;}

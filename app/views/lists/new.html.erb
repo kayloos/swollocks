@@ -55,7 +55,7 @@
       </tr>
     </table>
   <% end %>
-  <% if list.deliver_mail == true then link_text = "Send ikke listen til din mail" else link_text = "Send listen til din mail" end %>
+  <% if list.deliver_mail then link_text = "Send ikke listen til din mail" else link_text = "Send listen til din mail" end %>
     <%= link_to link_text, :controller => 'lists', :action => 'toggle_mail', :list_id => list.id %>
   <hr class="new_list_divider">
 <% end %>
