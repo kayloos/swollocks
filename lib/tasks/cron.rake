@@ -5,7 +5,7 @@ task :cron => :environment do
     time = Time.now
     if time.wday == 0 || time.wday == 6
       StockYank.new.sort_data_and_save
-      UserMailter.deliver_stock_update
+      UserMailer.deliver_stock_update
     end
   end
 end
