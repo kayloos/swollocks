@@ -5,6 +5,7 @@
   </head>
   <body>
     <h1>Aktier for <%= h @name %></h1>
+    <%= Time.now %>
 	<% @stock_data.each do |key, value| %>
 		<h2><%= key %></h2>
 		<% value.each do |v| %>
