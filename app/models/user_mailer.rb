@@ -1,9 +1,10 @@
 class UserMailer < ActionMailer::Base
 	helper ApplicationHelper 
   def stock_update
-    user = User.all
-    user.each do |user|
-      if list = List.find_all_by_user_id_and_deliver_mail(user.id, true)
+    users = User.all
+    users.each do |user|
+      list = List.find_all_by_user_id_and_deliver_mail(user.id, true)
+      if !list.empty?
         recipients    user.email
         from          "Børsboss Aktiemail <notifications@boersboss.dk>"
         subject       "Aktieopdatering"

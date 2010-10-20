@@ -12,6 +12,7 @@
 		<h3><%= v['name'] %></h3>
 		<p>
 			Spænd: (<%= v['low'] %> - <%= v['high'] %>)<br />
+      Seneste: <%= v['latest'] %><br /> 
 			Omsætning: <%= add_whitespace(v['turnover'].to_s) %>
 		</p>
 		<% end %>
