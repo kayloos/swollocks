@@ -58,7 +58,7 @@ class StockYank < ActiveRecord::Base
                              )
     end
     unless Rails.env == "development"
-      UserMailer.deliver_stock_update_test
+      UserMailer.deliver_stock_update
     end
   end
 end
