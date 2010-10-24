@@ -57,8 +57,8 @@ class StockYank < ActiveRecord::Base
                               :turnover => stock_array[i][4]
                              )
     end
-    unless Rails.env = "development"
-      UserMailer.deliver_stock_update
+    unless Rails.env == "development"
+      UserMailer.deliver_stock_update_test
     end
   end
 end
