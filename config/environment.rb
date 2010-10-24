@@ -40,5 +40,18 @@ Rails::Initializer.run do |config|
   # config.i18n.default_locale = :de
   config.gem 'will_paginate', :version => '2.3.12'
   config.gem 'hpricot'
-end
 
+end
+if Rails.env == 'development'
+  ActionMailer::Base.delivery_method = :smtp
+
+  ActionMailer::Base.smtp_settings = {
+  :enable_starttls_auto => true,
+    :address        => "smtp.gmail.com",
+    :port           => 587,
+    :domain         => "gmail.com",
+    :authentication => :plain,
+    :user_name  => "kalusn@gmail.com",
+    :password  => "wars23league"
+  }
+end

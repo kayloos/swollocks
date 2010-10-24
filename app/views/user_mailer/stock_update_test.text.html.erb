@@ -1,0 +1,21 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html>
+  <head>
+    <meta content="text/html; charset=UTF-8" http-equiv="Content-Type" />
+  </head>
+  <body>
+    <h1>TÆST Aktier for <%= h @name %></h1>
+    <%= Time.now %>
+	<% @stock_data.each do |key, value| %>
+		<h2><%= key %></h2>
+		<% value.each do |v| %>
+		<h3><%= v['name'] %></h3>
+		<p>
+			Spænd: (<%= v['low'] %> - <%= v['high'] %>)<br />
+      Seneste: <%= v['latest'] %><br /> 
+			Omsætning: <%= add_whitespace(v['turnover'].to_s) %>
+		</p>
+		<% end %>
+	<% end %>
+  </body>
+</html>
