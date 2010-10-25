@@ -40,9 +40,6 @@ module Boersboss
     # The default locale is :en and all translations from config/locales/*.rb,yml are auto loaded.
     # config.i18n.load_path += Dir[Rails.root.join('my', 'locales', '*.{rb,yml}')]
     # config.i18n.default_locale = :de
-    config.gem 'will_paginate', :version => '2.3.12'
-    config.gem 'hpricot'
-
 
     # Configure sensitive parameters which will be filtered from the log file.
     config.filter_parameters += [:password]

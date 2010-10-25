@@ -56,16 +56,16 @@ Boersboss::Application.routes.draw do
   # Note: This route will make all actions in every controller accessible via GET requests.
   # match ':controller(/:action(/:id(.:format)))'
   #
+  root :to => "pages#home"
   resources :users
-  resources :sessions
-  resources :stocks
-  resources :lists
+  resources :sessions, :only => [:new, :create, :destroy]
+  resources :stocks, :only => [:new, :create, :destroy]
+  resources :lists, :only => [:new, :create, :destroy]
   match '/contact' => 'pages#contact', :as => :contact
   match '/about' => 'pages#about', :as => :about
   match '/help' => 'pages#help', :as => :help
   match '/signup' => 'users#new', :as => :signup
   match '/signin' => 'sessions#new', :as => :signin
   match '/signout' => 'sessions#destroy', :as => :signout
-  match '/' => 'pages#home'
   match '/:controller(/:action(/:id))'
 end
