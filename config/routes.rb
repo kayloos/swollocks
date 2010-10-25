@@ -55,4 +55,17 @@ Boersboss::Application.routes.draw do
   # This is a legacy wild controller route that's not recommended for RESTful applications.
   # Note: This route will make all actions in every controller accessible via GET requests.
   # match ':controller(/:action(/:id(.:format)))'
+  #
+  resources :users
+  resources :sessions
+  resources :stocks
+  resources :lists
+  match '/contact' => 'pages#contact', :as => :contact
+  match '/about' => 'pages#about', :as => :about
+  match '/help' => 'pages#help', :as => :help
+  match '/signup' => 'users#new', :as => :signup
+  match '/signin' => 'sessions#new', :as => :signin
+  match '/signout' => 'sessions#destroy', :as => :signout
+  match '/' => 'pages#home'
+  match '/:controller(/:action(/:id))'
 end
