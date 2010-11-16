@@ -14,6 +14,7 @@
 #
 
 class StockYank < ActiveRecord::Base
+has_many :stock
   def yank_data
     require 'iconv'
     require 'open-uri'
@@ -58,7 +59,7 @@ class StockYank < ActiveRecord::Base
                              )
     end
     unless Rails.env == "development"
-      UserMailer.deliver_stock_update
+      UserMailer.stock_update.deliver
     end
   end
 end

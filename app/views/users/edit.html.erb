@@ -1,6 +1,6 @@
 <h1>Edit user</h1>
-<% form_for(@user) do |f| %>
-  <%= f.error_messages %>
+<%= form_for(@user) do |f| %>
+  <%= render 'shared/error_messages', :object => f.object %>
   <div class="field">
     <%= f.label :name %><br />
     <%= f.text_field :name %>
@@ -21,3 +21,5 @@
     <%= f.submit "Update" %>
   </div>
 <% end %>
+<br />
+<%= link_to "Slet bruger", current_user, :method => :delete, :confirm => "Sure?" %>

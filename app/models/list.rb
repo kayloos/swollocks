@@ -12,9 +12,7 @@
 
 class List < ActiveRecord::Base
   belongs_to :user
-
-  has_many :stock
+  has_many :stocks
   validates_length_of   :name, :within => 4..50
-  attr_accessible       :name
-
+  attr_accessible       :name, :deliver_mail
 end

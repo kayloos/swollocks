@@ -1,9 +1,8 @@
-<% @list.each do |list| %>
+<% @lists.each do |list| %>
   <h2><%= list.name %></h2>
 <%
-  stock = Stock.find_all_by_list_id(list.id)
-  stock.each do |stock| 
-    stock_yank = StockYank.find(:first, :conditions => { :id => stock.stock_id }) 
+  list.stocks.each do |stock| 
+    stock_yank = stock.stock_yank
 %>
     <div class="stock_box">
       <h3><%= h stock_yank.name %></h3>
@@ -26,5 +25,5 @@
 <div style="clear:both"></div>
 <% end %>
 <h1>
-  <%= h @user.name %>, <%= @user.email %><br />
+  <%= @user.name %>, <%= @user.email %><br />
 </h1>

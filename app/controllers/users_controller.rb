@@ -11,7 +11,7 @@ class UsersController < ApplicationController
   def show
     @user = User.find(params[:id])
     @title = @user.name
-    @list = List.find_all_by_user_id(@user.id)
+    @lists = @user.lists.order("created_at ASC")
   end
 
   def new
@@ -22,8 +22,8 @@ class UsersController < ApplicationController
   def create
     @user = User.new(params[:user])
     if @user.save
-      sign_in(@user)
-      flash[:success] = "Welcome to the Sample App!"
+      sign_in @user
+      flash[:success] = "Velkommen til børsboss"
       redirect_to @user
     else
       @title = "Sign up"
@@ -39,7 +39,7 @@ class UsersController < ApplicationController
 
   def update
     if @user.update_attributes(params[:user])
-      flash[:success] = "Profile updated."
+      flash[:success] = "Profil opdateret."
       redirect_to @user
     else
       @title = "Edit user"
@@ -49,7 +49,7 @@ class UsersController < ApplicationController
 
   def destroy
     User.find(params[:id]).destroy
-    flash[:success] = "User destroyed"
+    flash[:success] = "Bruger slettet."
     redirect_to users_path
   end
 

@@ -12,7 +12,7 @@
 
 class Stock < ActiveRecord::Base
   belongs_to  :list
-
-  validates_presence_of :stock_id, :list_id
-  attr_accessible       :stock_id, :list_id
+  belongs_to  :stock_yank
+  validates_presence_of :stock_yank_id, :list_id
+  attr_accessible       :stock_yank_id, :list_id
 end

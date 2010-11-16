@@ -15,30 +15,27 @@
 
 require 'digest'
 class User < ActiveRecord::Base
-  has_many  :list
+  has_many  :lists
   attr_accessor :password
   attr_accessible :name, :email, :password, :password_confirmation
 
-  EmailRegex = /\A[\w+\-.]+@[a-z\d\-.]+\.[a-z]+\z/i
+  email_regex = /\A[\w+\-.]+@[a-z\d\-.]+\.[a-z]+\z/i
 
-  validates_presence_of :name, :email
-  validates_length_of   :name, :maximum => 50
-  validates_format_of   :email, :with => EmailRegex
-  validates_uniqueness_of :email, :case_sensitive => false
+  validates   :name,   :presence     => true,
+                       :length       => { :maximum => 50 }
 
-  validates_confirmation_of :password
-  validates_presence_of :password
-  validates_length_of   :password, :within => 6..40
+  validates   :email,  :presence     => true,
+                       :format       => { :with => email_regex },
+                       :uniqueness   => { :case_sensitive => false }
+
+  validates :password, :presence     => true,
+                       :confirmation => true,
+                       :length       => { :within => 6..40 }
 
   before_save :encrypt_password
 
   def has_password?(submitted_password)
     encrypted_password == encrypt(submitted_password)
-  end
-
-  def remember_me!
-    self.remember_token = encrypt("#{salt}--#{id}--#{Time.now.utc}")
-    save_without_validation
   end
 
   def self.authenticate(email, submitted_password)
@@ -47,21 +44,24 @@ class User < ActiveRecord::Base
     return user if user.has_password?(submitted_password)
   end
 
+  def self.authenticate_with_salt(id, cookie_salt)
+    user = find_by_id(id)
+    (user && user.salt == cookie_salt) ? user : nil
+  end
+
   private
 
     def encrypt_password
-      unless password.nil?
-        self.salt = make_salt
-        self.encrypted_password = encrypt(password)
-      end
+      self.salt = make_salt if new_record?
+      self.encrypted_password = encrypt(password)
     end
 
     def encrypt(string)
-      secure_hash("#{salt}#{string}")
+      secure_hash("#{salt}--#{string}")
     end
 
     def make_salt
-      secure_hash("#{Time.now.utc}#{password}")
+      secure_hash("#{Time.now.utc}--#{password}")
     end
 
     def secure_hash(string)

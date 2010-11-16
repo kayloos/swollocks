@@ -61,11 +61,11 @@ Boersboss::Application.routes.draw do
   resources :sessions, :only => [:new, :create, :destroy]
   resources :stocks, :only => [:new, :create, :destroy]
   resources :lists, :only => [:new, :create, :destroy]
-  match '/contact' => 'pages#contact', :as => :contact
-  match '/about' => 'pages#about', :as => :about
-  match '/help' => 'pages#help', :as => :help
-  match '/signup' => 'users#new', :as => :signup
-  match '/signin' => 'sessions#new', :as => :signin
-  match '/signout' => 'sessions#destroy', :as => :signout
+  match '/contact'  => 'pages#contact'
+  match '/about'    => 'pages#about'
+  match '/help'     => 'pages#help'
+  match '/signup'   => 'users#new'
+  match '/signin'   => 'sessions#new'
+  match '/signout'  => 'sessions#destroy'
   match '/:controller(/:action(/:id))'
 end

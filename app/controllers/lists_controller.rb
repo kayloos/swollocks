@@ -2,7 +2,7 @@ class ListsController < ApplicationController
   before_filter :signed_in
   def new
     @list = List.new(params[:id])
-    @lists = List.find_all_by_user_id(current_user.id)
+    @lists = current_user.lists.order("created_at ASC")
     @stock = Stock.new
   end
 

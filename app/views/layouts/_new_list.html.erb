@@ -1,12 +1,10 @@
-<% 
-## Form for tilføj liste starter
-form_for(@list) do |f| %>
-  <%= f.error_messages %>
+<%= form_for(@list) do |f| %>
+  <%= render 'shared/error_messages', :object => f.object %>
   <div class="field">
     <%= f.label :Navn %><br />
     <%= f.text_field :name %>
   </div>
-
+  <%= f.hidden_field :deliver_mail, :value => false %>
   <div class="field">
     <%= f.submit "Tilføj liste" %>
   </div>
