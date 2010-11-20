@@ -1,13 +1,13 @@
 # == Schema Information
-# Schema version: 20100726014541
+# Schema version: 20101118224821
 #
 # Table name: stocks
 #
-#  id         :integer         not null, primary key
-#  name       :string(255)
-#  created_at :datetime
-#  updated_at :datetime
-#  list_id    :integer
+#  id            :integer         not null, primary key
+#  created_at    :datetime
+#  updated_at    :datetime
+#  portfolio_id  :integer
+#  stock_yank_id :integer
 #
 
 # Read about fixtures at http://ar.rubyonrails.org/classes/Fixtures.html

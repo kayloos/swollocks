@@ -1,27 +1,29 @@
-<% @lists.each do |list| %>
-  <h2><%= list.name %></h2>
+<% @portfolios.each do |portfolio| %>
+  <h2><%= portfolio.name %></h2>
+<table cellspacing="0" class="stock">
+  <tr>
+    <th class="name">Name</th>
+    <th>Latest</th>
+    <th>Low</th>
+    <th>High</th>
+    <th>Bid</th>
+    <th>Ask</th>
+  </tr>
 <%
-  list.stocks.each do |stock| 
+  portfolio.stocks.each do |stock|
     stock_yank = stock.stock_yank
+    q = @quotes[stock_yank.name]
 %>
-    <div class="stock_box">
-      <h3><%= h stock_yank.name %></h3>
-      <table>
-        <tr>
-          <th>Lav-høj:</th>
-          <td>(<%= stock_yank.low.to_s + ' - ' + stock_yank.high.to_s %>)</td>
-        </tr>
-        <tr>
-          <th>Seneste:</th>
-          <td><%= stock_yank.latest %></td>
-        </tr>
-        <tr>
-          <th>Omsætning:</th>
-          <td><%= add_whitespace(stock_yank.turnover) %></td>
-        </tr>
-     </table>
-   </div>
+  <tr class="quotes">
+    <td class="name"><%= stock_yank.pname %></td>
+    <td><%= q.lastTrade %></td>
+    <td><%= q.dayLow %></td>
+    <td><%= q.dayHigh %></td>
+    <td><%= q.bid %></td>
+    <td><%= q.ask %></td>
+  </tr>
 <% end %>
+</table>
 <div style="clear:both"></div>
 <% end %>
 <h1>

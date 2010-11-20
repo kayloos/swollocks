@@ -4,10 +4,13 @@
 <div>
   <div class="home_img">
 <%= link_to "Log ind!", '', :class => "signin_button_t signin" %>
-    <div id="login_box">
+    <div id="signin_box">
       <%= render 'sessions/new' %>
     </div>
-<%= link_to "Lav en bruger!", signup_path, :class => "signup_button" %>
+<%= link_to "Lav en bruger!", '', :class => "signup_button signup" %>
+    <div id="signup_box">
+      <%= render 'users/new' %>
+    </div>
   </div>
   <div class="home_box">
     <h2>Fjern spildtid</h2>

@@ -1,5 +1,5 @@
 # == Schema Information
-# Schema version: 20100726014541
+# Schema version: 20101116220059
 #
 # Table name: users
 #
@@ -11,11 +11,12 @@
 #  encrypted_password :string(255)
 #  salt               :string(255)
 #  remember_token     :string(255)
+#  admin              :boolean
 #
 
 require 'digest'
 class User < ActiveRecord::Base
-  has_many  :lists
+  has_many  :portfolios
   attr_accessor :password
   attr_accessible :name, :email, :password, :password_confirmation
 

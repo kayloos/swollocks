@@ -10,9 +10,9 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20101026212413) do
+ActiveRecord::Schema.define(:version => 20101118224821) do
 
-  create_table "lists", :force => true do |t|
+  create_table "portfolios", :force => true do |t|
     t.string   "name"
     t.integer  "user_id"
     t.datetime "created_at"
@@ -20,26 +20,23 @@ ActiveRecord::Schema.define(:version => 20101026212413) do
     t.boolean  "deliver_mail"
   end
 
-  add_index "lists", ["user_id"], :name => "index_lists_on_user_id"
+  add_index "portfolios", ["user_id"], :name => "index_lists_on_user_id"
 
   create_table "stock_yanks", :force => true do |t|
     t.string   "name"
-    t.decimal  "low"
-    t.decimal  "high"
-    t.decimal  "latest"
-    t.integer  "turnover",   :limit => 7
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.string   "pname"
   end
 
   create_table "stocks", :force => true do |t|
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.integer  "list_id"
+    t.integer  "portfolio_id"
     t.integer  "stock_yank_id"
   end
 
-  add_index "stocks", ["list_id"], :name => "index_stocks_on_list_id"
+  add_index "stocks", ["portfolio_id"], :name => "index_stocks_on_list_id"
   add_index "stocks", ["stock_yank_id"], :name => "index_stocks_on_stock_id"
 
   create_table "users", :force => true do |t|

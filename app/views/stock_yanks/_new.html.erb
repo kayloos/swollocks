@@ -1,0 +1,15 @@
+<h2>Add available stock</h2>
+<%= form_for(@stock_yank) do |f| %>
+  <%= render 'shared/error_messages', :object => f.object %>
+  <div class="field">
+    <%= f.label :name %><br />
+    <%= f.text_field :name %>
+  </div>
+  <div class="field">
+    <%= f.label :pname, "Pretty name" %><br />
+    <%= f.text_field :pname%>
+  </div>
+  <div class="actions">
+    <%= f.submit "Add" %>
+  </div>
+<% end %>

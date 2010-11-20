@@ -1,0 +1,58 @@
+<h2>Ny portfolio</h2>
+Opdateringer bliver sendt ud kl. 17:00 GMT+0, dvs. kl. 19:00 for sommertid, og klokken 18:00 for vintertid.
+<%= render 'new' %>
+<% @portfolios.each do |portfolio| %>
+<table>
+	<tr>
+    <td class="stock_portfolio">
+      <h2>
+        <%= link_to portfolio.name, edit_portfolio_path(portfolio.id) %>
+      </h2>
+    </td>
+    <td style="vertical-align:bottom;">
+    <%= link_to "Fjern portefølje",
+                  portfolio,
+                  :method     => :delete, 
+                  :confirm    => "Sikker på at du vil slette porteføljen?",
+                  :title      => "Slet #{portfolio.name}" %>
+    </td>
+	</tr>
+</table>
+<%= form_for(@stock) do |f| %>
+  <%= render 'shared/error_messages', :object => f.object %>
+  <div class="field">
+    <%= f.collection_select(
+                 :stock_yank_id,
+                 StockYank.all,
+                 :id,
+                 :pname
+                ) %>
+  </div>
+  <%= f.hidden_field :portfolio_id, :value => portfolio.id %>
+  <div class="actions">
+    <%= f.submit "Tilføj aktie" %>
+  </div>
+<% end
+
+## Aktier for en given portfolioe outputtes
+  portfolio.stocks.each do |stock| 
+    stock_yank = stock.stock_yank 
+%>
+    <table>
+      <tr>
+      	<td class="stock_portfolio">
+<%= h stock_yank.pname %>
+        </td>
+        <td>
+<%= link_to 'Fjern aktie',
+            stock,
+            :method     => :delete,
+            :confirm    => "Sure?" %>
+        </td>
+      </tr>
+    </table>
+  <% end %>
+  <% if portfolio.deliver_mail then link_text = "Send ikke listen til din mail" else link_text = "Send listen til din mail" end %>
+    <%= link_to link_text, :controller => 'portfolios', :action => 'toggle_mail', :portfolio_id => portfolio.id %>
+  <hr class="new_portfolio_divider" />
+<% end %>

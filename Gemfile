@@ -9,10 +9,17 @@ gem 'sqlite3-ruby', :require => 'sqlite3'
 gem 'hpricot'
 gem 'faker'
 gem 'jquery-rails'
+gem 'yahoofinance'
+gem "will_paginate", "~> 3.0.pre2"
 
 group :development do
-  gem 'rspec-rails', '2.0.1'
-  gem 'annotate-models', '1.0.4'
+  gem 'rspec-rails'
+  gem 'annotate-models'
+end
+
+group :test do
+  gem 'webrat', '0.7.1'
+  gem 'factory_girl_rails', '1.0'
 end
 
 # Use unicorn as the web server

@@ -5,18 +5,18 @@ class UserMailer < ActionMailer::Base
   def stock_update
     users = User.all
     users.each do |user|
-      list = user.lists.where(:deliver_mail => true)
-      unless list.empty?
+      portfolio = user.portfolios.where(:deliver_mail => true)
+      unless portfolio.empty?
         recipients    user.email
         subject       "Aktieopdatering"
         sent_on       Time.now
-# This code creates a hash, where the hash key becomes the list name, and the value
+# This code creates a hash, where the hash key becomes the portfolio name, and the value
 # becomes an array of stocks and the data linked to each stock
         @stock_data = Hash.new
 
-        list.each do |l|
+        portfolio.each do |p|
           @stock_data[l.name] = Array.new
-          @stock = Stock.find_all_by_list_id(l.id)
+          @stock = Stock.find_all_by_portfolio_id(p.id)
           @stock.each do |s|
             @stock_data[l.name] << StockYank.find(s.stock_id).attributes
           end

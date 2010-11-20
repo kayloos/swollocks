@@ -43,7 +43,7 @@ a:hover {
 	padding: 0;
 }
 #header h1, #user_header h1 {
-	font-family: "Myriad Pro", helvetica, Arial, sans-serif;
+	font-family: "Myriad Pro", Helvetica, Arial, sans-serif;
 	font-size: 54px;
 	letter-spacing: -5px;
 	margin: 0;
@@ -97,38 +97,50 @@ ul.users {
 .users li {
 	list-style: none;
 }
-.stock_box {
-	width: 268px;
-	padding: 5px;
-	margin: 5px 15px 5px 5px;
-	float: left;
+table.stock {
+  width:100%;
+  text-align:left;
+    font-size:12px;
 }
-.stock_box table {
-	width:100%;
-	margin: 0;
-	padding: 5px 10px 0 0;
-	border-right: 1px solid #ddd;
-	border-top: 1px solid #ddd;
-}
-.stock_box td, .stock_box th, .stock_box tr {
-	margin: 0;
-	padding: 0;
-	text-align:left;
-  font-weight:normal;
-}
-.stock_box td {
-	text-align: right;
-}
-.stock_box hr {
-	margin: 10px 0 0 0;
-}
+  table.stock .quotes {
+  }
+  table.stock .quotes:hover {
+    background: #fae6e6;
+    padding: 5px;
+    color: #6B246B;
+  }
+  table.stock .name {
+    text-align:left;
+    width:130px;
+  }
+  table.stock .add_rm {
+    font-size: 24px;
+    text-align:center;
+    line-height:50%;
+    width:35px;
+  }
+  table.stock td, table.stock th {
+    width:80px;
+    text-align:right;
+  }
+  table.stock .plus {
+    color:green;
+  }
+  table.stock .minus {
+    color:red;
+  }
+  table.stock th {
+    border-bottom: 1px solid #E6E6E6;
+    padding: 3px 0;
+    font-size:14px;
+  }
 .edit_stock_th {
 	width: 150px;
 }
-.stock_list {
+.stock_portfolio {
   width:200px;
 }
-.new_list_divider {
+.new_portfolio_divider {
   margin: 15px 0;
   height:1px;
   width:350px;
@@ -160,7 +172,7 @@ ul.users {
   position:absolute;
   top:0;
   left:0;
-  opacity:0.7;
+  opacity:0.4;
   background:black;
   display:none;
 }
@@ -173,8 +185,8 @@ ul.users {
   margin: 95px auto 0 auto;
   border: 2px solid #C00;
   padding:20px;
-  border-radius: 15px;
   opacity: 0.82;
+  border-radius: 15px;
   -moz-border-radius: 15px;
   -webkit-box-shadow: rgba(0,0,0,0.8) 0 0 15px;
   -moz-box-shadow: 0 0 15px #000;
@@ -182,19 +194,27 @@ ul.users {
 .signin_button_t {
   margin:33px auto 0 auto;
 }
-#login_box {
+#signin_box, #signup_box {
+  padding: 5px 10px;
+  margin:0;
   z-index:2;
   position:absolute;
-  top:-40px;
-  left:-160px;
   background:white;
   display:none;
   text-align:left;
+  box-shadow: 0 0 5px rgba(0,0,0,0.6);
+  -moz-box-shadow:0 0 5px rgba(0,0,0,0.6);
   -webkit-box-shadow:0 0 5px rgba(0,0,0,0.6);
   border-radius:10px;
-  moz-border-radius:10px;
-  padding: 5px 10px;
-  margin:0;
+  -moz-border-radius:10px;
+}
+#signin_box {
+  top: -30px;
+  left: 40px;
+}
+#signup_box {
+  top:100px;
+  left:40px;
 }
 .error, .notice, .success {padding:.8em;margin-bottom:1em;border:2px solid #ddd;}
 .error {background:#FBE3E4;color:#8a1f11;border-color:#FBC2C4;}

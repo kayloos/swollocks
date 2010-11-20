@@ -11,10 +11,9 @@
 #  deliver_mail :boolean
 #
 
-# Read about fixtures at http://ar.rubyonrails.org/classes/Fixtures.html
-
-# one:
-#   column: value
-#
-# two:
-#   column: value
+class Portfolio < ActiveRecord::Base
+  belongs_to :user
+  has_many :stocks
+  validates_length_of   :name, :within => 4..50
+  attr_accessible       :name, :deliver_mail
+end

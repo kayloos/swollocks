@@ -11,7 +11,8 @@ class UsersController < ApplicationController
   def show
     @user = User.find(params[:id])
     @title = @user.name
-    @lists = @user.lists.order("created_at ASC")
+    @portfolios = @user.portfolios.order("created_at ASC")
+    @quotes = Stock.get_stock
   end
 
   def new

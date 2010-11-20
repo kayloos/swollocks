@@ -1,0 +1,17 @@
+<%= render 'new' %>
+<table cellspacing="0">
+  <tr>
+    <th>Id</th>
+    <th>Name</th>
+    <th></th>
+  </tr>
+<% @stock_yanks.each do |stock_yank| %>
+  <tr>
+    <td><%= stock_yank.id %></td>
+    <td><%= stock_yank.pname %></td>
+    <td>
+      <%= link_to 'Delete', stock_yank, :method => "delete", :confirm => "Sure?"%>
+    </td>
+  </tr>
+<% end %>
+</table>

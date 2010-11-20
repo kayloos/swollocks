@@ -60,9 +60,8 @@ Boersboss::Application.routes.draw do
   resources :users
   resources :sessions, :only => [:new, :create, :destroy]
   resources :stocks, :only => [:new, :create, :destroy]
-  resources :lists, :only => [:new, :create, :destroy]
-  match '/contact'  => 'pages#contact'
-  match '/about'    => 'pages#about'
+  resources :portfolios, :only => [:new, :edit, :create, :destroy]
+  resources :stock_yanks, :only => [:show, :create, :destroy]
   match '/help'     => 'pages#help'
   match '/signup'   => 'users#new'
   match '/signin'   => 'sessions#new'

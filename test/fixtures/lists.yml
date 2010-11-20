@@ -1,13 +1,14 @@
 # == Schema Information
-# Schema version: 20100726014541
+# Schema version: 20101116220059
 #
 # Table name: lists
 #
-#  id         :integer         not null, primary key
-#  name       :string(255)
-#  user_id    :integer
-#  created_at :datetime
-#  updated_at :datetime
+#  id           :integer         not null, primary key
+#  name         :string(255)
+#  user_id      :integer
+#  created_at   :datetime
+#  updated_at   :datetime
+#  deliver_mail :boolean
 #
 
 # Read about fixtures at http://ar.rubyonrails.org/classes/Fixtures.html
