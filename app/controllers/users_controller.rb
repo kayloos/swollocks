@@ -12,6 +12,7 @@ class UsersController < ApplicationController
     @user = User.find(params[:id])
     @title = @user.name
     @portfolios = @user.portfolios.order("created_at ASC")
+    @stock_yanks = StockYank.all
     @quotes = Stock.get_stock
   end
 

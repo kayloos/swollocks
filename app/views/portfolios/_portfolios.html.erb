@@ -1,38 +1,45 @@
-<%= hidden_field_tag :direction, params[:direction] %>
-<%= hidden_field_tag :sort, params[:sort] %>
-<%= will_paginate @stock_yanks %>
-<table cellspacing="0" class="stock">
-  <tr>
-    <th class="name"><%= sortable 'name' %></th>
-    <th>Latest</th>
-    <th>Change</th>
-    <th>%</th>
-    <th>Low</th>
-    <th>High</th>
-    <th>Bid</th>
-    <th>Ask</th>
-    <th>Volume</th>
-  </tr>
+<table cellspacing="0" id="quotes_table">
+  <thead>
+    <tr>
+      <th class="name">Name</th>
+      <th>Latest</th>
+      <th>Change</th>
+      <th>%</th>
+      <th>Low</th>
+      <th>High</th>
+      <th>Bid</th>
+      <th>Ask</th>
+      <th>Volume</th>
+    </tr>
+  </thead>
+  <tbody>
 <% @stock_yanks.each do |stock_yank| %>
   <% quote = @quotes[stock_yank.name] %>
-  <tr class="quotes">
-    <td class="name"><%= stock_yank.pname %></td>
-    <td><%= quote.lastTrade %></td>
-    <td><%= quote.changePoints %></td>
-    <td><%= quote.changePercent %></td>
-    <td><%= quote.dayLow %></td>
-    <td><%= quote.dayHigh %></td>
-    <td><%= quote.bid %></td>
-    <td><%= quote.ask %></td>
-    <td><%= quote.volume %></td>
-    <td class="add_rm ">
-      <% if @portfolio.stocks.include?(Stock.find_by_stock_yank_id(stock_yank.id)) %>
-        <%= link_to "-", "/", :class => "minus" %>
-      <% else %> 
-        <%= link_to "+", "/", :class => "plus" %>
-      <% end %>
-    </td>
-  </tr>
+    <tr class="quotes">
+      <td class="name"><%= stock_yank.pname %></td>
+      <td><%= quote.lastTrade %></td>
+      <td><%= quote.changePoints %></td>
+      <td><%= quote.changePercent %></td>
+      <td><%= quote.dayLow %></td>
+      <td><%= quote.dayHigh %></td>
+      <td><%= quote.bid %></td>
+      <td><%= quote.ask %></td>
+      <td><%= quote.volume %></td>
+      <td class="add_rm ">
+        <% if @portfolio.stocks.include?(Stock.find_by_stock_yank_id(stock_yank.id)) %>
+          <%= link_to "-",
+            { :controller => "stocks", :action => "destroy", 
+              :id => @portfolio.id, :stock_yank_id => stock_yank.id},
+            :method => "delete", :class => "minus" %>
+        <% else %> 
+          <%= link_to "+",
+            { :controller => "stocks", :action => "create",
+              :stock => { :portfolio_id => @portfolio.id,
+              :stock_yank_id => stock_yank.id } },
+            :method => "create", :class => "plus" %>
+        <% end %>
+      </td>
+    </tr>
 <% end %>
+  </tbody>
 </table>
-<%= will_paginate @stock_yanks %>

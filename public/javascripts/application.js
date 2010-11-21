@@ -29,14 +29,36 @@ $(function() {
   $(window).resize(resizeBox);
 
 // STOCK TABLE JS
-  $("#portfolios th a, #portfolios .pagination a").live("click", function() {
-    $.getScript(this.href);
+  $(".plus").click(function(e){
+    var plus = $(this);
+    $.ajax({
+      url: this.href,
+      type: 'post',
+      dataType: 'script',
+      data: { '_method': 'create' },
+      success: function(){
+        plus.html(' ');
+      }
+    });
     return false;
   });
 
-  $("#portfolios_search").keyup(function () {
-    $.get($("#portfolios_search").attr("action"), $("#portfolios_search").serialize(), null, "script");
+  $(".minus").click(function(e){
+    var minus = $(this)
+    $.ajax({
+      url: this.href,
+      type: 'post',
+      dataType: 'script',
+      data: { '_method': 'delete' },
+      success: function(){
+        minus.html(' ');
+      }
+    });
     return false;
   });
+
+  $("#quotes_table").dataTable({
+		"sPaginationType": "full_numbers"
+	});
 
 });

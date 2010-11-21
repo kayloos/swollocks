@@ -1,12 +1,3 @@
 <h1>Edit portfolio</h1>
 <%= @portfolio.name %>
-<%= form_tag edit_portfolio_path(@portfolio.id), :method => 'get', :id => "portfolios_search" do %>
-  <div class="field">
-    <%= label_tag :search %><br />
-    <%= text_field_tag :search, params[:search] %>
-    <%= submit_tag "Search", :name => nil %>
-  </div>
-<div id="portfolios">
-  <%= render 'portfolios' %>
-</div>
-<% end %>
+<%= render 'portfolios' %>

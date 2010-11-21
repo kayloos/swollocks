@@ -1,6 +1,5 @@
 class PortfoliosController < ApplicationController
   before_filter :signed_in
-  helper_method :sort_column, :sort_direction
   def new
     @portfolio = Portfolio.new(params[:id])
     @portfolios = current_user.portfolios.order("created_at ASC")
@@ -21,7 +20,7 @@ class PortfoliosController < ApplicationController
 
   def edit
     @portfolio = Portfolio.find(params[:id])
-    @stock_yanks = StockYank.search(params[:search]).order(sort_column + " " + sort_direction).paginate :page => params[:page], :per_page => 20 
+    @stock_yanks = StockYank.all
     @quotes = Stock.get_stock
   end
 
@@ -40,12 +39,4 @@ class PortfoliosController < ApplicationController
     redirect_to :controller => 'portfolios', :action => 'new'
   end
 
-  private
-    def sort_column
-      StockYank.column_names.include?(params[:sort]) ? params[:sort] : "name"
-    end
-    
-    def sort_direction
-      %w[asc desc].include?(params[:direction]) ? params[:direction] : "asc"
-    end
 end
