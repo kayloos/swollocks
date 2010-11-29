@@ -31,26 +31,35 @@ a:hover {
 }
 #container {
 	margin: 0 auto;
-	width: 640px;
+	width: 90%;
+  max-width:1000px;
 }
 
 #header_cont {
 	width:100%;
+  padding: 5px 0 0 0;
+  border-bottom:1px solid #ccc;
+  background:#E5FFEC;
+  background: -moz-linear-gradient(top, #CCC, #EEE);
 }
 #header {
-	width: 640px;
+	width: 90%;
+  max-width:1000px;
 	margin:0 auto;
 	padding: 0;
 }
-#header h1, #user_header h1 {
+#header h1 {
 	font-family: "Myriad Pro", Helvetica, Arial, sans-serif;
-	font-size: 54px;
+	font-size: 48px;
 	letter-spacing: -5px;
-	margin: 0;
+	margin: 0 20px 0 0;
+  line-height:57px;
+  display:inline;
 	padding: 0;
 }
 #nav {
 	list-style: none;
+  display:inline;
   margin: 0;
 	padding: 0;
 }
@@ -97,42 +106,62 @@ ul.users {
 .users li {
 	list-style: none;
 }
-table.stock {
+/* TABLES */
+table.stock, #quotes_table {
   width:100%;
   text-align:left;
-    font-size:12px;
+  font-size:14px;
+  clear:both
 }
   table.stock .quotes {
   }
   table.stock .quotes:hover {
-    background: #fae6e6;
-    padding: 5px;
-    color: #6B246B;
   }
-  table.stock .name {
+  table.stock .name, #quotes_table .name {
     text-align:left;
     width:130px;
   }
-  table.stock .add_rm {
-    font-size: 24px;
+  table .add_rm {
+    font-size: 20px;
     text-align:center;
-    line-height:50%;
+    display:block;
     width:35px;
+    position:relative;
   }
-  table.stock td, table.stock th {
+  table.stock td, table.stock th,
+  #quotes_table td, #quotes_table th {
     width:80px;
     text-align:right;
+    padding:0;
   }
-  table.stock .plus {
+  table.stock .plus, #quotes_table .plus {
     color:green;
   }
-  table.stock .minus {
+  table.stock .minus, #quotes_table .minus {
     color:red;
   }
-  table.stock th {
-    border-bottom: 1px solid #E6E6E6;
-    padding: 3px 0;
+  table .add_rm .trade {
+    position:absolute;
+    display:none;
+    text-align:left;
+    z-index:2;
+    left:-150px;
+    padding:10px;
+    top:-40px;
+    width:200px;
+    height:100px;
+    background: #EEE;
+    background: -webkit-gradient(linear, left top, left bottom, from(#EEE), to(#CCC));
+    -webkit-box-shadow: 0 0 5px rgba(0,0,0,0.6);
+    border: 1px solid rgba(0,0,0,0.6);
+    border-radius:10px;
+  }
+  #quotes_table th, table.stock th {
+    border-bottom: 1px solid #ccc;
     font-size:14px;
+  }
+  #quotes_table th {
+    padding: 3px 20px 3px 0;
   }
 .edit_stock_th {
 	width: 150px;
@@ -215,6 +244,10 @@ table.stock {
 #signup_box {
   top:100px;
   left:40px;
+}
+/* FORMS */
+form {
+  font-size:14px;
 }
 .error, .notice, .success {padding:.8em;margin-bottom:1em;border:2px solid #ddd;}
 .error {background:#FBE3E4;color:#8a1f11;border-color:#FBC2C4;}

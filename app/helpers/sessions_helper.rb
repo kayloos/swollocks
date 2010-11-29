@@ -1,7 +1,6 @@
 module SessionsHelper
 
   def sign_in(user)
-    #user.remember_me!
     cookies.permanent.signed[:remember_token] = [user.id, user.salt]
     current_user = user
   end

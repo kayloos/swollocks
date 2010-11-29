@@ -12,8 +12,15 @@ class UsersController < ApplicationController
     @user = User.find(params[:id])
     @title = @user.name
     @portfolios = @user.portfolios.order("created_at ASC")
-    @stock_yanks = StockYank.all
-    @quotes = Stock.get_stock
+    @symbols = Array.new
+
+    @portfolios.each_with_index do |p, index|
+      @symbols[index] = Array.new
+      p.stocks.each do |s|
+        @symbols[index] << s.stock_yank.name
+      end
+    end
+
   end
 
   def new
@@ -25,7 +32,7 @@ class UsersController < ApplicationController
     @user = User.new(params[:user])
     if @user.save
       sign_in @user
-      flash[:success] = "Velkommen til børsboss"
+      flash[:success] = "Velkommen til bongboss"
       redirect_to @user
     else
       @title = "Sign up"

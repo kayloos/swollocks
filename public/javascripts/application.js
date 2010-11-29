@@ -1,3 +1,18 @@
+jQuery.fn.dataTableExt.oSort['percent-asc']  = function(a,b) {
+	var x = (a == "-") ? 0 : a.replace( /%/, "" );
+	var y = (b == "-") ? 0 : b.replace( /%/, "" );
+	x = parseFloat( x );
+	y = parseFloat( y );
+	return ((x < y) ? -1 : ((x > y) ?  1 : 0));
+};
+
+jQuery.fn.dataTableExt.oSort['percent-desc'] = function(a,b) {
+	var x = (a == "-") ? 0 : a.replace( /%/, "" );
+	var y = (b == "-") ? 0 : b.replace( /%/, "" );
+	x = parseFloat( x );
+	y = parseFloat( y );
+	return ((x < y) ?  1 : ((x > y) ? -1 : 0));
+};
 $(function() {
 // FRONT PAGE JS FOR SIGNIN SIGNUP
   $(".signin").click(function(e) {
@@ -19,6 +34,7 @@ $(function() {
   $("#box_focus").click(function() {
     $("#signin_box").fadeOut(200);
     $("#signup_box").fadeOut(200);
+    $(".trade").fadeOut(200);
     $(this).fadeOut(200);
   });
 
@@ -28,37 +44,27 @@ $(function() {
   resizeBox();
   $(window).resize(resizeBox);
 
-// STOCK TABLE JS
-  $(".plus").click(function(e){
-    var plus = $(this);
-    $.ajax({
-      url: this.href,
-      type: 'post',
-      dataType: 'script',
-      data: { '_method': 'create' },
-      success: function(){
-        plus.html(' ');
-      }
-    });
-    return false;
-  });
 
-  $(".minus").click(function(e){
-    var minus = $(this)
-    $.ajax({
-      url: this.href,
-      type: 'post',
-      dataType: 'script',
-      data: { '_method': 'delete' },
-      success: function(){
-        minus.html(' ');
-      }
+  $(".plus, .minus").click(function(e){
+    var trade = $(this).siblings(".trade");
+    $("#box_focus").fadeIn(400);
+    $.get(this.href, function(data) {
+      trade.html(data);
+      $("#new_stock, .edit_stock").submit(function(){
+        trade.fadeOut(200);
+        $("#box_focus").fadeOut(200);
+      });
     });
+    trade.fadeIn(400);
     return false;
   });
 
   $("#quotes_table").dataTable({
-		"sPaginationType": "full_numbers"
+		"sPaginationType": "full_numbers",
+    "aoColumns": [
+      null, null, null,
+      { "sType": "percent" }, null, null
+    ]
 	});
 
 });

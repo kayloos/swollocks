@@ -1,45 +1,41 @@
-<table cellspacing="0" id="quotes_table">
+<table cellspacing="0" id="quotes_table" class="display">
   <thead>
     <tr>
       <th class="name">Name</th>
       <th>Latest</th>
       <th>Change</th>
       <th>%</th>
-      <th>Low</th>
-      <th>High</th>
-      <th>Bid</th>
-      <th>Ask</th>
-      <th>Volume</th>
+      <th>Buy</th>
+      <th>Sell</th>
+      <th></th>
     </tr>
   </thead>
   <tbody>
-<% @stock_yanks.each do |stock_yank| %>
-  <% quote = @quotes[stock_yank.name] %>
+    <% @quotes.each do |q|
+      stock_yank = StockYank.find_by_name(q[:symbol])
+      stock = Stock.find_by_stock_yank_id(StockYank.find(stock_yank.id)) %>
     <tr class="quotes">
       <td class="name"><%= stock_yank.pname %></td>
-      <td><%= quote.lastTrade %></td>
-      <td><%= quote.changePoints %></td>
-      <td><%= quote.changePercent %></td>
-      <td><%= quote.dayLow %></td>
-      <td><%= quote.dayHigh %></td>
-      <td><%= quote.bid %></td>
-      <td><%= quote.ask %></td>
-      <td><%= quote.volume %></td>
-      <td class="add_rm ">
-        <% if @portfolio.stocks.include?(Stock.find_by_stock_yank_id(stock_yank.id)) %>
-          <%= link_to "-",
-            { :controller => "stocks", :action => "destroy", 
-              :id => @portfolio.id, :stock_yank_id => stock_yank.id},
-            :method => "delete", :class => "minus" %>
-        <% else %> 
+      <td><%= q[:last_trade_price_only] %></td>
+      <td><%= q[:change].sub(/[\+]/, '') %></td>
+      <td><%= q[:change_in_percent].sub(/[\+]/, '') %></td>
+      <td><%= q[:bid] %></td>
+      <td><%= q[:ask] %></td>
+      <td class="add_rm">
+        <div class="trade"></div>
           <%= link_to "+",
-            { :controller => "stocks", :action => "create",
-              :stock => { :portfolio_id => @portfolio.id,
-              :stock_yank_id => stock_yank.id } },
-            :method => "create", :class => "plus" %>
-        <% end %>
+            { :controller => "stocks", :action => "buy",
+              :stock => { 
+                :portfolio_id => @portfolio.id,
+                :stock_yank_id => stock_yank.id,
+                :traded_at => q[:ask] } }, :class => "plus" %>
+          <%= link_to "-",
+            { :controller => "stocks", :action => "sell", :id => stock.id },
+              :class => "minus" if @portfolio.stocks.include?(stock) %>
       </td>
     </tr>
 <% end %>
   </tbody>
 </table>
+<div id="box_focus"></div>
+<div style="clear:both;"></div>

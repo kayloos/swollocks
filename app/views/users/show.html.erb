@@ -1,28 +1,37 @@
-<% @portfolios.each do |portfolio| %>
+<% @portfolios.each_with_index do |portfolio, index| %>
   <h2><%= portfolio.name %></h2>
 <table cellspacing="0" class="stock">
-  <tr>
-    <th class="name">Name</th>
-    <th>Latest</th>
-    <th>Low</th>
-    <th>High</th>
-    <th>Bid</th>
-    <th>Ask</th>
-  </tr>
+  <thead>
+    <tr>
+      <th class="name">Name</th>
+      <th>Latest</th>
+      <th>Change</th>
+      <th>%</th>
+      <th>Low</th>
+      <th>High</th>
+      <th>Bid</th>
+      <th>Ask</th>
+      <th>Volume</th>
+    </tr>
+  </thead>
+  <tbody>
 <%
-  portfolio.stocks.each do |stock|
-    stock_yank = stock.stock_yank
-    q = @quotes[stock_yank.name]
+    quotes = StockYank.get_stocks(@symbols[index])
+    quotes.each do |q|
 %>
-  <tr class="quotes">
-    <td class="name"><%= stock_yank.pname %></td>
-    <td><%= q.lastTrade %></td>
-    <td><%= q.dayLow %></td>
-    <td><%= q.dayHigh %></td>
-    <td><%= q.bid %></td>
-    <td><%= q.ask %></td>
-  </tr>
-<% end %>
+    <tr class="quotes">
+      <td class="name"><%= q[:name].squeeze(" ").strip.titleize %></td>
+      <td><%= q[:last_trade_price_only] %></td>
+      <td><%= q[:change] %></td>
+      <td><%= q[:change_in_percent] %></td>
+      <td><%= q[:day_low] %></td>
+      <td><%= q[:day_high] %></td>
+      <td><%= q[:bid] %></td>
+      <td><%= q[:ask] %></td>
+      <td><%= q[:volume] %></td>
+    </tr>
+  <% end %>
+  </tbody>
 </table>
 <div style="clear:both"></div>
 <% end %>

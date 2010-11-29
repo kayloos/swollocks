@@ -1,7 +1,10 @@
 <h2>Ny portfolio</h2>
 Opdateringer bliver sendt ud kl. 17:00 GMT+0, dvs. kl. 19:00 for sommertid, og klokken 18:00 for vintertid.
 <%= render 'new' %>
-<% @portfolios.each do |portfolio| %>
+<%
+  @portfolios.each do |portfolio|
+  total_value = portfolio.current_amount + portfolio.get_value unless (portfolio.stocks == [])
+%>
 <table>
 	<tr>
     <td class="stock_portfolio">
@@ -9,7 +12,7 @@ Opdateringer bliver sendt ud kl. 17:00 GMT+0, dvs. kl. 19:00 for sommertid, og k
         <%= link_to portfolio.name, edit_portfolio_path(portfolio.id) %>
       </h2>
     </td>
-    <td style="vertical-align:bottom;">
+    <td>
     <%= link_to "Fjern portefølje",
                   portfolio,
                   :method     => :delete, 
@@ -17,6 +20,32 @@ Opdateringer bliver sendt ud kl. 17:00 GMT+0, dvs. kl. 19:00 for sommertid, og k
                   :title      => "Slet #{portfolio.name}" %>
     </td>
 	</tr>
+</table>
+<table cellspacing="0" class="stock" style="width:50%">
+  <thead>
+    <tr>
+      <th class="name">Kontanter</th>
+      <th>Forskel</th>
+      <th>Startværdi</th>
+      <th>Samlet værdi</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td class="name">
+<%= portfolio.current_amount %>
+      </td>
+      <td>
+<%= total_value - portfolio.start_amount %>
+      </td>
+      <td>
+<%= portfolio.start_amount %>
+      </td>
+      <td>
+<%= total_value %>
+      </td>
+    </tr>
+  </tbody>
 </table>
   <% if portfolio.deliver_mail then link_text = "Send ikke listen til din mail" else link_text = "Send listen til din mail" end %>
     <%= link_to link_text, :controller => 'portfolios', :action => 'toggle_mail', :portfolio_id => portfolio.id %>

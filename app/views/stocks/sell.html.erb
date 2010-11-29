@@ -1,0 +1,13 @@
+<%= form_for @stock, :url => {:action => "sell_trade", :id => @stock.id} do |f| %>
+  <%= render 'shared/error_messages', :object => f.object %>
+  <div class="field">
+    <%= f.label :amount %><br />
+    <%= f.text_field :amount %>
+  </div>
+  <%= f.hidden_field :traded_at %>
+  <%= f.hidden_field :stock_yank_id %>
+  <%= f.hidden_field :portfolio_id %>
+  <div class="field">
+    <%= f.submit "Send" %>
+  </div>
+<% end -%>

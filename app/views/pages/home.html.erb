@@ -3,11 +3,11 @@
   Børsbossen hjælper dig med at holde øjnene på de aktier der rykker. Den lader dig oprette lister med aktier, og du kan vælge mellem at kigge på dem her på siden, eller få tilsendt notifikationer til din email.
 <div>
   <div class="home_img">
-<%= link_to "Log ind!", '', :class => "signin_button_t signin" %>
+<%= link_to "Log ind!", signin_path, :class => "signin_button_t signin" %>
     <div id="signin_box">
       <%= render 'sessions/new' %>
     </div>
-<%= link_to "Lav en bruger!", '', :class => "signup_button signup" %>
+<%= link_to "Lav en bruger!", signup_path, :class => "signup_button signup" %>
     <div id="signup_box">
       <%= render 'users/new' %>
     </div>

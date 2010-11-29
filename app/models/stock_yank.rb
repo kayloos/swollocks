@@ -12,11 +12,24 @@
 
 class StockYank < ActiveRecord::Base
   has_many :stocks
-  def self.search(search)
-    if search
-      where('pname LIKE ?', "%#{search}%")
-    else
-      scoped
+
+  def self.get_all_stocks
+    require 'yahoo_stock'
+    symbols = Array.new
+    StockYank.all(:limit => 200).each do |sy|
+      symbols << sy.name
     end
+    YahooStock::Quote.new(:stock_symbols => symbols,
+                          :read_parameters => [:name, :symbol, :last_trade_price_only,
+                                               :change, :change_in_percent,:ask, :bid, 
+                                               :day_low, :day_high, :volume]).results(:to_hash).output
+  end
+
+  def self.get_stocks(symbols)
+    require 'yahoo_stock'
+    YahooStock::Quote.new(:stock_symbols => symbols,
+                          :read_parameters => [:name, :symbol, :last_trade_price_only,
+                                               :change, :change_in_percent,:ask, :bid, 
+                                               :day_low, :day_high, :volume]).results(:to_hash).output
   end
 end

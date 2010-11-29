@@ -1,14 +1,14 @@
 <% if signed_in? %>
 <ul id="nav">
-    <li><%= link_to "Hjem", root_path %></li>
+    <li><%= link_to "Home", root_path %></li>
     <% if current_user.admin? %>
-    <li><%= link_to "Brugere", users_path %></li>
-    <li><%= link_to "Aktier", stock_yanks_path %></li>
+    <li><%= link_to "Users", users_path %></li>
+    <li><%= link_to "Stocks", stock_yanks_path %></li>
     <% end %>
-    <li><%= link_to "Porteføljer", new_portfolio_path %></li>
-    <li><%= link_to "Indstillinger", edit_user_path(current_user) %></li>
+    <li><%= link_to "Portfolios", new_portfolio_path %></li>
+    <li><%= link_to "Settings", edit_user_path(current_user) %></li>
     <li>
-    <%= link_to "Log ud", signout_path %>
+    <%= link_to "Sign out", signout_path %>
   </li>
 </ul>
 <% end %>
