@@ -14,11 +14,12 @@
       <th>Volume</th>
     </tr>
   </thead>
-  <tbody>
 <%
-    quotes = StockYank.get_stocks(@symbols[index])
-    quotes.each do |q|
+portfolio.stocks.each do |s|
+  sy = s.stock_yank
+  q = @quotes[sy.name]
 %>
+  <tbody>
     <tr class="quotes">
       <td class="name"><%= q[:name].squeeze(" ").strip.titleize %></td>
       <td><%= q[:last_trade_price_only] %></td>
@@ -30,8 +31,8 @@
       <td><%= q[:ask] %></td>
       <td><%= q[:volume] %></td>
     </tr>
-  <% end %>
   </tbody>
+<% end %>
 </table>
 <div style="clear:both"></div>
 <% end %>

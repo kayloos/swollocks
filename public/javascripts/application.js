@@ -60,10 +60,11 @@ $(function() {
   });
 
   $("#quotes_table").dataTable({
+    "bJQueryUI": true,
 		"sPaginationType": "full_numbers",
     "aoColumns": [
       null, null, null,
-      { "sType": "percent" }, null, null
+      { "sType": "percent" }, null, null, null
     ]
 	});
 

@@ -7,8 +7,7 @@ namespace :db do
     admin = User.create!(:name => "Claus Skou Nielsen",
                  :email => "kalusn@gmail.com",
                  :password => "foobar",
-                 :password_confirmation => "foobar",
-                 :admin => true)
+                 :password_confirmation => "foobar")
     admin.toggle!(:admin)
 
     99.times do |n|
@@ -18,8 +17,7 @@ namespace :db do
       User.create!(:name => name,
                    :email => email,
                    :password => password,
-                   :password_confirmation => password,
-                   :admin => false)
+                   :password_confirmation => password)
     end
   end
 end

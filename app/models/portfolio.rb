@@ -18,21 +18,19 @@ class Portfolio < ActiveRecord::Base
                                 :length    => { :within => 3..30 }
 
   validates     :start_amount,  :presence  => true,
-                                :numericality => true
+                                :numericality => true,
+                                :inclusion => 5000..1000000
+
   attr_accessible       :name, :start_amount, :current_amount, :deliver_mail
 
   def get_value
-    symbols = Array.new
-    amounts = Array.new
-    stocks.each do |s|
-      symbols << StockYank.find(s.stock_yank_id).name
-      amounts << s.amount
-    end
-    quotes = StockYank.get_stocks(symbols)
+    quotes = StockYank.get_all_stocks
     value = 0
-    quotes.each_with_index do |q, index|
-      value += q[:last_trade_price_only].to_f * amounts[index]
+    stocks.each do |s|
+      sy = s.stock_yank
+      value += quotes[sy.name][:last_trade_price_only].to_f * s.amount
     end
-    value
+
+    return value.round
   end
 end

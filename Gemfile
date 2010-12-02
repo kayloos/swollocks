@@ -14,7 +14,8 @@ group :development do
 end
 
 group :test do
+  gem 'rspec'
   gem 'webrat', '0.7.1'
-  gem 'faker'
+  gem 'faker', '0.3.1'
   gem 'factory_girl_rails', '1.0'
 end

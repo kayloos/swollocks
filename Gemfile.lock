@@ -103,11 +103,12 @@ PLATFORMS
 DEPENDENCIES
   annotate-models
   factory_girl_rails (= 1.0)
-  faker
+  faker (= 0.3.1)
   jquery-rails
   mongrel (= 1.2.0.pre2)
   nas-yahoo_stock
   rails (= 3.0.3)
+  rspec
   rspec-rails
   sqlite3-ruby
   webrat (= 0.7.1)

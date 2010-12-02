@@ -3,7 +3,8 @@ Opdateringer bliver sendt ud kl. 17:00 GMT+0, dvs. kl. 19:00 for sommertid, og k
 <%= render 'new' %>
 <%
   @portfolios.each do |portfolio|
-  total_value = portfolio.current_amount + portfolio.get_value unless (portfolio.stocks == [])
+  total_value = portfolio.current_amount.round + portfolio.get_value unless (portfolio.stocks == [])
+  difference = total_value - portfolio.start_amount.round if total_value
 %>
 <table>
 	<tr>
@@ -16,8 +17,8 @@ Opdateringer bliver sendt ud kl. 17:00 GMT+0, dvs. kl. 19:00 for sommertid, og k
     <%= link_to "Fjern portefølje",
                   portfolio,
                   :method     => :delete, 
-                  :confirm    => "Sikker på at du vil slette porteføljen?",
-                  :title      => "Slet #{portfolio.name}" %>
+                  :confirm    => "Are you sure you want to destroy the portfolio?",
+                  :title      => "Destroy #{portfolio.name}" %>
     </td>
 	</tr>
 </table>
@@ -33,13 +34,13 @@ Opdateringer bliver sendt ud kl. 17:00 GMT+0, dvs. kl. 19:00 for sommertid, og k
   <tbody>
     <tr>
       <td class="name">
-<%= portfolio.current_amount %>
+<%= portfolio.current_amount.round %>
       </td>
       <td>
-<%= total_value - portfolio.start_amount %>
+<%= difference %>
       </td>
       <td>
-<%= portfolio.start_amount %>
+<%= portfolio.start_amount.round %>
       </td>
       <td>
 <%= total_value %>

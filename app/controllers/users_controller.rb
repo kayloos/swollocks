@@ -1,5 +1,5 @@
 class UsersController < ApplicationController
-  before_filter :authenticate, :only => [:show, :edit, :update]
+  before_filter :authenticate, :only => [:index, :show, :edit, :update]
   before_filter :correct_user, :only => [:show, :edit, :update]
   before_filter :admin_user,   :only => [:index, :destroy]
 
@@ -12,15 +12,7 @@ class UsersController < ApplicationController
     @user = User.find(params[:id])
     @title = @user.name
     @portfolios = @user.portfolios.order("created_at ASC")
-    @symbols = Array.new
-
-    @portfolios.each_with_index do |p, index|
-      @symbols[index] = Array.new
-      p.stocks.each do |s|
-        @symbols[index] << s.stock_yank.name
-      end
-    end
-
+    @quotes = StockYank.get_all_stocks
   end
 
   def new
@@ -32,7 +24,7 @@ class UsersController < ApplicationController
     @user = User.new(params[:user])
     if @user.save
       sign_in @user
-      flash[:success] = "Velkommen til bongboss"
+      flash[:success] = "Welcome to the site!"
       redirect_to @user
     else
       @title = "Sign up"
@@ -48,7 +40,7 @@ class UsersController < ApplicationController
 
   def update
     if @user.update_attributes(params[:user])
-      flash[:success] = "Profil opdateret."
+      flash[:success] = "User updated"
       redirect_to @user
     else
       @title = "Edit user"
@@ -58,7 +50,7 @@ class UsersController < ApplicationController
 
   def destroy
     User.find(params[:id]).destroy
-    flash[:success] = "Bruger slettet."
+    flash[:success] = "User destroyed"
     redirect_to users_path
   end
 

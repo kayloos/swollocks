@@ -3,6 +3,8 @@ require 'spec_helper'
 describe PagesController do
   render_views
 
+  site_title = "Breaking my balls"
+
   describe "GET 'home'" do
     it "should be successful" do
       get 'home'
@@ -12,7 +14,7 @@ describe PagesController do
     it "should have the right title" do
       get 'home'
       response.should have_selector("title",
-                                    :content => "Børsboss - Home")
+                                    :content => site_title + " - Home")
     end
   end
 
@@ -25,7 +27,7 @@ describe PagesController do
     it "should have the right title" do
       get 'help'
       response.should have_selector("title",
-                                    :content => "Børsboss - Help")
+                                    :content => site_title + " - Help")
     end
   end
 

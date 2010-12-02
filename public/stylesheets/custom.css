@@ -108,10 +108,10 @@ ul.users {
 }
 /* TABLES */
 table.stock, #quotes_table {
-  width:100%;
   text-align:left;
+  width:100%;
   font-size:14px;
-  clear:both
+  clear:both;
 }
   table.stock .quotes {
   }
@@ -125,14 +125,12 @@ table.stock, #quotes_table {
     font-size: 20px;
     text-align:center;
     display:block;
-    width:35px;
     position:relative;
   }
   table.stock td, table.stock th,
   #quotes_table td, #quotes_table th {
-    width:80px;
     text-align:right;
-    padding:0;
+    padding:2px 2px 2px 5px;
   }
   table.stock .plus, #quotes_table .plus {
     color:green;
@@ -159,9 +157,6 @@ table.stock, #quotes_table {
   #quotes_table th, table.stock th {
     border-bottom: 1px solid #ccc;
     font-size:14px;
-  }
-  #quotes_table th {
-    padding: 3px 20px 3px 0;
   }
 .edit_stock_th {
 	width: 150px;
