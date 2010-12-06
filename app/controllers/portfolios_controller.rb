@@ -1,10 +1,15 @@
 class PortfoliosController < ApplicationController
-  before_filter :signed_in
-  def new
-    @portfolio = Portfolio.new(params[:id])
-    @portfolios = current_user.portfolios.order("created_at ASC")
-    @stock = Stock.new
+  before_filter :signed_in, :init_quotes
+
+  def index
+    @user = current_user
     @title = "Portfolios"
+    @portfolio = Portfolio.new(params[:id])
+    @stock = Stock.new
+    @portfolios = @user.portfolios.order("created_at ASC")
+  end
+
+  def new
   end
 
   def create
@@ -13,31 +18,33 @@ class PortfoliosController < ApplicationController
     @portfolio.user_id = current_user.id
     if @portfolio.save
       flash[:success] = "You've added the portfolio #{@portfolio.name}"
-      redirect_to :action => 'new'
     else
-      render 'new'
+      flash[:error] = "Portfolio wasn't added"
     end
+    redirect_to portfolios_path
   end
 
   def edit
     @portfolio = Portfolio.find(params[:id])
     @stock_yanks = StockYank.all
-    @quotes = StockYank.get_all_stocks
   end
 
   def destroy
     if Portfolio.destroy(params[:id]) && Stock.delete_all(["portfolio_id = ?", params[:id]])
       flash[:success] = "Portfolio destroyed"
-      redirect_to :action => 'new'
     else
-      flash[:error] = "There was an error, an the portfolio wasn't destroyed"
-      redirect_to :action => 'new'
+      flash[:error] = "There was an error, and the portfolio wasn't destroyed"
     end
+    redirect_to portfolios_path
+  end
+
+  def refresh
+    session.destroy
+    redirect_back_or root_path
   end
 
   def toggle_mail
     Portfolio.find(params[:portfolio_id]).toggle!(:deliver_mail)
     redirect_to :controller => 'portfolios', :action => 'new'
   end
-
 end

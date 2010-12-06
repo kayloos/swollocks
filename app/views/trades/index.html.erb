@@ -1,0 +1,20 @@
+<% @trades.each do |t| %>
+  <table cellspacing="0">
+    <thead>
+      <tr>
+        <th>Action</th>
+        <th>Stock id</th>
+        <th>Traded at</th>
+        <th>Amount</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><%= t.action %></td>
+        <td><%= t.stock_id %></td>
+        <td><%= t.traded_at %></td>
+        <td><%= t.amount.to_i %></td>
+      </tr>
+    </tbody>
+  </table>
+<% end %>

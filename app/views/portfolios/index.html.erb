@@ -1,0 +1,72 @@
+<%= render 'new' %>
+<% @portfolios.each do |portfolio|
+  total_value = portfolio.current_amount.round + portfolio.get_value(quotes) unless (portfolio.stocks == [])
+  difference = total_value - portfolio.start_amount.round if total_value %>
+  <h2><%= link_to portfolio.name, edit_portfolio_path(portfolio.id) %></h2>
+<table cellspacing="0" class="stock display">
+  <thead>
+    <tr>
+      <th class="name">Name</th>
+      <th>Bought at</th>
+      <th>Latest</th>
+      <th>Amount</th>
+      <th>Value</th>
+      <th>Since start cash</th>
+      <th>Since start %</th>
+    </tr>
+  </thead>
+  <tbody>
+<%
+portfolio.stocks.each do |s|
+  sy = s.stock_yank
+  q = quotes[sy.name]
+  value = s.value(quotes)
+%>
+    <tr>
+      <td class="name"><%= sy.pname %></td>
+      <td><%= s.traded_at %></td>
+      <td><%= q[:last_trade_price_only] %></td>
+      <td><%= s.amount %></td>
+      <td><%= value.round %></td>
+      <td><%= ( value - (s.traded_at * s.amount) ).round %></td>
+      <td><%= ((value / (s.traded_at * s.amount) - 1 )*100).round(2) %>%</td>
+    </tr>
+<% end %>
+  </tbody>
+</table>
+<table cellspacing="0">
+  <tr>
+    <th class="name">Cash</th>
+    <th>Difference</th>
+    <th>Starting amount</th>
+    <th>Total value</th>
+    <th>Send mail?</th>
+  </tr>
+  <tr>
+    <td>
+<%= portfolio.current_amount.round %>
+    </td>
+    <td>
+<%= difference %>
+    </td>
+    <td>
+<%= portfolio.start_amount.round %>
+    </td>
+    <td>
+<%= total_value %>
+    </td>
+    <td>
+<% if portfolio.deliver_mail then link_text = "Send ikke listen til din mail" else link_text = "Send listen til din mail" end %>
+<%= link_to link_text, :controller => 'portfolios', :action => 'toggle_mail', :portfolio_id => portfolio.id %>
+    </td>
+  </tr>
+</table>
+<%= link_to "Fjern portefølje",
+              portfolio,
+              :method     => :delete, 
+              :confirm    => "Are you sure you want to destroy the portfolio?" %>
+<div style="clear:both"></div>
+<% end %>
+<h1>
+  <%= @user.name %>, <%= @user.email %><br />
+</h1>

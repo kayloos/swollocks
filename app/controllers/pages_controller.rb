@@ -3,7 +3,7 @@ class PagesController < ApplicationController
     @title = "Home"
     @user = User.new
     if signed_in?
-      redirect_to current_user
+      redirect_to portfolios_path
     end
   end
 

@@ -10,11 +10,11 @@
 #  pname      :string(255)
 #
 
+require 'yahoo_stock'
 class StockYank < ActiveRecord::Base
   has_many :stocks
 
   def self.get_all_stocks
-    require 'yahoo_stock'
     symbols = Array.new
     StockYank.all(:limit => 200).each do |sy|
       symbols << sy.name
@@ -26,7 +26,6 @@ class StockYank < ActiveRecord::Base
   end
 
   def self.get_stocks(symbols)
-    require 'yahoo_stock'
     YahooStock::Quote.new(:stock_symbols => symbols,
                           :read_parameters => [:name, :symbol, :last_trade_price_only,
                                                :change, :change_in_percent,:ask, :bid, 

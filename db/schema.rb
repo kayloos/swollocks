@@ -10,7 +10,15 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20101124195339) do
+ActiveRecord::Schema.define(:version => 20101205054053) do
+
+  create_table "notes", :force => true do |t|
+    t.text     "body"
+    t.string   "name"
+    t.integer  "trade_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
 
   create_table "portfolios", :force => true do |t|
     t.string   "name"
@@ -23,6 +31,16 @@ ActiveRecord::Schema.define(:version => 20101124195339) do
   end
 
   add_index "portfolios", ["user_id"], :name => "index_lists_on_user_id"
+
+  create_table "sessions", :force => true do |t|
+    t.string   "session_id", :null => false
+    t.text     "data"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "sessions", ["session_id"], :name => "index_sessions_on_session_id"
+  add_index "sessions", ["updated_at"], :name => "index_sessions_on_updated_at"
 
   create_table "stock_yanks", :force => true do |t|
     t.string   "name"
@@ -42,6 +60,16 @@ ActiveRecord::Schema.define(:version => 20101124195339) do
 
   add_index "stocks", ["portfolio_id"], :name => "index_stocks_on_list_id"
   add_index "stocks", ["stock_yank_id"], :name => "index_stocks_on_stock_id"
+
+  create_table "trades", :force => true do |t|
+    t.text     "description"
+    t.string   "action"
+    t.integer  "stock_id"
+    t.decimal  "traded_at"
+    t.decimal  "amount"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
 
   create_table "users", :force => true do |t|
     t.string   "name"

@@ -23,8 +23,10 @@ class Portfolio < ActiveRecord::Base
 
   attr_accessible       :name, :start_amount, :current_amount, :deliver_mail
 
-  def get_value
-    quotes = StockYank.get_all_stocks
+  def get_value(quotes=nil)
+    unless quotes.any?
+      quotes = StockYank.get_all_stocks
+    end
     value = 0
     stocks.each do |s|
       sy = s.stock_yank

@@ -9,10 +9,6 @@ class UsersController < ApplicationController
   end
 
   def show
-    @user = User.find(params[:id])
-    @title = @user.name
-    @portfolios = @user.portfolios.order("created_at ASC")
-    @quotes = StockYank.get_all_stocks
   end
 
   def new

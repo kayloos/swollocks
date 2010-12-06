@@ -30,7 +30,8 @@ $(function() {
       });
       $("#box_focus").fadeIn(400);
     });
-  
+
+  // Mask box when fading the background to black (with opacity)
   $("#box_focus").click(function() {
     $("#signin_box").fadeOut(200);
     $("#signup_box").fadeOut(200);
@@ -39,17 +40,32 @@ $(function() {
   });
 
   var resizeBox = function() {
-    $("#box_focus").height( $(window).height() );
-  }
+    $("#box_focus").height("100%");
+  };
   resizeBox();
   $(window).resize(resizeBox);
 
-
+  // Trade forms events, tweaks and magic
   $(".plus, .minus").click(function(e){
     var trade = $(this).siblings(".trade");
     $("#box_focus").fadeIn(400);
     $.get(this.href, function(data) {
       trade.html(data);
+      $(".stock_amount").focus();
+
+      // Calculate cost when the user inserts amount
+      $(".stock_amount").keyup(function(){
+        amount = parseFloat($(this).val());
+        traded_at = parseFloat($(this).parent().siblings("#stock_traded_at").val());
+        if (amount > 0) {
+          $(".cost").html(amount * traded_at);
+        }
+        else {
+          $(".cost").html(0);
+        }
+        $(".stock_amount").html(0);
+      });
+
       $("#new_stock, .edit_stock").submit(function(){
         trade.fadeOut(200);
         $("#box_focus").fadeOut(200);
@@ -59,6 +75,7 @@ $(function() {
     return false;
   });
 
+  // Datatable initializing
   $("#quotes_table").dataTable({
     "bJQueryUI": true,
 		"sPaginationType": "full_numbers",
