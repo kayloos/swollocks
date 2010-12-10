@@ -110,7 +110,7 @@ DEPENDENCIES
   jquery-rails
   mongrel (= 1.2.0.pre2)
   mysql
-  nas-yahoo_stock
+  nas-yahoo_stock (= 1.0.7)
   rails (= 3.0.3)
   rspec
   rspec-rails
