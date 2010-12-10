@@ -20,3 +20,7 @@ group :test do
   gem 'faker', '0.3.1'
   gem 'factory_girl_rails', '1.0'
 end
+
+group :production do
+  gem 'mysql'
+end
