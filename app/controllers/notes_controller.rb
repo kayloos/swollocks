@@ -1,7 +1,8 @@
 class NotesController < ApplicationController
+  before_filter :authenticate
   def index
     @title = "Notes"
-    @notes = Note.all
+    @notes = current_user.notes.all(:order => "created_at DESC")
   end
 
   def show
@@ -10,11 +11,8 @@ class NotesController < ApplicationController
 
   def new
     @title = "Add note"
-    if params[:trade_id]
-      @note = Note.new(:trade_id => params[:trade_id])
-    else
-      @note = Note.new
-    end
+    @note = Note.new
+    @note[:trade_id] = params[:trade_id] if params[:trade_id]
     respond_to do |format|
       format.html { render :layout => true }
       format.js { render :layout => false }
@@ -23,6 +21,7 @@ class NotesController < ApplicationController
 
   def create
     @note = Note.new(params[:note])
+    @note.user_id = current_user.id
     if @note.save
       flash[:success] = "Note saved!"
       redirect_to notes_path

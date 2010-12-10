@@ -1,0 +1,3 @@
+<% @yank_proposals.each do |yp| %>
+  <%= yp.name %>, <%= yp.symbol %>: <%= link_to "Approve", :action => "approve", :id => yp.id %> <%= link_to "Remove", yp, :method => "delete" %><br />
+<% end %>

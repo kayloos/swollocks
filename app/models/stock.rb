@@ -1,5 +1,5 @@
 # == Schema Information
-# Schema version: 20101118224821
+# Schema version: 20101209180628
 #
 # Table name: stocks
 #
@@ -8,6 +8,8 @@
 #  updated_at    :datetime
 #  portfolio_id  :integer
 #  stock_yank_id :integer
+#  amount        :integer
+#  traded_at     :decimal(, )
 #
 
 class Stock < ActiveRecord::Base
@@ -18,7 +20,7 @@ class Stock < ActiveRecord::Base
 
   def value(quotes)
     sy = stock_yank
-    q = quotes[sy.name]
+    q = quotes[sy.symbol]
     q[:last_trade_price_only].to_f * amount
   end
 end

@@ -21,7 +21,7 @@ class UsersController < ApplicationController
     if @user.save
       sign_in @user
       flash[:success] = "Welcome to the site!"
-      redirect_to @user
+      redirect_to portfolios_path
     else
       @title = "Sign up"
       @user.password = ""
@@ -52,19 +52,11 @@ class UsersController < ApplicationController
 
   private
 
-    def authenticate
-      deny_access unless signed_in?
-    end
-
     def correct_user
       @user = User.find(params[:id])
       unless current_user?(@user) || current_user.admin?
         redirect_to(root_path)
         flash[:error] = "Not allowed"
       end 
-    end
-
-    def admin_user
-      redirect_to(root_path) unless current_user.admin?
     end
 end

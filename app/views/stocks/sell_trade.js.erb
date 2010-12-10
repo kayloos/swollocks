@@ -1,0 +1,7 @@
+$.jGrowl("You've sold some stocks! <a href='/notes/new?trade_id=<%= @js_hash[:trade_id] %>'>Click here to add a note.</a>",
+  {
+    theme: 'smoothness'
+});
+<% if @js_hash[:sold_all] %>
+  $(".<%= @js_hash[:stock_id] %>").removeClass('minus').addClass('disabled');
+<% end %>

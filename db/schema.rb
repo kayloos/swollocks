@@ -10,14 +10,20 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20101205054053) do
+ActiveRecord::Schema.define(:version => 20101209224750) do
+
+  create_table "markets", :force => true do |t|
+    t.string   "name"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
 
   create_table "notes", :force => true do |t|
     t.text     "body"
-    t.string   "name"
     t.integer  "trade_id"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.integer  "user_id"
   end
 
   create_table "portfolios", :force => true do |t|
@@ -43,10 +49,11 @@ ActiveRecord::Schema.define(:version => 20101205054053) do
   add_index "sessions", ["updated_at"], :name => "index_sessions_on_updated_at"
 
   create_table "stock_yanks", :force => true do |t|
-    t.string   "name"
+    t.string   "symbol"
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.string   "pname"
+    t.string   "name"
+    t.integer  "market_id"
   end
 
   create_table "stocks", :force => true do |t|
@@ -64,11 +71,13 @@ ActiveRecord::Schema.define(:version => 20101205054053) do
   create_table "trades", :force => true do |t|
     t.text     "description"
     t.string   "action"
-    t.integer  "stock_id"
+    t.string   "portfolio_name"
+    t.string   "stock_name"
     t.decimal  "traded_at"
     t.decimal  "amount"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.integer  "user_id"
   end
 
   create_table "users", :force => true do |t|
@@ -84,5 +93,13 @@ ActiveRecord::Schema.define(:version => 20101205054053) do
 
   add_index "users", ["email"], :name => "index_users_on_email", :unique => true
   add_index "users", ["remember_token"], :name => "index_users_on_remember_token"
+
+  create_table "yank_proposals", :force => true do |t|
+    t.string   "name"
+    t.string   "symbol"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.integer  "market_id"
+  end
 
 end

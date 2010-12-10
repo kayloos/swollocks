@@ -36,7 +36,9 @@ a:hover {
 
 #header_cont {
 	width:100%;
-  padding: 15px 0 0 0;
+  height:55px;
+  margin: 0;
+  padding: 0 0 0 0;
   border-bottom:1px solid #ccc;
   background: #EEE;
   background: -moz-linear-gradient(top, #CCC, #EEE);
@@ -44,36 +46,41 @@ a:hover {
   #header {
     width: 90%;
     max-width:1000px;
-    margin:0 auto;
-    padding: 0;
-    h1 {
-      font-family: "Myriad Pro", Helvetica, Arial, sans-serif;
-      font-size: 48px;
-      letter-spacing: -3px;
-      margin: 0 30px 0 0;
-      line-height:57px;
-      display:inline;
-      color:#000;
-      padding: 0;
+    margin: 0 auto;
+    padding: 30px 0 10px 0;
+    text-align:right;
+    #logo {
+      float:left;
+      h1 {
+        font-family: 'PT Sans', Helvetica, Arial, sans-serif;
+        font-size: 36px;
+        letter-spacing: -3px;
+        line-height:0px;
+        display:inline;
+        color:#000;
+        padding: 0;
+      }
     }
-  }
-}
-#nav {
-	list-style: none;
-  display:inline;
-  margin: 0;
-	padding: 0;
-  li {
-    display: inline;
-    margin-right: 5px;
-    a {
-      text-decoration: none;
-      font-style: italic;
-      font-size: 24px;
-      font-family: Baskerville;
-      line-height: 0px;
-      color: #C00;
-      &:hover { color: #000;}
+    #nav {
+    text-align:right;
+      ul {
+        list-style: none;
+        display:inline;
+        padding: 0;
+        li {
+          display: inline;
+          margin-right: 5px;
+          a {
+            text-decoration: none;
+            font-style: italic;
+            font-size: 24px;
+            font-family: Baskerville;
+            line-height: 0px;
+            color: #C00;
+            &:hover { color: #000;}
+          }
+        }
+      }
     }
   }
 }
@@ -125,6 +132,7 @@ table.stock, #quotes_table {
   }
   .plus  { color: green; }
   .minus { color:red; }
+  .disabled { cursor: default; color:#AAA; }
 }
 table .add_rm {
   font-size: 20px;
@@ -246,4 +254,4 @@ form {
 .success {background:#E6EFC2;color:#264409;border-color:#C6D880;}
 .error a {color:#8a1f11;}
 .notice a {color:#514721;}
-.success a {color:#264409;}
+.success a {color:#C00;&:hover{color:#000;}}

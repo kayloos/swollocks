@@ -1,13 +1,14 @@
 # == Schema Information
-# Schema version: 20101118224821
+# Schema version: 20101209224750
 #
 # Table name: stock_yanks
 #
 #  id         :integer         not null, primary key
-#  name       :string(255)
+#  symbol     :string(255)
 #  created_at :datetime
 #  updated_at :datetime
-#  pname      :string(255)
+#  name       :string(255)
+#  market_id  :integer
 #
 
 require 'yahoo_stock'
@@ -17,7 +18,7 @@ class StockYank < ActiveRecord::Base
   def self.get_all_stocks
     symbols = Array.new
     StockYank.all(:limit => 200).each do |sy|
-      symbols << sy.name
+      symbols << sy.symbol
     end
     YahooStock::Quote.new(:stock_symbols => symbols,
                           :read_parameters => [:name, :symbol, :last_trade_price_only,

@@ -1,5 +1,6 @@
 class PortfoliosController < ApplicationController
-  before_filter :signed_in, :init_quotes
+  before_filter :authenticate
+  before_filter :init_quotes
 
   def index
     @user = current_user

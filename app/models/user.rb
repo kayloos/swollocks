@@ -16,7 +16,9 @@
 
 require 'digest'
 class User < ActiveRecord::Base
-  has_many  :portfolios
+  has_many :portfolios
+  has_many :trades
+  has_many :notes
   attr_accessor :password
   attr_accessible :name, :email, :password, :password_confirmation
 

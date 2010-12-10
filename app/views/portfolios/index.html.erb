@@ -19,11 +19,11 @@
 <%
 portfolio.stocks.each do |s|
   sy = s.stock_yank
-  q = quotes[sy.name]
+  q = quotes[sy.symbol]
   value = s.value(quotes)
 %>
     <tr>
-      <td class="name"><%= sy.pname %></td>
+      <td class="name"><%= sy.name %></td>
       <td><%= s.traded_at %></td>
       <td><%= q[:last_trade_price_only] %></td>
       <td><%= s.amount %></td>

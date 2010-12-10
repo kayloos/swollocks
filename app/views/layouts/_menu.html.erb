@@ -1,9 +1,12 @@
 <% if signed_in? %>
-<ul id="nav">
+<ul>
     <li><%= link_to "Home", root_path %></li>
     <% if current_user.admin? %>
-    <li><%= link_to "Users", users_path %></li>
-    <li><%= link_to "Stocks", stock_yanks_path %></li>
+      <li><%= link_to "Users", users_path %></li>
+      <li><%= link_to "Stocks", stock_yanks_path %></li>
+      <li><%= link_to "Proposals", yank_proposals_path %></li>
+    <% else %>
+      <li><%= link_to "Add stock", new_yank_proposal_path %></li>
     <% end %>
     <li><%= link_to "Trades", trades_path %></li>
     <li><%= link_to "Notes", notes_path %></li>

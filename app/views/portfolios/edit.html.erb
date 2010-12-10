@@ -12,10 +12,11 @@
   </thead>
   <tbody>
     <% @stock_yanks.each do |sy|
-      q = quotes[sy.name]
+      q = quotes[sy.symbol]
       stock = Stock.find_by_stock_yank_id_and_portfolio_id(sy.id, @portfolio.id) %>
+
     <tr class="quotes">
-      <td class="name"><%= sy.pname %></td>
+      <td class="name"><%= sy.name %></td>
       <td><%= q[:last_trade_price_only] %></td>
       <td><%= q[:change].sub(/[\+]/, '') %></td>
       <td><%= q[:change_in_percent].sub(/[\+]/, '') %></td>
@@ -29,9 +30,13 @@
                 :portfolio_id => @portfolio.id,
                 :stock_yank_id => sy.id,
                 :traded_at => q[:last_trade_price_only] } }, :class => "plus" %>
-          <%= link_to "-",
-            { :controller => "stocks", :action => "sell", :id => stock.id },
-              :class => "minus" if @portfolio.stocks.include?(stock) %>
+          <%if stock then %>
+            <%= link_to "-",
+              { :controller => "stocks", :action => "sell", :id => stock.id, :traded_at => q[:last_trade_price_only] },
+                :class => "minus #{stock.id}" %>
+          <% else %>
+            <a class="disabled">-</a>
+          <% end %>
       </td>
     </tr>
 <% end %>

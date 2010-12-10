@@ -3,7 +3,6 @@
 <% no_notes_msg = "No notes to display" unless @notes.any? %>
 <%= no_notes_msg %>
 <% @notes.each do |n| %>
-  <%= n.name %>
   <%= n.body %>
   <%= link_to "Edit", edit_note_path(n.id) %>
   <%= link_to "Destroy", n, :method => "delete" %><br />

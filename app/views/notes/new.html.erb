@@ -1,11 +1,8 @@
 <%= form_for @note do |f| %>
   <%= render 'shared/error_messages', :object => f.object %>
+  <%= f.hidden_field :trade_id %>
   <div class="field">
-    <%= f.label :name %><br />
-    <%= f.text_field :name %>
-  </div>
-  <div class="field">
-    <%= f.label :body %><br />
+    <%= f.label :Note %><br />
     <%= f.text_area :body %>
   </div>
   <div class="field">

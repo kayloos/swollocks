@@ -1,16 +1,15 @@
 # == Schema Information
 # Schema version: 20101209224750
 #
-# Table name: notes
+# Table name: yank_proposals
 #
 #  id         :integer         not null, primary key
-#  body       :text
-#  trade_id   :integer
+#  name       :string(255)
+#  symbol     :string(255)
 #  created_at :datetime
 #  updated_at :datetime
-#  user_id    :integer
+#  market_id  :integer
 #
 
-class Note < ActiveRecord::Base
-  belongs_to :trade
+class YankProposal < ActiveRecord::Base
 end

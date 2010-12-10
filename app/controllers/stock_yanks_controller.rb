@@ -1,5 +1,5 @@
 class StockYanksController < ApplicationController
-  before_filter :signed_in
+  before_filter :authenticate
 
   def index
     @title = "Stocks!"
@@ -16,6 +16,7 @@ class StockYanksController < ApplicationController
   def create
     @stock_yank = StockYank.new(params[:stock_yank])
     if @stock_yank.save
+      update_quotes
       flash[:success] = "Stock added!"
       redirect_to stock_yanks_path
     else
@@ -27,6 +28,8 @@ class StockYanksController < ApplicationController
   def destroy
     if StockYank.destroy(params[:id])
       flash[:success] = "Stock destroyed"
+      Stock.destroy_all.where("stock_yank_id = ?", params[:id])
+      update_quotes
       redirect_to stock_yanks_path
     else
       flash[:error] = "Stock wasn't destroyed"

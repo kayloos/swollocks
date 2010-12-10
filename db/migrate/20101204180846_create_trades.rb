@@ -3,7 +3,8 @@ class CreateTrades < ActiveRecord::Migration
     create_table :trades do |t|
       t.text :description
       t.string :action
-      t.integer :stock_id
+      t.string :portfolio_name
+      t.string :stock_name
       t.decimal :traded_at
       t.decimal :amount
 

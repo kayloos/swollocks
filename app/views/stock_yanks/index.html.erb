@@ -8,7 +8,7 @@
 <% @stock_yanks.each do |stock_yank| %>
   <tr>
     <td><%= stock_yank.id %></td>
-    <td><%= stock_yank.pname %></td>
+    <td><%= stock_yank.name %></td>
     <td>
       <%= link_to 'Delete', stock_yank, :method => "delete", :confirm => "Sure?"%>
     </td>

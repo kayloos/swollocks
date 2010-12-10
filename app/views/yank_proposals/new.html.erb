@@ -1,0 +1,16 @@
+<h1>Propose a stock to the database</h1>
+<%= form_for @yank_proposal do |f| %>
+  <%= render 'shared/error_messages', :object => f.object %>
+  <%= f.collection_select :market_id, Market.all, :id, :name %>
+  <div class="field">
+    <%= f.label :symbol %><br />
+    <%= f.text_field :symbol %>
+  </div>
+  <div class="field">
+    <%= f.label :name %><br />
+    <%= f.text_field :name %>
+  </div>
+  <div class="field">
+    <%= f.submit "Propose!" %>
+  </div>
+<% end %>

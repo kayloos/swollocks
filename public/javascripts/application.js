@@ -14,6 +14,8 @@ jQuery.fn.dataTableExt.oSort['percent-desc'] = function(a,b) {
 	return ((x < y) ?  1 : ((x > y) ? -1 : 0));
 };
 $(function() {
+  $.jGrowl.defaults.position = 'center';
+  $.jGrowl.defaults.life = 8000;
 // FRONT PAGE JS FOR SIGNIN SIGNUP
   $(".signin").click(function(e) {
     e.preventDefault();

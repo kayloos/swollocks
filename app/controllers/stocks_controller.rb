@@ -1,5 +1,5 @@
 class StocksController < ApplicationController
-  before_filter :signed_in
+  before_filter :authenticate
   def show
     @title = "Stocks!"
   end
@@ -8,16 +8,6 @@ class StocksController < ApplicationController
     @title = "Buy stock"
     @stock = Stock.new(params[:stock])
     @portfolio = Portfolio.find(@stock.portfolio_id)
-    respond_to do |format|
-      format.js { render :layout => false }
-    end
-  end
-
-  def sell
-    @title = "Sell stock"
-    @stock = Stock.find(params[:id])
-    @stock_amount = @stock.amount
-    @stock.amount = 0
     respond_to do |format|
       format.js { render :layout => false }
     end
@@ -36,24 +26,34 @@ class StocksController < ApplicationController
         @old_stock.update_attributes(:amount => @old_stock.amount + amount,
                                      :traded_at => calculate_price(@old_stock.traded_at, traded_at,
                                                                    @old_stock.amount, amount))
-        trade_stock_id = @old_stock.id
+        trade_stock_name = StockYank.find(@old_stock.stock_yank_id).name
       else
         @stock.save
-        trade_stock_id = @stock.id
+        trade_stock_name = StockYank.find(@stock.stock_yank_id).name
       end
       flash.now[:success] = "Stock bought"
       @portfolio.current_amount -= value 
       @portfolio.save
-      create_trade(trade_stock_id, "buy", traded_at, amount)
+      create_trade(trade_stock_name, "bought", traded_at, amount)
     else
       flash.now[:error] = "You don't have enough money to make the purchase"
     end
-
     respond_to do |format|
       format.html { redirect_to edit_portfolio_path(@portfolio.id) }
       format.js {
-        render :trade_respond, :with => @trade
+        render :layout => false , :with => @trade
       }
+    end
+  end
+
+  def sell
+    @title = "Sell stock"
+    @stock = Stock.find(params[:id])
+    @stock[:traded_at] = params[:traded_at]
+    @stock_amount = @stock.amount
+    @stock.amount = 0
+    respond_to do |format|
+      format.js { render :layout => false }
     end
   end
 
@@ -67,6 +67,7 @@ class StocksController < ApplicationController
     unless stock_amount > @old_stock.amount
       if @old_stock.amount.to_f == stock_amount
         @old_stock.destroy
+        sold_all = true
       else
         @old_stock.update_attributes(:amount => @old_stock.amount - stock_amount)
       end
@@ -76,9 +77,15 @@ class StocksController < ApplicationController
       flash.now[:error] = "You can't sell more stocks than you have"
     end
     @portfolio.save
+    create_trade(StockYank.find(@old_stock.stock_yank_id).name, "sold", stock[:traded_at], stock[:amount])
 
-    create_trade(params[:id], "sell", stock[:traded_at], stock[:amount])
-    trade_respond
+    respond_to do |format|
+      format.html { redirect_to edit_portfolio_path(@portfolio.id) }
+      format.js {
+        @js_hash = {:trade_id => @trade.id, :sold_all => sold_all, :stock_id => @old_stock.id }
+        render :layout => false, :with => @js_hash
+      }
+    end
   end
 
   def destroy
@@ -104,17 +111,12 @@ class StocksController < ApplicationController
       ( ( old_price * ratio ) + ( new_price * rev_ratio ) ).round(2)
     end
 
-    def trade_respond
-      respond_to do |format|
-        format.html { redirect_to edit_portfolio_path(@portfolio.id) }
-        format.js { 
-          render :trade_respond
-          @stock = "HEJ"
-        }
-      end
-    end
-
-    def create_trade(stock_id, action, traded_at, amount)
-      @trade = Trade.create!(:stock_id => stock_id, :action => action, :traded_at => traded_at, :amount => amount)
+    def create_trade(stock_name, action, traded_at, amount)
+      @trade = Trade.create!(:stock_name     => stock_name,
+                             :action         => action,
+                             :traded_at      => traded_at,
+                             :amount         => amount,
+                             :user_id        => current_user.id,
+                             :portfolio_name => @portfolio.name)
     end
 end
