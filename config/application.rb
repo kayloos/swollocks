@@ -8,7 +8,7 @@ Bundler.require(:default, Rails.env) if defined?(Bundler)
 
 module Boersboss
   class Application < Rails::Application
-    config.encoding = "UTF8"
+    config.encoding = "utf-8"
     config.time_zone = 'Copenhagen'
     config.filter_parameters += [:password]
   end
