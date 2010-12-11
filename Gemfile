@@ -6,10 +6,10 @@ gem 'jquery-rails'
 gem 'nas-yahoo_stock', '1.0.7'
 gem 'will_paginate', '~> 3.0.pre2'
 gem 'haml'
+gem 'sqlite3-ruby', :require => 'sqlite3'
 
 group :development do
   gem 'mongrel', '1.2.0.pre2'
-  gem 'sqlite3-ruby', :require => 'sqlite3'
   gem 'rspec-rails'
   gem 'annotate-models'
 end
@@ -22,5 +22,5 @@ group :test do
 end
 
 group :production do
-  gem 'mysql'
+#  gem 'mysql'
 end
