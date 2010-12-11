@@ -1,7 +1,7 @@
 class RemoveStockIdFromStockyanks < ActiveRecord::Migration
   def self.up
-    remove_column :stock_yanks, :stock_id
     remove_index :stock_yanks, :stock_id
+    remove_column :stock_yanks, :stock_id
   end
 
   def self.down
