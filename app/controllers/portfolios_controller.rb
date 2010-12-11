@@ -1,6 +1,7 @@
 class PortfoliosController < ApplicationController
   before_filter :authenticate
   before_filter :init_quotes
+  before_filter :catch_no_quotes
 
   def index
     @user = current_user
@@ -8,6 +9,9 @@ class PortfoliosController < ApplicationController
     @portfolio = Portfolio.new(params[:id])
     @stock = Stock.new
     @portfolios = @user.portfolios.order("created_at ASC")
+    unless quotes
+      render :nothing => true, :text => "Ingen aktier i databasen"
+    end
   end
 
   def new

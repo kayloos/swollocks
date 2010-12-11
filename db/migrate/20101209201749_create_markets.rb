@@ -5,6 +5,7 @@ class CreateMarkets < ActiveRecord::Migration
 
       t.timestamps
     end
+    Market.create!(:name => "OMX Copenhagen")
   end
 
   def self.down

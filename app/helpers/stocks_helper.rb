@@ -12,4 +12,10 @@ module StocksHelper
   def quotes
     session[:quotes]
   end
+
+  def catch_no_quotes
+    unless quotes
+      render :nothing => true, :text => "Ingen aktier i databasen"
+    end
+  end
 end
