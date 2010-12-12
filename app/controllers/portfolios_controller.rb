@@ -6,7 +6,7 @@ class PortfoliosController < ApplicationController
   def index
     @user = current_user
     @title = "Portfolios"
-    @portfolio = Portfolio.new(params[:id])
+    @portfolio = Portfolio.new
     @stock = Stock.new
     @portfolios = @user.portfolios.order("created_at ASC")
     unless quotes

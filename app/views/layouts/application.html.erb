@@ -3,7 +3,10 @@
 <head>
   <title><%= title %></title>
   <link href='http://fonts.googleapis.com/css?family=PT+Sans&subset=latin' rel='stylesheet' type='text/css'>
-  <%= stylesheet_link_tag :all %>
+  <%= stylesheet_link_tag 'jquery.jgrowl' %>
+  <%= stylesheet_link_tag 'jquery-ui' %>
+  <%= stylesheet_link_tag 'table_jui' %>
+  <%= stylesheet_link_tag 'custom' %>
   <%= javascript_include_tag 'jquery' %>
   <%= javascript_include_tag 'rails' %>
   <%= javascript_include_tag 'jquery-ui' %>
@@ -18,12 +21,11 @@
   <div id="main">
       <% flash.each do |key, value| %>
         <div class="flash <%= key %>"><%= value %></div>
-    <% end %>
-      <%= yield %>
-  </div>
-  <div id="footer">
+      <% end %>
+    <%= yield %>
   </div>
   <%= debug(params) if Rails.env.development? %>
 </div>
+<%= render 'layouts/footer' %>
 </body>
 </html>

@@ -87,15 +87,4 @@ $(function() {
     ]
 	});
 
-  $(".stock").dataTable({
-    "bJQueryUI": true,
-    "bPaginate": false,
-    "bFilter": false,
-    "bInfo": false,
-    "aoColumns": [
-      null, null, null, null, null, null,
-      { "sType": "percent" }
-    ]
-  });
-
 });

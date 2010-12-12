@@ -1,3 +1,21 @@
+$one: #00261C;
+$two: #044C29;
+$three: #167F39;
+$four: #96ED89;
+$five: #45BF55;
+
+@mixin bgradient($start, $end)  {
+  background: $start;
+  background: -moz-linear-gradient(top, $start, $end);
+  background: -webkit-gradient(linear, left top, left bottom, from($start), to($end));
+}
+
+@mixin bshadow($hor, $ver, $blur, $color) {
+  box-shadow: $hor $ver $blur $color;
+  -webkit-box-shadow: $hor $ver $blur $color;
+  -moz-box-shadow: $hor $ver $blur $color;
+}
+
 HTML {
 	width: 100%;
 }
@@ -5,23 +23,28 @@ body {
 	font-size:14px;
 	margin:0;
 	background:#FFF;
+  width: 100%;
   padding:0;
-	font-family: Helvetica, Trebuchet MS, sans-serif;
+	font-family: 'Droid Serif', Georgia, Trebuchet MS, sans-serif;
 }
 h1 {
 	margin: 10px 0 10px 0;
   font-size: 24px;
+  color: $four;
+  text-shadow: 1px 1px 0 white;
 }
 h2 {
 	margin: 10px 0 10px 0;
 	font-size:20px;
+  color: $five;
 }
 h3 {
 	margin: 0 0 0 0;
 	font-size:16px;
+  color: $five;
 }
 a {
-	color:#C00;
+	color:$three;
 	text-decoration:none;
 	font-style:italic;
 }
@@ -36,29 +59,34 @@ a:hover {
 
 #header_cont {
 	width:100%;
-  height:55px;
-  margin: 0;
+  height:50px;
+  margin: 0 0 30px 0;
   padding: 0 0 0 0;
-  border-bottom:1px solid #ccc;
-  background: #EEE;
-  background: -moz-linear-gradient(top, #CCC, #EEE);
-  background: -webkit-gradient(linear, left top, left bottom, from(#ccc), to(#EEE));
+  border-bottom: 1px solid black;
+  @include bgradient($four, $three);
   #header {
     width: 90%;
     max-width:1000px;
     margin: 0 auto;
-    padding: 30px 0 10px 0;
+    padding: 28px 0 10px 0;
     text-align:right;
     #logo {
       float:left;
       h1 {
-        font-family: 'PT Sans', Helvetica, Arial, sans-serif;
-        font-size: 36px;
-        letter-spacing: -3px;
         line-height:0px;
         display:inline;
-        color:#000;
-        padding: 0;
+        letter-spacing: -3px;
+        a {
+          font-family: Capitals, Helvetica, Arial, sans-serif;
+          font-size: 36px;
+          color:#000;
+          font-style: normal;
+          text-shadow: 1px 1px 1px #CCC;
+          padding: 0;
+          &:hover {
+            color: $two;
+          }
+        }
       }
     }
     #nav {
@@ -73,11 +101,12 @@ a:hover {
           a {
             text-decoration: none;
             font-style: italic;
-            font-size: 24px;
+            font-size: 30px;
             font-family: Baskerville;
             line-height: 0px;
-            color: #C00;
-            &:hover { color: #000;}
+            color: white;
+            text-shadow:1px 1px 0 $one;
+            &:hover { color: #EEE;}
           }
         }
       }
@@ -90,16 +119,75 @@ a:hover {
   h1 {
     font-size: 26px;
     margin: 0;
+    color: $three;
     padding: 0;
+  }
+  h2 {
+    color: $two;
   }
   p {
     margin: 10px 0;
     padding: 0;
   }
 }
-#footer {
-	width: 100%;
-	background:#575757;
+ /* Front page */
+#display {
+    width: 780px;
+    margin: 10px auto;
+    padding: 1px 30px;
+    border-radius: 25px;
+    @include bshadow(0,0,5px,#AAA);
+    @include bgradient(#f6f6f6, #ebebeb);
+    h1 {
+      color: $three;
+      text-shadow: 1px 1px 1px white;
+    }
+  .home_box {
+    width:280px;
+    margin:40px 0;
+    padding:0;
+  }
+  .home_img {
+    width:280px;
+    height:277px;
+    margin: 52px 0 0 0;
+    padding:0;
+    float:right;
+    position:relative;
+    background: url("/images/beachball1.png");
+    text-align:center;
+  }
+}
+#footer_wrapper {
+  -webkit-box-shadow: inset 0 2px 5px #000;
+  height:200px;
+  @include bgradient($two, $one);
+  #footer {
+    width:750px;
+    margin: 0 auto;
+    h1 {
+      text-shadow: 1px 1px 1px $one;
+      color:white;
+    }
+    .column {
+      width:200px;
+      float:left;
+      margin: 5px 25px;
+      color: #FFF;
+      ul {
+        list-style:none;
+        padding: 0;
+        li {
+          a {
+            color: $four;
+            &:hover {
+              color: #FFF;
+            }
+          }
+        }
+      }
+    }
+  }
 }
 .debug_dump {
 	margin: 10px auto;
@@ -112,7 +200,7 @@ ul.users {
   }
 }
 /* TABLES */
-table.stock, #quotes_table {
+#quotes_table {
   text-align:left;
   width:100%;
   font-size:12px;
@@ -133,6 +221,23 @@ table.stock, #quotes_table {
   .plus  { color: green; }
   .minus { color:red; }
   .disabled { cursor: default; color:#AAA; }
+}
+.stock {
+  text-align:left;
+  font-size:12px;
+  font-family: 'Lucida Grande', Helvetica, Arial, sans-serif;
+  width:60%;
+  .name {
+    text-align:left;
+    width: 140px;
+  }
+}
+.summary {
+  float:right;
+  text-align:left;
+  td {
+    text-align:right;
+  }
 }
 table .add_rm {
   font-size: 20px;
@@ -176,23 +281,6 @@ table .add_rm {
   background:gray;
   border:0;
  }
- /* Front page */
-.home_box {
-  width:280px;
-  margin:50px 0;
-  padding:0;
-  background: white;
-}
-.home_img {
-  width:280px;
-  height:277px;
-  margin: 5px 0 0 0;
-  padding:0;
-  float:right;
-  position:relative;
-  background: url("/images/beachball1.png");
-  text-align:center;
-}
 /* LOGIN BOX ETC. */
 #box_focus {
   z-index:1;
@@ -211,7 +299,7 @@ table .add_rm {
 	font-weight:bold;
   background: white;
   margin: 95px auto 0 auto;
-  border: 2px solid #C00;
+  border: 2px solid $three;
   padding:20px;
   opacity: 0.82;
   border-radius: 15px;
@@ -254,4 +342,4 @@ form {
 .success {background:#E6EFC2;color:#264409;border-color:#C6D880;}
 .error a {color:#8a1f11;}
 .notice a {color:#514721;}
-.success a {color:#C00;&:hover{color:#000;}}
+.success a {color:$three;&:hover{color:#000;}}
