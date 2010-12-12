@@ -23,7 +23,7 @@ class NotesController < ApplicationController
     @note = Note.new(params[:note])
     @note.user_id = current_user.id
     if @note.save
-      flash[:success] = "Note saved! Yes it is!"
+      flash[:success] = "Note saved!"
       redirect_to notes_path
     else
       flash[:error] = "Note wasn't saved."

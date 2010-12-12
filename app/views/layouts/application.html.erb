@@ -4,7 +4,12 @@
   <title><%= title %></title>
   <link href='http://fonts.googleapis.com/css?family=PT+Sans&subset=latin' rel='stylesheet' type='text/css'>
   <%= stylesheet_link_tag :all %>
-  <%= javascript_include_tag :all  %>
+  <%= javascript_include_tag 'jquery' %>
+  <%= javascript_include_tag 'rails' %>
+  <%= javascript_include_tag 'jquery-ui' %>
+  <%= javascript_include_tag 'jquery.dataTables.min.js' %>
+  <%= javascript_include_tag 'jquery.jgrowl_minimized.js' %>
+  <%= javascript_include_tag 'application' %>
   <%= csrf_meta_tag %>
 </head>
 <body>
