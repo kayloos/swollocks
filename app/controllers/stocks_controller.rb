@@ -15,6 +15,7 @@ class StocksController < ApplicationController
 
   def buy_trade
     @stock = Stock.new(params[:stock])
+    @stock.traded_at = @stock.traded_at.to_f
     @portfolio = Portfolio.find(@stock.portfolio_id)
     amount = @stock.amount.to_f
     traded_at = @stock.traded_at.to_f
@@ -49,7 +50,7 @@ class StocksController < ApplicationController
   def sell
     @title = "Sell stock"
     @stock = Stock.find(params[:id])
-    @stock[:traded_at] = params[:traded_at]
+    @stock[:traded_at] = params[:traded_at].to_f
     @stock_amount = @stock.amount
     @stock.amount = 0
     respond_to do |format|
