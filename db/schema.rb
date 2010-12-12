@@ -10,7 +10,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20101209224750) do
+ActiveRecord::Schema.define(:version => 20101211112321) do
 
   create_table "markets", :force => true do |t|
     t.string   "name"
@@ -26,14 +26,17 @@ ActiveRecord::Schema.define(:version => 20101209224750) do
     t.integer  "user_id"
   end
 
+  add_index "notes", ["trade_id"], :name => "index_notes_on_trade_id"
+  add_index "notes", ["user_id"], :name => "index_notes_on_user_id"
+
   create_table "portfolios", :force => true do |t|
     t.string   "name"
     t.integer  "user_id"
     t.datetime "created_at"
     t.datetime "updated_at"
     t.boolean  "deliver_mail"
-    t.decimal  "start_amount"
-    t.decimal  "current_amount"
+    t.decimal  "start_amount",   :precision => 8, :scale => 2, :default => 0.0
+    t.decimal  "current_amount", :precision => 8, :scale => 2, :default => 0.0
   end
 
   add_index "portfolios", ["user_id"], :name => "index_lists_on_user_id"
@@ -53,8 +56,10 @@ ActiveRecord::Schema.define(:version => 20101209224750) do
     t.datetime "created_at"
     t.datetime "updated_at"
     t.string   "name"
-    t.integer  "market_id"
+    t.integer  "market_id",  :default => 1
   end
+
+  add_index "stock_yanks", ["market_id"], :name => "index_stock_yanks_on_market_id"
 
   create_table "stocks", :force => true do |t|
     t.datetime "created_at"
@@ -62,7 +67,7 @@ ActiveRecord::Schema.define(:version => 20101209224750) do
     t.integer  "portfolio_id"
     t.integer  "stock_yank_id"
     t.integer  "amount"
-    t.decimal  "traded_at"
+    t.decimal  "traded_at",     :precision => 8, :scale => 2, :default => 0.0
   end
 
   add_index "stocks", ["portfolio_id"], :name => "index_stocks_on_list_id"
@@ -73,12 +78,15 @@ ActiveRecord::Schema.define(:version => 20101209224750) do
     t.string   "action"
     t.string   "portfolio_name"
     t.string   "stock_name"
-    t.decimal  "traded_at"
-    t.decimal  "amount"
+    t.decimal  "traded_at",      :precision => 8,  :scale => 2, :default => 0.0
+    t.decimal  "amount",         :precision => 10, :scale => 0
     t.datetime "created_at"
     t.datetime "updated_at"
     t.integer  "user_id"
   end
+
+  add_index "trades", ["portfolio_name"], :name => "index_trades_on_portfolio_name"
+  add_index "trades", ["user_id"], :name => "index_trades_on_user_id"
 
   create_table "users", :force => true do |t|
     t.string   "name"
@@ -99,7 +107,7 @@ ActiveRecord::Schema.define(:version => 20101209224750) do
     t.string   "symbol"
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.integer  "market_id"
+    t.integer  "market_id",  :default => 1
   end
 
 end

@@ -8,7 +8,7 @@ gem 'haml', '3.0.24'
 
 group :development do
   gem 'mongrel', '1.2.0.pre2'
-  gem 'sqlite3-ruby', :require => 'sqlite3'
+  gem 'ruby-mysql'
   gem 'rspec-rails'
   gem 'annotate-models'
 end
