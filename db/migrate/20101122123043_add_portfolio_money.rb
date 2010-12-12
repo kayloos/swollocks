@@ -1,7 +1,7 @@
 class AddPortfolioMoney < ActiveRecord::Migration
   def self.up
-    add_column :portfolios, :start_amount, :decimal
-    add_column :portfolios, :current_amount, :decimal
+    add_column :portfolios, :start_amount, :decimal, :default => 0, :precision => 8, :scale => 2
+    add_column :portfolios, :current_amount, :decimal, :default => 0, :precision => 8, :scale => 2
     add_column :stocks, :amount, :integer
   end
 
