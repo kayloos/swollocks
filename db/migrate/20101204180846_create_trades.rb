@@ -5,7 +5,7 @@ class CreateTrades < ActiveRecord::Migration
       t.string :action
       t.string :portfolio_name
       t.string :stock_name
-      t.decimal :traded_at, :default => 0, :precision => 8, :scale => 2
+      t.decimal :traded_at, :default => 0, :precision => 10, :scale => 2
       t.decimal :amount
 
       t.timestamps
