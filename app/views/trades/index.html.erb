@@ -1,6 +1,15 @@
 <%= will_paginate %>
 <% @trades.each do |t| %>
-  <p><%= t.created_at.strftime("%d/%m, %H:%M") %>: You <%= t.action %> <%= t.amount %> <%= t.stock_name %> for <%= t.traded_at %> per stock, in the portfolio <%= t.portfolio_name %>.
-  <%= link_to "Add note", :controller => :notes, :action => :new, :trade_id => t.id if t.note == nil %></p>
+  <div class="trade">
+    <%= t.created_at.strftime("%d/%m, %H:%M") %>:
+    You <%= t.action %> <%= t.amount %> <%= t.stock_name %> for <%= t.traded_at %> per stock, in the portfolio <%= t.portfolio_name %>.
+    <% if t.note == nil %>
+      <%= link_to "Add note", {:controller => :notes, :action => :new, :trade_id => t.id}, :class => "add" %>
+    <% else %>
+      <p class="note">
+        <%= t.note.body %>
+      </p>
+<% end %>
+  </div>
 <% end %>
 <%= will_paginate %>
