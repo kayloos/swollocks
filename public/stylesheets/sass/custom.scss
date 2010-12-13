@@ -6,6 +6,7 @@ $five: #45BF55;
 
 @mixin bgradient($start, $end)  {
   background: $start;
+  filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='$start', endColorstr='$end');
   background: -moz-linear-gradient(top, $start, $end);
   background: -webkit-gradient(linear, left top, left bottom, from($start), to($end));
 }
@@ -31,13 +32,13 @@ body {
 }
 body > #container { height: auto; min-height: 100%; }
 h1 {
-	margin: 10px 0 10px 0;
+	margin: 0;
   font-size: 24px;
   color: $four;
   text-shadow: 1px 1px 0 white;
 }
 h2 {
-	margin: 10px 0 10px 0;
+	margin: 0;
 	font-size:20px;
   color: $five;
 }
@@ -66,8 +67,9 @@ a:hover {
   height:50px;
   margin: 0 0 30px 0;
   padding: 0 0 0 0;
-  border-bottom: 1px solid black;
-  @include bgradient($four, $three);
+  border-bottom: 1px solid $two;
+  @include bgradient(#666, #333);
+  @include bshadow(0, 1px, 2px, rgba(0,0,0,0.8));
   #header {
     width: 90%;
     max-width:1000px;
@@ -83,12 +85,12 @@ a:hover {
         a {
           font-family: Capitals, Helvetica, Arial, sans-serif;
           font-size: 36px;
-          color:#000;
+          color: $four;
           font-style: normal;
-          text-shadow: 1px 1px 1px #CCC;
+          text-shadow: 2px 2px 1px $three;
           padding: 0;
           &:hover {
-            color: $two;
+            color: $five;
           }
         }
       }
@@ -110,7 +112,7 @@ a:hover {
             line-height: 0px;
             color: white;
             text-shadow:1px 1px 0 $one;
-            &:hover { color: #EEE;}
+            &:hover { color: $five;}
           }
         }
       }
@@ -128,11 +130,36 @@ a:hover {
     padding: 0;
   }
   h2 {
-    color: $two;
+    color: $three;
   }
   p {
     margin: 10px 0;
     padding: 0;
+  }
+  #portfolio {
+    border-radius:10px;
+    @include bgradient(#fefefe, #EEE);
+    @include bshadow(0,0,2px,rgba(0,0,0,0.5));
+    padding:15px 15px 15px 15px;
+    margin:20px 10px 40px 10px;
+    font-size:12px;
+    font-family: 'Lucida Grande', Helvetica, Arial, sans-serif;
+    .stock {
+      text-align:left;
+      width:60%;
+      .name {
+        text-align:left;
+        width: 140px;
+      }
+    }
+    .summary {
+      width:320px;
+      float:right;
+      text-align:left;
+      td {
+        text-align:right;
+      }
+    }
   }
 }
  /* Front page */
@@ -230,23 +257,6 @@ ul.users {
   .plus  { color: green; }
   .minus { color:red; }
   .disabled { cursor: default; color:#AAA; }
-}
-.stock {
-  text-align:left;
-  font-size:12px;
-  font-family: 'Lucida Grande', Helvetica, Arial, sans-serif;
-  width:60%;
-  .name {
-    text-align:left;
-    width: 140px;
-  }
-}
-.summary {
-  float:right;
-  text-align:left;
-  td {
-    text-align:right;
-  }
 }
 table .add_rm {
   font-size: 20px;
