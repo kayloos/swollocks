@@ -14,10 +14,15 @@
   <%= javascript_include_tag 'jquery.jgrowl_minimized.js' %>
   <%= javascript_include_tag 'application' %>
   <%= csrf_meta_tag %>
+  <!--[if !IE 7]>
+    <style type="text/css">
+      #wrap {display:table;height:100%}
+    </style>
+  <![endif]-->  
 </head>
 <body>
+<div id="wrap">
 <%= render 'layouts/header' %>
-<div id="container">
   <div id="main">
       <% flash.each do |key, value| %>
         <div class="flash <%= key %>"><%= value %></div>
