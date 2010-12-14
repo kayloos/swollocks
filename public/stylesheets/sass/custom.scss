@@ -194,22 +194,26 @@ body {
 }
 #display {
     width: 780px;
-    margin: 10px auto;
+    margin: 50px auto 50px auto;
     padding: 20px 30px;
     border-radius: 25px;
     @include bshadow(0,0,5px,#AAA);
-    @include bgradient(#f6f6f6, #ebebeb);
+    @include bgradient(#FFF, #EEE);
     h1 {
       color: $three;
-      text-shadow: 1px 1px 1px white;
+      font-family: 'PT Sans';
+      font-size:30px;
+      line-height:26px;
+      letter-spacing:-1px;
       margin:0;
       padding:0;
     }
     p {
-      margin-bottom: 20px;
+      margin: 5px 0 15px 0;
+      color:#666;
     }
   .home_box {
-    width:280px;
+    width:440px;
     padding:0;
   }
   .home_img {
@@ -218,21 +222,39 @@ body {
     padding:0;
     float:right;
     position:relative;
+    top:-30px;
     background: url("/images/beachball1.png");
     text-align:center;
   }
+}
+.signup_button, .signin_button_t {
+	display:block;
+	width:180px;
+	font-size:140%;
+	font-weight:bold;
+  background: white;
+  margin: 95px auto 0 auto;
+  border: 2px solid $three;
+  padding:20px;
+  opacity: 0.82;
+  border-radius: 15px;
+  -moz-border-radius: 15px;
+  -webkit-box-shadow: rgba(0,0,0,0.8) 0 0 15px;
+  -moz-box-shadow: 0 0 15px #000;
+}
+.signin_button_t {
+  margin:23px auto 0 auto;
 }
 #footer_wrapper {
   -webkit-box-shadow: inset 0 2px 5px #000;
   @include bgradient($two, $one);
   position: relative;
   clear:both;
-  height: 180px;
-  padding-top: 20px;
+  height: 200px;
+  padding-top: 0;
   margin-top: -200px;  
   width:100%;
   #footer {
-    background:red;
     width:960px;
     margin: 0 auto;
     h1 {
@@ -242,7 +264,7 @@ body {
     .column {
       width:220px;
       float:left;
-      margin: 10px 20px 0 0;
+      margin: 0 20px 0 0;
       color: #FFF;
       ul {
         list-style:none;
@@ -344,24 +366,6 @@ table .add_rm {
   opacity:0.4;
   background:black;
   display:none;
-}
-.signup_button, .signin_button_t {
-	display:block;
-	width:180px;
-	font-size:140%;
-	font-weight:bold;
-  background: white;
-  margin: 95px auto 0 auto;
-  border: 2px solid $three;
-  padding:20px;
-  opacity: 0.82;
-  border-radius: 15px;
-  -moz-border-radius: 15px;
-  -webkit-box-shadow: rgba(0,0,0,0.8) 0 0 15px;
-  -moz-box-shadow: 0 0 15px #000;
-}
-.signin_button_t {
-  margin:33px auto 0 auto;
 }
 #signin_box, #signup_box {
   padding: 5px 10px;

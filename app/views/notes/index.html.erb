@@ -3,7 +3,10 @@
 <% no_notes_msg = "No notes to display" unless @notes.any? %>
 <%= no_notes_msg %>
 <% @notes.each do |n| %>
+  <div style="float:right;">
+    <%= link_to "Edit", edit_note_path(n.id) %>
+    <%= link_to "Destroy", n, :method => "delete" %><br />
+  </div>
   <%= n.body %>
-  <%= link_to "Edit", edit_note_path(n.id) %>
-  <%= link_to "Destroy", n, :method => "delete" %><br />
+  <div style="clear:both;"></div>
 <% end %>
