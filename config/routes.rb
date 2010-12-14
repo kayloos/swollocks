@@ -5,7 +5,7 @@ Boersboss::Application.routes.draw do
 
   get "yank_proposals/destroy"
 
-  root :to => "pages#home"
+  root :to => "pages#front"
 
   resources :users, :trades, :notes, :yank_proposals
   resources :sessions, :only => [:new, :create, :destroy]

@@ -1,4 +1,7 @@
 <%= render 'new' %>
+<% if @portfolios == [] %>
+  It looks like you haven't created a portfolio yet. You can make one in the form right above this text.
+<% end %>
 <% @portfolios.each do |portfolio|
   total_value = portfolio.current_amount.round + portfolio.get_value(quotes) unless (portfolio.stocks == [])
   difference = total_value - portfolio.start_amount.round if total_value %>

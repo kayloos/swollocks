@@ -1,4 +1,28 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title><%= title %></title>
+  <link href='http://fonts.googleapis.com/css?family=PT+Sans&subset=latin' rel='stylesheet' type='text/css'>
+  <%= stylesheet_link_tag 'jquery.jgrowl' %>
+  <%= stylesheet_link_tag 'jquery-ui' %>
+  <%= stylesheet_link_tag 'table_jui' %>
+  <%= stylesheet_link_tag 'custom' %>
+  <%= javascript_include_tag 'jquery' %>
+  <%= javascript_include_tag 'rails' %>
+  <%= javascript_include_tag 'jquery-ui' %>
+  <%= javascript_include_tag 'jquery.dataTables.min.js' %>
+  <%= javascript_include_tag 'jquery.jgrowl_minimized.js' %>
+  <%= javascript_include_tag 'application' %>
+  <%= csrf_meta_tag %>
+  <!--[if !IE 7]>
+    <style type="text/css">
+      #wrap {display:table;height:100%}
+    </style>
+  <![endif]-->  
+</head>
+<body>
 <div id="box_focus"></div>
+<div id="front_logo"><h1>Swollocks</h1></div>
 <div id="headline">
   <h1 class="home">Don't look at the ball, look at the stocks</h1>
 </div>
@@ -29,3 +53,5 @@
 
 <div style="text-align:center; width:780px; margin:0 auto 40px auto;"><h2>Sir, please tell me, what are you still doing here? Sign up, sign in or go away!</h2></div>
 <div style="clear:both"></div>
+</body>
+</html>
