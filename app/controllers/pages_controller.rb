@@ -1,6 +1,6 @@
 class PagesController < ApplicationController
   def front
-    @title = "It's almost an acronym!"
+    @title = "It's almost a palindrome!"
     @user = User.new
     if signed_in?
       redirect_to portfolios_path
