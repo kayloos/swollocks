@@ -17,7 +17,7 @@ $five: #45BF55;
   -moz-box-shadow: $hor $ver $blur $color;
 }
 
-@font-face { font-family: Capitals; src: url('/images/fonts/Capitals.ttf'); } 
+@font-face { font-family: Capitals; src: url('/images/fonts/Capitals.ttf') format('truetype'); } 
 
 HTML {
   height: 100%;
@@ -214,8 +214,6 @@ h1.home {
   margin: 50px auto 50px auto;
   padding: 20px 30px;
   border-radius: 25px;
-  @include bshadow(0,0,5px,#AAA);
-  @include bgradient(#FFF, #EEE);
   h1 {
     color: $three;
     font-family: 'PT Sans';
