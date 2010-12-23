@@ -17,7 +17,21 @@ $five: #45BF55;
   -moz-box-shadow: $hor $ver $blur $color;
 }
 
-@font-face { font-family: Capitals; src: url('/images/fonts/Capitals.ttf') format('truetype'); } 
+@font-face {
+	font-family: 'ChunkFive';
+	src: url('/images/fonts/chunkfive-webfont.eot');
+	src: local('☺'), url('/images/fonts/chunkfive-webfont.woff') format('woff'), url('/images/fonts/chunkfive-webfont.ttf') format('truetype'), url('/images/fonts/chunkfive-webfont.svg#webfontq6lq4EBq') format('svg');
+	font-weight: normal;
+	font-style: normal;
+}
+ 
+@font-face {
+	font-family: 'Fertigo';
+	src: url('/images/fonts/fertigo_pro-webfont.eot');
+	src: local('☺'), url('/images/fonts/fertigo_pro-webfont.woff') format('woff'), url('/images/fonts/fertigo_pro-webfont.ttf') format('truetype'), url('/images/fonts/fertigo_pro-webfont.svg#webfont8BIzhr2p') format('svg');
+	font-weight: normal;
+	font-style: normal;
+}
 
 HTML {
   height: 100%;
@@ -37,10 +51,14 @@ body {
   width:100%;
   height:100%;
   padding:0;
-	font-family: Trebuchet MS, sans-serif;
+	font-family: Georgia, serif;
 }
 #wrap {
   min-height:100%;
+}
+
+h1, h2, h3 {
+  font-family: 'Fertigo';
 }
 
 #header_cont {
@@ -65,7 +83,7 @@ body {
         text-shadow: 1px 1px 0 white;
         a {
           text-decoration:none;
-          font-family: Capitals, Helvetica, Arial, sans-serif;
+          font-family: 'ChunkFive', Helvetica, Arial, sans-serif;
           font-size: 36px;
           color: $four;
           font-style: normal;
@@ -127,18 +145,15 @@ body {
   padding-bottom:200px;
   h1 {
     font-size:24px;
-    color: $three;
   }
   h2 {
     margin: 0;
     font-size:20px;
-    color: $two;
     font-weight:normal;
   }
   h3 {
     margin: 0 0 0 0;
     font-size:16px;
-    color: $two;
   }
   a {
     color:$three;
@@ -184,47 +199,30 @@ body {
     width: 780px;
     margin: 0 auto;
 }
-h1.home {
-  font-size: 42px;
-  margin: 0;
-  color: white;
-  text-shadow: 0 0 3px $two;
-  padding: 0;
-  font-style:italic;
-  font-family: 'PT Sans';
-}
 #front_logo {
   text-align:center;
   height:160px;
   h1 {
     display:inline;
-    letter-spacing: -3px;
-    text-shadow: 1px 1px 0 white;
-    text-decoration:none;
-    font-family: Capitals, Helvetica, Arial, sans-serif;
-    font-size: 120px;
+    font-family: 'ChunkFive', Helvetica, Arial, sans-serif;
+    font-size: 150px;
     color: $four;
-    font-style: normal;
-    text-shadow: 2px 2px 1px $three;
-    padding: 0;
+    font-weight:normal;
+    text-shadow: 4px 4px 1px $three;
   }
 }
 #display {
   width: 780px;
-  margin: 50px auto 50px auto;
+  margin: 40px auto 50px auto;
   padding: 20px 30px;
   border-radius: 25px;
   h1 {
-    color: $three;
-    font-family: 'PT Sans';
     font-size:30px;
-    line-height:26px;
-    letter-spacing:-1px;
+    line-height:28px;
     margin:0;
-    padding:0;
   }
   p {
-    margin: 5px 0 15px 0;
+    margin: 15px 0 25px 0;
     color:#444;
   }
   a {
