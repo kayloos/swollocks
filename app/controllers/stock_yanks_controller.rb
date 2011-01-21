@@ -11,7 +11,7 @@ class StockYanksController < ApplicationController
     @title = "Stock information"
     @stock_yank = StockYank.find(params[:id])
 
-    if params
+    if params[:end] && params[:start]
       the_end = params[:end]
       start = params[:start]
       start_date = Date.new(start[:year].to_i, start[:month].to_i, start[:day].to_i)
