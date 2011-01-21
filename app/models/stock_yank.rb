@@ -32,4 +32,10 @@ class StockYank < ActiveRecord::Base
                                                :change, :change_in_percent,:ask, :bid, 
                                                :day_low, :day_high, :volume]).results(:to_hash).output
   end
+
+  def self.get_history(symbol, start_date, end_date)
+    YahooStock::History.new(:stock_symbol => symbol,
+                            :start_date   => start_date,
+                            :end_date     => end_date).results(:to_array).output
+  end
 end

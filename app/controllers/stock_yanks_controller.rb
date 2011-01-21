@@ -8,6 +8,20 @@ class StockYanksController < ApplicationController
   end
   
   def show
+    @title = "Stock information"
+    @stock_yank = StockYank.find(params[:id])
+
+    if params
+      the_end = params[:end]
+      start = params[:start]
+      start_date = Date.new(start[:year].to_i, start[:month].to_i, start[:day].to_i)
+      end_date = Date.new(the_end[:year].to_i, the_end[:month].to_i, the_end[:day].to_i)
+    else
+      start_date = Date.today - 31
+      end_date = Date.today - 1
+    end
+
+    @days = StockYank.get_history(@stock_yank.symbol, start_date, end_date)
   end
 
   def new

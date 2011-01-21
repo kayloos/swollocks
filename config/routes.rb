@@ -7,11 +7,10 @@ Boersboss::Application.routes.draw do
 
   root :to => "pages#front"
 
-  resources :users, :trades, :notes, :yank_proposals
+  resources :users, :trades, :notes, :yank_proposals, :stock_yanks
   resources :sessions, :only => [:new, :create, :destroy]
   resources :stocks, :only => [:new, :create, :destroy]
   resources :portfolios, :only => [:index, :new, :edit, :create, :destroy]
-  resources :stock_yanks, :only => [:index, :show, :create, :destroy]
 
   match '/help'     => 'pages#help'
   match '/signup'   => 'users#new'

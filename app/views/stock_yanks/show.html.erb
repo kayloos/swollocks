@@ -1,0 +1,44 @@
+<h1>Historical info for <%= @stock_yank.name %></h1>
+<% form_tag stock_yank_path(@stock_yank.id), :method => 'get' do %>
+  Start:
+  <%= select_date 31.days.ago, :prefix => "start" %>
+  End:
+  <%= select_date 1.day.ago, :prefix => "end" %>
+  <%= submit_tag "Update" %>
+<% end %>
+<table cellspacing="0" class="history">
+  <thead>
+    <tr>
+      <th class="date">Date</th>
+      <th>Open</th>
+      <th>High</th>
+      <th>Low</th>
+      <th>Close</th>
+      <th>Volume</th>
+    </tr>
+  </thead>
+  <tbody>
+<% @days.each do |d| %>
+      <tr>
+        <td class="date">
+  <%= d[0] %>
+        </td>
+        <td>
+  <%= d[1] %>
+        </td>
+        <td>
+  <%= d[2] %>
+        </td>
+        <td>
+  <%= d[3] %>
+        </td>
+        <td> 
+  <%= d[4] %>
+        </td>
+        <td> 
+  <%= d[5] %>
+        </td>
+      </tr>
+<% end %>
+  </tbody>
+</table>

@@ -63,7 +63,7 @@
     value = s.value(quotes)
   %>
       <tr>
-        <td class="name"><%= sy.name %></td>
+        <td class="name"><%= link_to sy.name, stock_yank_path(sy.id) %></td>
         <td><%= s.traded_at %></td>
         <td><%= q[:last_trade_price_only] %></td>
         <td><%= s.amount %></td>

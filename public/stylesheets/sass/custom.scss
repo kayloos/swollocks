@@ -182,6 +182,10 @@ h1, h2, h3 {
       .name {
         text-align:left;
         width: 140px;
+        a {
+          font-style:normal;
+          color: $two;
+        }
       }
     }
     .summary {
@@ -369,6 +373,26 @@ table .add_rm {
 .stock_portfolio {
   width:200px;
 }
+
+// History table
+table.history {
+  padding:5px;
+  td {
+    width:60px;
+    text-align:right;
+  }
+  .date {
+    width:80px;
+    text-align:left;
+  }
+  th {
+    text-align:right;
+    border-bottom: 1px solid #CCC;
+    padding-bottom:2px;
+    margin-bottom: 2px;
+  }
+}
+
 .new_portfolio_divider {
   margin: 15px 0;
   height:1px;
