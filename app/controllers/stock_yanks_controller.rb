@@ -21,9 +21,14 @@ class StockYanksController < ApplicationController
       end_date = Date.today - 1
     end
 
-    @days = StockYank.get_history(@stock_yank.symbol, start_date, end_date)
+    begin
+      @days = StockYank.get_history(@stock_yank.symbol, start_date, end_date)
+      @chart = make_chart(@days)
+    rescue
+      flash[:error] = "We could not retrieve history data for the stock you requested."
+      redirect_to root_path
+    end
 
-    @chart = make_chart(@days)
   end
 
   def new

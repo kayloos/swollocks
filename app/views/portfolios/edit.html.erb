@@ -14,13 +14,14 @@
     <% @stock_yanks.each do |sy|
       if quotes
         q = quotes[sy.symbol]
-        stock = Stock.find_by_stock_yank_id_and_portfolio_id(sy.id, @portfolio.id) %>
+        stock = Stock.find_by_stock_yank_id_and_portfolio_id(sy.id, @portfolio.id)
+        td_class = q[:change].to_f < 0 ? '"negative"' : '"positive"' %>
 
       <tr class="quotes">
         <td class="name"><%= link_to sy.name, stock_yank_path(sy.id) %></td>
         <td><%= q[:last_trade_price_only] %></td>
-        <td><%= q[:change].sub(/[\+]/, '') %></td>
-        <td><%= q[:change_in_percent].sub(/[\+]/, '') %></td>
+        <td class=<%=raw td_class %>><%= q[:change].sub(/[\+]/, '') %></td>
+        <td class=<%=raw td_class %>><%= q[:change_in_percent].sub(/[\+]/, '') %></td>
         <td><%= q[:bid] %></td>
         <td><%= q[:ask] %></td>
         <td class="add_rm">

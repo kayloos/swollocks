@@ -1,0 +1,38 @@
+$one: #00261C;
+$two: #044C29;
+$three: #167F39;
+$four: #96ED89;
+$five: #45BF55;
+
+@mixin bgradient($start, $end)  {
+  background: $start;
+  filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='$start', endColorstr='$end');
+  background: -moz-linear-gradient(top, $start, $end);
+  background: -webkit-gradient(linear, left top, left bottom, from($start), to($end));
+}
+
+@mixin bshadow($hor, $ver, $blur, $color) {
+  box-shadow: $hor $ver $blur $color;
+  -webkit-box-shadow: $hor $ver $blur $color;
+  -moz-box-shadow: $hor $ver $blur $color;
+}
+
+@font-face {
+	font-family: 'ChunkFive';
+	src: url('/images/fonts/chunkfive-webfont.eot');
+	src: local('☺'), url('/images/fonts/chunkfive-webfont.woff') format('woff'), url('/images/fonts/chunkfive-webfont.ttf') format('truetype'), url('/images/fonts/chunkfive-webfont.svg#webfontq6lq4EBq') format('svg');
+	font-weight: normal;
+	font-style: normal;
+}
+ 
+@font-face {
+	font-family: 'Mido';
+	src: url('/images/fonts/mido-webfont.eot');
+	src: local('☺'), url('/images/fonts/mido-webfont.woff') format('woff'), url('/images/fonts/mido-webfont.ttf') format('truetype'), url('/images/fonts/mido-webfont.svg#webfont9QdgaWDX') format('svg');
+	font-weight: normal;
+	font-style: normal;
+}
+
+html {
+  height: 100%;
+}

@@ -1,0 +1,121 @@
+@import "bindings";
+ /* Front page */
+#headline {
+    width: 780px;
+    margin: 0 auto;
+}
+#display {
+  width: 780px;
+  margin: 0 auto;
+  height: 100%;
+  padding: 40px 70px 40px 70px;
+  #front_logo {
+    text-align:center;
+    padding:50px 0;
+    h1 {
+      display:inline;
+      font-family: 'ChunkFive', Helvetica, Arial, sans-serif;
+      font-size: 150px;
+      color: $four;
+      font-weight:normal;
+      text-shadow: 4px 4px 1px $three;
+    }
+  }
+  h1 {
+    font-size:30px;
+    line-height:28px;
+    margin:0;
+    font-family: 'Mido';
+  }
+  p {
+    margin: 5px 0 60px 0;
+  }
+  a {
+    text-decoration:none;
+    font-style:italic;
+    &:hover {
+      color: #000;
+    }
+  }
+  .home_box {
+    width:350px;
+    padding:0;
+  }
+  #seller {
+    float:right;
+    width:367px;
+    height:305px;
+    padding:0;
+    margin:0;
+    background: url("/images/seller.png");
+  }
+}
+ul {
+  margin:0;padding:0;list-style:none;
+  li {
+    float:left;
+    text-align:center;
+    font-size:53px;
+  }
+}
+.signup_button, .signin_button_t {
+  color:white;
+  text-shadow: 0 0 2px rgba(0,0,0,0.3);
+  font-size:36px;
+	display:block;
+  float:left;
+  text-align:center;
+	width:180px;
+	font-weight:bold;
+  background-image: -webkit-gradient(
+      linear,
+      left bottom,
+      left top,
+      color-stop(0.78, #51ED51),
+      color-stop(0.12, #147A19)
+  );
+  background-image: -moz-linear-gradient(
+      center bottom,
+      #51ED51 78%,
+      #147A19 12%
+  );
+  margin: 0 80px;
+  padding:10px;
+  border-radius: 5px;
+  -moz-border-radius: 15px;
+  -webkit-box-shadow: rgba(0,0,0,0.4) 0 0 5px;
+  -moz-box-shadow: 0 0 5px rgba(0,0,0,0.4);
+}
+/* LOGIN BOX ETC. */
+#box_focus {
+  z-index:1;
+  width:100%;
+  position:absolute;
+  top:0;
+  left:0;
+  opacity:0.4;
+  background:black;
+  display:none;
+}
+#signin_box, #signup_box {
+  padding: 5px 10px;
+  margin:0;
+  z-index:2;
+  position:absolute;
+  background:white;
+  display:none;
+  text-align:left;
+  box-shadow: 0 0 5px rgba(0,0,0,0.6);
+  -moz-box-shadow:0 0 5px rgba(0,0,0,0.6);
+  -webkit-box-shadow:0 0 5px rgba(0,0,0,0.6);
+  border-radius:10px;
+  -moz-border-radius:10px;
+}
+#signin_box {
+  top: -30px;
+  left: 40px;
+}
+#signup_box {
+  top:100px;
+  left:40px;
+}

@@ -1,41 +1,4 @@
-$one: #00261C;
-$two: #044C29;
-$three: #167F39;
-$four: #96ED89;
-$five: #45BF55;
-
-@mixin bgradient($start, $end)  {
-  background: $start;
-  filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='$start', endColorstr='$end');
-  background: -moz-linear-gradient(top, $start, $end);
-  background: -webkit-gradient(linear, left top, left bottom, from($start), to($end));
-}
-
-@mixin bshadow($hor, $ver, $blur, $color) {
-  box-shadow: $hor $ver $blur $color;
-  -webkit-box-shadow: $hor $ver $blur $color;
-  -moz-box-shadow: $hor $ver $blur $color;
-}
-
-@font-face {
-	font-family: 'ChunkFive';
-	src: url('/images/fonts/chunkfive-webfont.eot');
-	src: local('☺'), url('/images/fonts/chunkfive-webfont.woff') format('woff'), url('/images/fonts/chunkfive-webfont.ttf') format('truetype'), url('/images/fonts/chunkfive-webfont.svg#webfontq6lq4EBq') format('svg');
-	font-weight: normal;
-	font-style: normal;
-}
- 
-@font-face {
-	font-family: 'Mido';
-	src: url('/images/fonts/mido-webfont.eot');
-	src: local('☺'), url('/images/fonts/mido-webfont.woff') format('woff'), url('/images/fonts/mido-webfont.ttf') format('truetype'), url('/images/fonts/mido-webfont.svg#webfont9QdgaWDX') format('svg');
-	font-weight: normal;
-	font-style: normal;
-}
-
-html {
-  height: 100%;
-}
+@import "bindings";
 /*Opera Fix Sticky Footer*/
 body:before {
 	content:"";
@@ -59,7 +22,33 @@ body {
 
 h1, h2, h3 {
   color: #333;
+  margin:0;
+  padding:0;
   text-shadow: 0 0 1px #AAA;
+}
+
+/* Standard table */
+table {
+  text-align: left;
+  width:100%;
+  font-family: 'Lucida Grande', Helvetica, Arial, sans-serif;
+  font-size:12px;
+  .name {
+  }
+  h1, h2, h3 {
+    font-style:normal;
+  }
+  a {
+    font-style: normal;
+  }
+  td, th {
+    padding: 2px;
+    text-align:right;
+  }
+  th {
+    padding: 0 0 2px 0;
+    border-bottom: 1px solid #ccc;
+  }
 }
 
 #header_cont {
@@ -145,7 +134,7 @@ h1, h2, h3 {
 #main {
   width:960px;
 	margin: 0 auto 0 auto;
-  padding:70px 40px 200px 40px;
+  padding:60px 40px 200px 40px;
   background:white;
   h1 {
     font-size:24px;
@@ -162,7 +151,6 @@ h1, h2, h3 {
   a {
     color:$three;
     text-decoration:none;
-    font-style:italic;
     &:hover {
       color: #000;
     }
@@ -171,25 +159,28 @@ h1, h2, h3 {
     padding: 0;
     margin: 0;
   }
-  #portfolio {
+  .portfolio {
     border-radius:10px;
     @include bgradient(#fefefe, #EEE);
     @include bshadow(0,0,2px,rgba(0,0,0,0.5));
-    padding:15px 15px 15px 15px;
-    margin:0 0 20px 0;
+    padding: 10px 15px;
+    margin:10px 0 20px 0;
     font-size:12px;
     min-height: 115px;
     font-family: 'Lucida Grande', Helvetica, Arial, sans-serif;
+    h2 {
+      margin-bottom:5px;
+    }
     .stock {
       text-align:left;
       width:640px;
+      a {
+        font-style:normal;
+        color: $two;
+      }
       .name {
         text-align:left;
         width: 140px;
-        a {
-          font-style:normal;
-          color: $two;
-        }
       }
     }
     .summary {
@@ -200,79 +191,6 @@ h1, h2, h3 {
       }
     }
   }
-}
- /* Front page */
-#headline {
-    width: 780px;
-    margin: 0 auto;
-}
-#display {
-  width: 780px;
-  margin: 0 auto;
-  height: 100%;
-  padding: 40px 70px 40px 70px;
-  background: rgba(255,255,255,0.9);
-  -webkit-box-shadow: 0 0 5px 2px $four;
-  #front_logo {
-    text-align:center;
-    padding:50px 0;
-    h1 {
-      display:inline;
-      font-family: 'ChunkFive', Helvetica, Arial, sans-serif;
-      font-size: 150px;
-      color: $four;
-      font-weight:normal;
-      text-shadow: 4px 4px 1px $three;
-    }
-  }
-  h1 {
-    font-size:30px;
-    line-height:28px;
-    margin:0;
-  }
-  p {
-    margin: 5px 0 30px 0;
-  }
-  a {
-    color:$three;
-    text-decoration:none;
-    font-style:italic;
-    &:hover {
-      color: #000;
-    }
-  }
-  .home_box {
-    width:440px;
-    padding:0;
-  }
-  .home_img {
-    width:280px;
-    height:277px;
-    padding:0;
-    float:right;
-    position:relative;
-    top:-5px;
-    background: url("/images/beachball1.png");
-    text-align:center;
-  }
-}
-.signup_button, .signin_button_t {
-	display:block;
-	width:180px;
-	font-size:140%;
-	font-weight:bold;
-  background: white;
-  margin: 95px auto 0 auto;
-  border: 2px solid $three;
-  padding:20px;
-  opacity: 0.82;
-  border-radius: 15px;
-  -moz-border-radius: 15px;
-  -webkit-box-shadow: rgba(0,0,0,0.8) 0 0 15px;
-  -moz-box-shadow: 0 0 15px #000;
-}
-.signin_button_t {
-  margin:23px auto 0 auto;
 }
 #footer_wrapper {
   -webkit-box-shadow: inset 0 2px 5px #000;
@@ -321,25 +239,6 @@ ul.users {
   }
 }
 /* TABLES */
-/* Standard table */
-table {
-  text-align: left;
-  width:100%;
-  font-family: 'Lucida Grande', Helvetica, Arial, sans-serif;
-  font-size:12px;
-  .name {
-    a {
-      font-style: normal;
-    }
-  }
-  td, th {
-    padding: 2px;
-  }
-  th {
-    padding: 0 0 2px 0;
-    border-bottom: 1px solid #ccc;
-  }
-}
 #quotes_table {
   clear:both;
   td, th {
@@ -351,6 +250,15 @@ table {
   }
   th {
     font-size:14px;
+  }
+  a {
+    font-style:normal;
+  }
+  .negative {
+    color: red;
+  }
+  .positive {
+    color: green;
   }
   .plus  { color: green; }
   .minus { color:red; }
@@ -394,6 +302,7 @@ table .add_rm {
 // History table
 table.history {
   padding:5px;
+  width: 500px;
   td {
     width:60px;
     text-align:right;
@@ -404,9 +313,6 @@ table.history {
   }
   th {
     text-align:right;
-    border-bottom: 1px solid #CCC;
-    padding-bottom:2px;
-    margin-bottom: 2px;
   }
 }
 
@@ -418,39 +324,6 @@ table.history {
   background:gray;
   border:0;
  }
-/* LOGIN BOX ETC. */
-#box_focus {
-  z-index:1;
-  width:100%;
-  position:absolute;
-  top:0;
-  left:0;
-  opacity:0.4;
-  background:black;
-  display:none;
-}
-#signin_box, #signup_box {
-  padding: 5px 10px;
-  margin:0;
-  z-index:2;
-  position:absolute;
-  background:white;
-  display:none;
-  text-align:left;
-  box-shadow: 0 0 5px rgba(0,0,0,0.6);
-  -moz-box-shadow:0 0 5px rgba(0,0,0,0.6);
-  -webkit-box-shadow:0 0 5px rgba(0,0,0,0.6);
-  border-radius:10px;
-  -moz-border-radius:10px;
-}
-#signin_box {
-  top: -30px;
-  left: 40px;
-}
-#signup_box {
-  top:100px;
-  left:40px;
-}
 /* FORMS */
 form {
   font-size:14px;

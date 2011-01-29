@@ -2,13 +2,10 @@
 <html>
 <head>
   <title><%= title %></title>
-  <%= stylesheet_link_tag 'custom' %>
+  <%= stylesheet_link_tag 'front' %>
   <%= javascript_include_tag 'jquery' %>
-  <%= javascript_include_tag 'jquery-ui' %>
-  <%= javascript_include_tag 'jquery.dataTables.min.js' %>
-  <%= javascript_include_tag 'jquery.jgrowl_minimized.js' %>
   <%= javascript_include_tag 'rails' %>
-  <%= javascript_include_tag 'application' %>
+  <%= javascript_include_tag 'front' %>
   <%= csrf_meta_tag %>
   <!--[if !IE 7]>
     <style type="text/css">
@@ -20,15 +17,7 @@
 <div id="box_focus"></div>
 <div id="display">
   <div id="front_logo"><h1>Swollocks</h1></div>
-  <div class="home_img">
-<%= link_to "Sign in!", signin_path, :class => "signin_button_t signin" %>
-    <div id="signin_box">
-      <%= render 'sessions/new' %>
-    </div>
-<%= link_to "Sign up!", signup_path, :class => "signup_button signup" %>
-    <div id="signup_box">
-      <%= render 'users/new' %>
-    </div>
+  <div id="seller">
   </div>
   <div class="home_box">
     <h1>Some say the taste of success is bittersweet..</h1>
@@ -42,6 +31,21 @@
 .. but there is no easy way to get paid. Muster up the brain power you do have, and let Swollocks help you make the most of it.
   </p>
   </div>
+  <ul>
+<li>
+  <%= link_to "Sign in!", signin_path, :class => "signin_button_t signin" %>
+      <div id="signin_box">
+        <%= render 'sessions/new' %>
+      </div>
+</li>
+<li>||</li>
+<li>
+  <%= link_to "Sign up!", signup_path, :class => "signup_button signup" %>
+      <div id="signup_box">
+        <%= render 'users/new' %>
+      </div>
+</li>
+  </ul>
 </div>
 </body>
 </html>
