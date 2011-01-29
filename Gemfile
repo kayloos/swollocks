@@ -5,6 +5,7 @@ gem 'jquery-rails'
 gem 'nas-yahoo_stock', '1.0.7'
 gem 'will_paginate', '~> 3.0.pre2'
 gem 'haml', '3.0.24'
+gem 'googlecharts'
 
 group :development do
   gem 'mongrel', '1.2.0.pre2'

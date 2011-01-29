@@ -1,11 +1,12 @@
-<h1>Historical info for <%= @stock_yank.name %></h1>
-<% form_tag stock_yank_path(@stock_yank.id), :method => 'get' do %>
+<h1><%= @stock_yank.name %> history</h1>
+<%= form_tag stock_yank_path(@stock_yank.id), :method => 'get' do %>
   Start:
   <%= select_date 31.days.ago, :prefix => "start" %>
   End:
   <%= select_date 1.day.ago, :prefix => "end" %>
   <%= submit_tag "Update" %>
 <% end %>
+<%= image_tag @chart %>
 <table cellspacing="0" class="history">
   <thead>
     <tr>

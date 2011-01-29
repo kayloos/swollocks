@@ -22,6 +22,8 @@ class StockYanksController < ApplicationController
     end
 
     @days = StockYank.get_history(@stock_yank.symbol, start_date, end_date)
+
+    @chart = make_chart(@days)
   end
 
   def new
@@ -50,4 +52,18 @@ class StockYanksController < ApplicationController
       redirect_to stock_yanks_path
     end
   end
+
+  private
+
+    def make_chart(days)
+      dubi = Array.new
+      dubi[0] = Array.new
+      dubi[1] = Array.new
+      dubi[2] = Array.new
+      days.each do |d|
+        dubi[0] << d[0]
+        dubi[1] << d[1]
+        dubi[2] << d[2]
+      end
+    end
 end
