@@ -60,7 +60,7 @@ $(function() {
         amount = parseFloat($(this).val());
         traded_at = parseFloat($(this).parent().siblings("#stock_traded_at").val());
         if (amount > 0) {
-          $(".cost").html(round(amount * traded_at * 100) / 100);
+          $(".cost").html(Math.round(amount * traded_at * 100) / 100);
         }
         else {
           $(".cost").html(0);
