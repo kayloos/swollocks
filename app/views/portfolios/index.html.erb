@@ -11,25 +11,25 @@
       <tr>
         <th class="name">Cash</th>
         <td>
-    <%= portfolio.current_amount.round %>
+    <%= portfolio.current_amount.round(2) %>
         </td>
       </tr>
       <tr>
         <th>Difference</th>
         <td>
-    <%= difference %>
+    <%= difference.round(2) %>
         </td>
       </tr>
       <tr>
         <th>Starting amount</th>
         <td>
-    <%= portfolio.start_amount.round %>
+    <%= portfolio.start_amount.round(2) %>
         </td>
       </tr>
       <tr>
         <th>Total value</th>
         <td>
-    <%= total_value %>
+    <%= total_value.round(2) %>
         </td>
       </tr>
       <tr>

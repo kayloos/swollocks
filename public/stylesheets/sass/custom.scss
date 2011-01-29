@@ -58,7 +58,6 @@ body {
 }
 
 h1, h2, h3 {
-  font-family: 'Mido';
   color: #333;
   text-shadow: 0 0 1px #AAA;
 }
@@ -333,6 +332,9 @@ ul.users {
   .name {
     text-align:left;
     width: 220px;
+    a {
+      font-style: normal;
+    }
   }
   td, th {
     padding: 2px 2px 2px 10px;

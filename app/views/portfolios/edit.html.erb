@@ -17,7 +17,7 @@
         stock = Stock.find_by_stock_yank_id_and_portfolio_id(sy.id, @portfolio.id) %>
 
       <tr class="quotes">
-        <td class="name"><%= sy.name %></td>
+        <td class="name"><%= link_to sy.name, stock_yank_path(sy.id) %></td>
         <td><%= q[:last_trade_price_only] %></td>
         <td><%= q[:change].sub(/[\+]/, '') %></td>
         <td><%= q[:change_in_percent].sub(/[\+]/, '') %></td>

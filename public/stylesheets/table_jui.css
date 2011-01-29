@@ -221,7 +221,7 @@ table.display td.center {
 
 /* * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
  * DataTables row classes
- */
+ *
 table.display tr.odd.gradeA {
 	background-color: #ddffdd;
 }
@@ -273,6 +273,7 @@ tr.odd {
 tr.even {
 	background-color: white;
 }
+
 
 
 
@@ -366,27 +367,27 @@ table.display tr.odd.row_selected td {
  */
 /* For the standard odd/even */
 tr.odd td.sorting_1 {
-	background-color: #ccf3cd;
+	background-color: rgba(200,200,200,0.2);
 }
 
 tr.odd td.sorting_2 {
-	background-color: #DADCFF;
+	background-color: rgba(200,200,200,0.2);
 }
 
 tr.odd td.sorting_3 {
-	background-color: #E0E2FF;
+	background-color: rgba(200,200,200,0.2);
 }
 
 tr.even td.sorting_1 {
-	background-color: #ebffea;
+	background-color: rgba(200,200,200,0.2);
 }
 
 tr.even td.sorting_2 {
-	background-color: #F2F3FF;
+	background-color: rgba(200,200,200,0.2);
 }
 
 tr.even td.sorting_3 {
-	background-color: #F9F9FF;
+	background-color: rgba(200,200,200,0.2);
 }
 
 

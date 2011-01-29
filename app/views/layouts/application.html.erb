@@ -35,6 +35,6 @@
   </div>
 </div>
 <%= render 'layouts/footer' %>
-<%= google_analytics_js if Rails.env.production? %>
+<%=raw google_analytics_js if Rails.env.production? %>
 </body>
 </html>

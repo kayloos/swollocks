@@ -81,6 +81,8 @@ $(function() {
   $("#quotes_table").dataTable({
     "bJQueryUI": true,
 		"sPaginationType": "full_numbers",
+    "iDisplayLength": 25,
+    "aLengthMenu": [[25,50,100,-1],[25,50,100,"All"]],
     "aoColumns": [
       null, null, null,
       { "sType": "percent" }, null, null, null
