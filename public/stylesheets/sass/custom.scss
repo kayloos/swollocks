@@ -176,13 +176,13 @@ h1, h2, h3 {
     @include bgradient(#fefefe, #EEE);
     @include bshadow(0,0,2px,rgba(0,0,0,0.5));
     padding:15px 15px 15px 15px;
-    margin:20px 10px 40px 10px;
+    margin:0 0 20px 0;
     font-size:12px;
     min-height: 115px;
     font-family: 'Lucida Grande', Helvetica, Arial, sans-serif;
     .stock {
       text-align:left;
-      width:60%;
+      width:640px;
       .name {
         text-align:left;
         width: 140px;
@@ -193,11 +193,10 @@ h1, h2, h3 {
       }
     }
     .summary {
-      width:320px;
+      width:220px;
       float:right;
-      text-align:left;
       td {
-        text-align:right;
+        text-align:left;
       }
     }
   }
@@ -322,25 +321,35 @@ ul.users {
   }
 }
 /* TABLES */
-#quotes_table {
-  text-align:left;
+/* Standard table */
+table {
+  text-align: left;
   width:100%;
-  font-size:12px;
-  clear:both;
   font-family: 'Lucida Grande', Helvetica, Arial, sans-serif;
-
+  font-size:12px;
   .name {
-    text-align:left;
-    width: 220px;
     a {
       font-style: normal;
     }
   }
   td, th {
-    padding: 2px 2px 2px 10px;
+    padding: 2px;
   }
   th {
+    padding: 0 0 2px 0;
     border-bottom: 1px solid #ccc;
+  }
+}
+#quotes_table {
+  clear:both;
+  td, th {
+    padding: 2px 2px 2px 10px;
+  }
+  .name {
+    text-align:left;
+    width: 220px;
+  }
+  th {
     font-size:14px;
   }
   .plus  { color: green; }

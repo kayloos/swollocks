@@ -9,31 +9,31 @@
     <h2>Summary</h2>
     <table cellspacing="0">
       <tr>
-        <th class="name">Cash</th>
+        <td>Cash</td>
         <td>
     <%= portfolio.current_amount.round(2) %>
         </td>
       </tr>
       <tr>
-        <th>Difference</th>
+        <td>Difference</td>
         <td>
     <%= difference.round(2) if difference %>
         </td>
       </tr>
       <tr>
-        <th>Starting amount</th>
+        <td>Starting amount</td>
         <td>
     <%= portfolio.start_amount.round(2) %>
         </td>
       </tr>
       <tr>
-        <th>Total value</th>
+        <td>Total value</td>
         <td>
     <%= total_value.round(2) if total_value %>
         </td>
       </tr>
       <tr>
-        <th>Send mail?</th>
+        <td>Send mail?</td>
         <td>
     <% if portfolio.deliver_mail then link_text = "Start mailing" else link_text = "Stop mailing" end %>
     <%= link_to link_text, :controller => 'portfolios', :action => 'toggle_mail', :portfolio_id => portfolio.id %>
@@ -50,7 +50,7 @@
         <th>Latest</th>
         <th>Amount</th>
         <th>Value</th>
-        <th>Since start cash</th>
+        <th>Earned</th>
         <th>Since start %</th>
       </tr>
     </thead>
