@@ -98,10 +98,13 @@ ul {
   display:none;
 }
 #signin_box, #signup_box {
+  font-size: 14px;
   padding: 5px 10px;
   margin:0;
   z-index:2;
   position:absolute;
+  width:200px;
+  height:200px;
   background:white;
   display:none;
   text-align:left;
@@ -112,10 +115,13 @@ ul {
   -moz-border-radius:10px;
 }
 #signin_box {
-  top: -30px;
-  left: 40px;
+  top: 50%;
+  left: 50%;
+  margin: -105px 0 0 -110px;
 }
 #signup_box {
-  top:100px;
-  left:40px;
+  top:50%;
+  left:50%;
+  margin: -130px 0 0 -110px;
+  height:250px;
 }
