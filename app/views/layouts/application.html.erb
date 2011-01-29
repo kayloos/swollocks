@@ -22,6 +22,7 @@
       #wrap {display:table;height:100%}
     </style>
   <![endif]-->  
+  <%= render 'layouts/ga' if Rails.env.production? %>
 </head>
 <body>
 <div id="wrap">
@@ -35,6 +36,5 @@
   </div>
 </div>
 <%= render 'layouts/footer' %>
-<%=raw google_analytics_js if Rails.env.production? %>
 </body>
 </html>
