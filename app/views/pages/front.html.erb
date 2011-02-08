@@ -4,6 +4,7 @@
   <title><%= title %></title>
   <%= stylesheet_link_tag 'front' %>
   <%= javascript_include_tag 'jquery' %>
+  <%= javascript_include_tag 'jquery.simplemodal' %>
   <%= javascript_include_tag 'rails' %>
   <%= javascript_include_tag 'front' %>
   <%= csrf_meta_tag %>
@@ -38,7 +39,7 @@
         <%= render 'sessions/new' %>
       </div>
 </li>
-<li>||</li>
+<li style="font-style:italic;">or</li>
 <li>
   <%= link_to "Sign up!", signup_path, :class => "signup_button signup" %>
       <div id="signup_box">

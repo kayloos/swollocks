@@ -32,7 +32,6 @@
   }
   a {
     text-decoration:none;
-    font-style:italic;
     &:hover {
       color: #000;
     }
@@ -55,37 +54,30 @@ ul {
   li {
     float:left;
     text-align:center;
-    font-size:53px;
+    font-size:50px;
   }
 }
 .signup_button, .signin_button_t {
-  color:white;
+  font-family: 'Mido';
   text-shadow: 0 0 2px rgba(0,0,0,0.3);
   font-size:36px;
 	display:block;
   float:left;
   text-align:center;
 	width:180px;
-	font-weight:bold;
-  background-image: -webkit-gradient(
-      linear,
-      left bottom,
-      left top,
-      color-stop(0.78, #51ED51),
-      color-stop(0.12, #147A19)
-  );
-  background-image: -moz-linear-gradient(
-      center bottom,
-      #51ED51 78%,
-      #147A19 12%
-  );
+  background: #d2ff52; /* old browsers */
+  background: -moz-linear-gradient(top, #d2ff52 0%, #91e842 100%); /* firefox */
+
+  background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,#d2ff52), color-stop(100%,#91e842)); /* webkit */
+
+  filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#d2ff52', endColorstr='#91e842',GradientType=0 );
   margin: 0 80px;
   padding:10px;
   border-radius: 5px;
   -moz-border-radius: 15px;
-  -webkit-box-shadow: rgba(0,0,0,0.4) 0 0 5px;
+  -webkit-box-shadow: rgba(0,0,0,0.1) 0 0 2px 1px;
   -moz-box-shadow: 0 0 5px rgba(0,0,0,0.4);
-}
+  }
 /* LOGIN BOX ETC. */
 #box_focus {
   z-index:1;
@@ -124,4 +116,7 @@ ul {
   left:50%;
   margin: -130px 0 0 -110px;
   height:250px;
+}
+text {
+  width:80px;
 }
