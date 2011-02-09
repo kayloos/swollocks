@@ -1,0 +1,53 @@
+<table cellspacing="0" id="quotes_table" class="display">
+  <thead>
+    <tr>
+      <th class="name">Name</th>
+      <th>Latest</th>
+      <th>Change</th>
+      <th>%</th>
+      <th>Buy</th>
+      <th>Sell</th>
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @stock_yanks.each do |sy|
+      if quotes
+        q = quotes[sy.symbol]
+        stock = Stock.find_by_stock_yank_id_and_portfolio_id(sy.id, @portfolio.id)
+        td_class = q[:change].to_f < 0 ? '"negative"' : '"positive"' %>
+
+      <tr class="quotes">
+        <td class="name"><%= link_to sy.name, stock_yank_path(sy.id) %></td>
+        <td><%= q[:last_trade_price_only] %></td>
+        <td class=<%=raw td_class %>><%= q[:change].sub(/[\+]/, '') %></td>
+        <td class=<%=raw td_class %>><%= q[:change_in_percent].sub(/[\+]/, '') %></td>
+        <td><%= q[:bid] %></td>
+        <td><%= q[:ask] %></td>
+        <td class="add_rm">
+          <div class="trade"></div>
+            <%= link_to "+",
+              { :controller => "stocks", :action => "buy",
+                :stock => { 
+                  :portfolio_id => @portfolio.id,
+                  :stock_yank_id => sy.id,
+                  :traded_at => q[:last_trade_price_only] } }, :class => "plus" %>
+            <%if stock then %>
+              <%= link_to "-",
+                { :controller => "stocks", :action => "sell", :id => stock.id, :traded_at => q[:last_trade_price_only] },
+                  :class => "minus #{stock.id}" %>
+            <% else %>
+              <a class="disabled">-</a>
+            <% end %>
+        </td>
+      </tr>
+    <% else %>No quotes
+    <% end %>
+<% end %>
+  </tbody>
+</table>
+<div id="box_focus"></div>
+<div style="margin:10px;">
+  Need a stock? <%= link_to "Add a stock", new_yank_proposal_path %>
+</div>
+<div style="clear:both;"></div>

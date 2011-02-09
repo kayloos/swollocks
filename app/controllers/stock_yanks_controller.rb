@@ -12,8 +12,8 @@ class StockYanksController < ApplicationController
     @stock_yank = StockYank.find(params[:id])
 
     if params[:end] && params[:start]
-      the_end = params[:end]
       start = params[:start]
+      the_end = params[:end]
       start_date = Date.new(start[:year].to_i, start[:month].to_i, start[:day].to_i)
       end_date = Date.new(the_end[:year].to_i, the_end[:month].to_i, the_end[:day].to_i)
     else
@@ -23,12 +23,11 @@ class StockYanksController < ApplicationController
 
     begin
       @days = StockYank.get_history(@stock_yank.symbol, start_date, end_date)
-      @chart = make_chart(@days)
     rescue
-      flash[:error] = "We could not retrieve history data for the stock you requested."
+      flash.now[:error] = "We could not retrieve history data for the stock you requested."
       redirect_to root_path
     end
-
+    @chart = make_chart(@days)
   end
 
   def new
@@ -61,14 +60,17 @@ class StockYanksController < ApplicationController
   private
 
     def make_chart(days)
-      dubi = Array.new
-      dubi[0] = Array.new
-      dubi[1] = Array.new
-      dubi[2] = Array.new
-      days.each do |d|
-        dubi[0] << d[0]
-        dubi[1] << d[1]
-        dubi[2] << d[2]
+      data = Hash.new
+      data[:dates] = Array.new
+      data[:lows] = Array.new
+      data[:highs] = Array.new
+      days.each_with_index do |d, index|
+        data[:dates] << (index.modulo(4) == 0 ? d[0] : '')
+        data[:lows] << d[3].to_f
+        data[:highs] << d[2].to_f
       end
+      data[:max] = data[:highs].max.to_f
+      data[:min] = data[:lows].min
+      data
     end
 end

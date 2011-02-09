@@ -1,5 +1,11 @@
 class StocksController < ApplicationController
   before_filter :authenticate
+
+  def index
+    @stock_yanks = StockYank.all
+    @portfolio = current_user.portfolios.first
+  end
+
   def show
     @title = "Stocks!"
   end

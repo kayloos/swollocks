@@ -1,0 +1,47 @@
+<table cellspacing="0" id="quotes_table" class="display">
+  <thead>
+    <tr>
+      <th class="name">Name</th>
+      <th>Latest</th>
+      <th>Change</th>
+      <th>%</th>
+      <th>Buy</th>
+      <th>Sell</th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @stock_yanks.each do |sy|
+      if quotes
+        q = quotes[sy.symbol]
+        td_class = q[:change].to_f < 0 ? '"negative"' : '"positive"' %>
+
+      <tr class="quotes">
+        <td class="name"><%= link_to sy.name, stock_yank_path(sy.id) %></td>
+        <td><%= q[:last_trade_price_only] %></td>
+        <td class=<%=raw td_class %>><%= q[:change].sub(/[\+]/, '') %></td>
+        <td class=<%=raw td_class %>><%= q[:change_in_percent].sub(/[\+]/, '') %></td>
+        <td><%= q[:bid] %></td>
+        <td><%= q[:ask] %></td>
+      </tr>
+    <% else %>No quotes
+    <% end %>
+<% end %>
+  </tbody>
+</table>
+<div id="box_focus"></div>
+<div style="clear:both;"></div>
+<script type="text/javascript">
+// Datatable initializing
+$(function(){
+  $("#quotes_table").dataTable({
+    "bJQueryUI": true,
+    "sPaginationType": "full_numbers",
+    "iDisplayLength": 25,
+    "aLengthMenu": [[25,50,100,-1],[25,50,100,"All"]],
+    "aoColumns": [
+      null, null, null,
+      { "sType": "percent" }, null, null
+    ]
+  });
+});
+</script>

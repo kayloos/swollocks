@@ -6,13 +6,13 @@
   <%= select_date 1.day.ago, :prefix => "end" %>
   <%= submit_tag "Update" %>
 <% end %>
-<table cellspacing="0" class="history">
+<table cellspacing="0" class="history" style="float:left;">
   <thead>
     <tr>
       <th class="date">Date</th>
-      <th>Open</th>
-      <th>High</th>
       <th>Low</th>
+      <th>High</th>
+      <th>Open</th>
       <th>Close</th>
       <th>Volume</th>
     </tr>
@@ -24,13 +24,13 @@
   <%= d[0] %>
         </td>
         <td>
-  <%= d[1] %>
+  <%= d[3] %>
         </td>
         <td>
   <%= d[2] %>
         </td>
         <td>
-  <%= d[3] %>
+  <%= d[1] %>
         </td>
         <td> 
   <%= d[4] %>
@@ -42,3 +42,16 @@
 <% end %>
   </tbody>
 </table>
+<%=raw Gchart.line(:data => [@chart[:highs],@chart[:lows]],
+                   :legend => ['high', 'low'],
+                   :max_value => @chart[:max],
+                   :min_value => @chart[:min],
+                   :title => "Stock information chart for #{@stock_yank.name}",
+                   :axis_with_labels => "x,y",
+                   :axis_labels => [@chart[:dates]],
+                   :line_colors => '6BFF93,00D138',
+                   :custom => '&chm=b,E5FFEC,1,0,0',
+                   :size => '450x400',
+                   :style => "float:right;",
+                   :format => "image_tag") %>
+<div style="clear:both;"></div>
