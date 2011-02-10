@@ -1,6 +1,6 @@
 <% if signed_in? %>
 <ul>
-    <li><%= link_to "Home", root_path %></li>
+    <li><%= link_to "Portfolios", root_path %></li>
     <li><%= link_to "Stocks", stocks_path %></li>
     <li><%= link_to "Trades", trades_path %></li>
     <% if current_user.admin? %>
@@ -10,8 +10,8 @@
     <% else %>
       <li></li>
     <% end %>
-    <li><%= link_to "Notes", notes_path %></li>
     <!--
+    <li><%= link_to "Notes", notes_path %></li>
     <li><%= link_to "Settings", edit_user_path(current_user) %></li>
     <li><%= link_to "Sign out", signout_path %></li>
      !-->

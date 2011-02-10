@@ -60,14 +60,18 @@ class StockYanksController < ApplicationController
   private
 
     def make_chart(days)
+      days = days.reverse
       data = Hash.new
       data[:dates] = Array.new
       data[:lows] = Array.new
       data[:highs] = Array.new
+      data[:closes] = Array.new
+      modulo_value = days.count / 4
       days.each_with_index do |d, index|
-        data[:dates] << (index.modulo(4) == 0 ? d[0] : '')
+        data[:dates] << (index.modulo(modulo_value) == 0 ? d[0] : '')
         data[:lows] << d[3].to_f
         data[:highs] << d[2].to_f
+        data[:closes] << d[4].to_f
       end
       data[:max] = data[:highs].max.to_f
       data[:min] = data[:lows].min

@@ -1,4 +1,5 @@
 <h1>Portfolios</h1>
+<p style="margin:0; padding:0;"><%= link_to "Add new portfolio", new_portfolio_path %></p>
 <% if @portfolios == [] %>
   It looks like you haven't created a portfolio yet. You can make one in the form below.
 <% end %>
@@ -81,7 +82,6 @@
 </div>
 <div style="clear:both"></div>
 <% end %>
-<%= render 'new' %>
 <h1>
   <%= @user.name %>, <%= @user.email %><br />
 </h1>
