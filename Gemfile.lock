@@ -1,3 +1,11 @@
+GIT
+  remote: git://github.com/sferik/rails_admin.git
+  revision: f74df682598860534b105ac765f87057537e14be
+  specs:
+    rails_admin (0.0.1)
+      builder (~> 2.1.0)
+      rails (~> 3.0.3)
+
 GEM
   remote: http://rubygems.org/
   specs:
@@ -30,8 +38,12 @@ GEM
     activesupport (3.0.3)
     annotate-models (1.0.4)
     arel (2.0.3)
+    bcrypt-ruby (2.1.4)
     builder (2.1.2)
     daemons (1.0.10)
+    devise (1.1.5)
+      bcrypt-ruby (~> 2.1.2)
+      warden (~> 1.0.2)
     diff-lcs (1.1.2)
     erubis (2.6.6)
       abstract (>= 1.0.0)
@@ -95,6 +107,8 @@ GEM
     treetop (1.4.9)
       polyglot (>= 0.3.1)
     tzinfo (0.3.23)
+    warden (1.0.3)
+      rack (>= 1.0.0)
     webrat (0.7.1)
       nokogiri (>= 1.2.0)
       rack (>= 1.0)
@@ -106,6 +120,7 @@ PLATFORMS
 
 DEPENDENCIES
   annotate-models
+  devise
   factory_girl_rails (= 1.0)
   faker (= 0.3.1)
   googlecharts
@@ -115,6 +130,7 @@ DEPENDENCIES
   mysql
   nas-yahoo_stock (= 1.0.7)
   rails (= 3.0.3)
+  rails_admin!
   rspec
   rspec-rails
   ruby-mysql
