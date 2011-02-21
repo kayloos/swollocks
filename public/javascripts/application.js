@@ -16,5 +16,4 @@ jQuery.fn.dataTableExt.oSort['percent-desc'] = function(a,b) {
 $(function() {
   $.jGrowl.defaults.position = 'center';
   $.jGrowl.defaults.life = 8000;
-
 });

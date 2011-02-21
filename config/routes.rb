@@ -1,4 +1,6 @@
 Boersboss::Application.routes.draw do
+  devise_for :users
+
   get "yank_proposals/new"
 
   get "yank_proposals/create"
@@ -7,14 +9,10 @@ Boersboss::Application.routes.draw do
 
   root :to => "pages#front"
 
-  resources :users, :trades, :notes, :yank_proposals, :stock_yanks
-  resources :sessions, :only => [:new, :create, :destroy]
+  resources :trades, :notes, :yank_proposals, :stock_yanks
   resources :stocks, :only => [:new, :create, :destroy]
   resources :portfolios, :only => [:index, :new, :edit, :create, :destroy]
 
   match '/help'     => 'pages#help'
-  match '/signup'   => 'users#new'
-  match '/signin'   => 'sessions#new'
-  match '/signout'  => 'sessions#destroy'
   match '/:controller(/:action(/:id))'
 end

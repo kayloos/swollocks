@@ -1,5 +1,5 @@
 class NotesController < ApplicationController
-  before_filter :authenticate
+  before_filter :authenticate_user!
   def index
     @title = "Notes"
     @notes = current_user.notes.all(:order => "created_at DESC")

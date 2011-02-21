@@ -12,12 +12,12 @@
   <%= render 'shared/error_messages', :object => f.object %>
   <div class="field">
     <%= f.label :amount %><br />
-    <%= f.text_field :amount, :class => "stock_amount" %>
+    <%= f.text_field :amount, :class => "stock_amount", :value => @stock_amount %>
   </div>
   <%= f.hidden_field :traded_at %>
   <%= f.hidden_field :stock_yank_id %>
   <%= f.hidden_field :portfolio_id %>
   <div class="field">
-    <%= f.submit "Send" %>
+    <%= f.submit "Sell" %>
   </div>
 <% end %>

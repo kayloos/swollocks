@@ -1,5 +1,5 @@
 class StockYanksController < ApplicationController
-  before_filter :authenticate
+  before_filter :authenticate_user!
 
   def index
     @title = "Stocks!"
@@ -10,6 +10,7 @@ class StockYanksController < ApplicationController
   def show
     @title = "Stock information"
     @stock_yank = StockYank.find(params[:id])
+    @stock = StockYank.get_stocks(@stock_yank.symbol)[@stock_yank.symbol]
 
     if params[:end] && params[:start]
       start = params[:start]
@@ -24,8 +25,9 @@ class StockYanksController < ApplicationController
     begin
       @days = StockYank.get_history(@stock_yank.symbol, start_date, end_date)
     rescue
-      flash.now[:error] = "We could not retrieve history data for the stock you requested."
+      flash[:error] = "We could not retrieve history data for the stock you requested."
       redirect_to root_path
+      return
     end
     @chart = make_chart(@days)
   end

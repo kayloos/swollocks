@@ -1,9 +1,8 @@
 class StocksController < ApplicationController
-  before_filter :authenticate
+  before_filter :authenticate_user!
 
   def index
     @stock_yanks = StockYank.all
-    @portfolio = current_user.portfolios.first
   end
 
   def show
@@ -13,7 +12,7 @@ class StocksController < ApplicationController
   def buy
     @title = "Buy stock"
     @stock = Stock.new(params[:stock])
-    @portfolio = Portfolio.find(@stock.portfolio_id)
+    @portfolio = Portfolio.find(@stock.portfolio_id) if @stock.portfolio_id
     respond_to do |format|
       format.js { render :layout => false }
     end

@@ -34,16 +34,38 @@
   </div>
   <ul>
 <li>
-  <%= link_to "Sign in!", signin_path, :class => "signin_button_t signin" %>
+  <%= link_to "Sign in!", new_user_session_path, :class => "signin_button_t signin" %>
       <div id="signin_box">
-        <%= render 'sessions/new' %>
+<%= form_for("user", :url => user_session_path) do |f| %>
+  <p><%= f.label :email %><br />
+  <%= f.text_field :email %></p>
+
+  <p><%= f.label :password %><br />
+  <%= f.password_field :password %></p>
+
+  <p><%= f.check_box :remember_me %> <%= f.label :remember_me %></p>
+  <%= f.submit 'Sign in' %>
+<% end %>
       </div>
 </li>
 <li style="font-style:italic;">or</li>
 <li>
-  <%= link_to "Sign up!", signup_path, :class => "signup_button signup" %>
+  <%= link_to "Sign up!", new_user_registration_path, :class => "signup_button signup" %>
       <div id="signup_box">
-        <%= render 'users/new' %>
+<%= form_for("user", :url => user_registration_path) do |f| %>
+  <p><%= f.label :name %><br />
+  <%= f.text_field :name %></p>
+
+  <p><%= f.label :email %><br />
+  <%= f.text_field :email %></p>
+
+  <p><%= f.label :password %><br />
+  <%= f.password_field :password %></p>
+
+  <p><%= f.label :password_confirmation %><br />
+  <%= f.password_field :password_confirmation %></p>
+  <%= f.submit 'Sign up' %>
+<% end %>
       </div>
 </li>
   </ul>

@@ -1,3 +1,4 @@
+<div class="trade"></div>
 <table cellspacing="0" id="quotes_table" class="display">
   <thead>
     <tr>
@@ -14,7 +15,7 @@
     <% @stock_yanks.each do |sy|
       if quotes
         q = quotes[sy.symbol]
-        stock = Stock.find_by_stock_yank_id_and_portfolio_id(sy.id, @portfolio.id)
+        stock = Stock.find_by_stock_yank_id_and_portfolio_id(sy.id, @portfolio.id) if @portfolio
         td_class = q[:change].to_f < 0 ? '"negative"' : '"positive"' %>
 
       <tr class="quotes">
@@ -22,23 +23,26 @@
         <td><%= q[:last_trade_price_only] %></td>
         <td class=<%=raw td_class %>><%= q[:change].sub(/[\+]/, '') %></td>
         <td class=<%=raw td_class %>><%= q[:change_in_percent].sub(/[\+]/, '') %></td>
-        <td><%= q[:bid] %></td>
-        <td><%= q[:ask] %></td>
-        <td class="add_rm">
-          <div class="trade"></div>
+        <td>
+          <%= q[:bid] %>
             <%= link_to "+",
               { :controller => "stocks", :action => "buy",
                 :stock => { 
-                  :portfolio_id => @portfolio.id,
+                  :portfolio_id => (@portfolio ? @portfolio.id : ''),
                   :stock_yank_id => sy.id,
                   :traded_at => q[:last_trade_price_only] } }, :class => "plus" %>
-            <%if stock then %>
-              <%= link_to "-",
-                { :controller => "stocks", :action => "sell", :id => stock.id, :traded_at => q[:last_trade_price_only] },
-                  :class => "minus #{stock.id}" %>
-            <% else %>
-              <a class="disabled">-</a>
-            <% end %>
+        </td>
+        <td>
+          <%= q[:ask] %>
+          <% if stock %>
+            <%= link_to "-",
+              { :controller => "stocks", :action => "sell", :id => stock.id, :traded_at => q[:last_trade_price_only] },
+                :class => "minus #{stock.id}" %>
+          <% else %>
+            <a class="disabled">-</a>
+          <% end %>
+        </td>
+        <td class="add_rm">
         </td>
       </tr>
     <% else %>No quotes
@@ -51,3 +55,47 @@
   Need a stock? <%= link_to "Add a stock", new_yank_proposal_path %>
 </div>
 <div style="clear:both;"></div>
+
+<script type="text/javascript">
+  var amount, traded_at;
+  // Trade forms events, tweaks and magic
+  $(".plus, .minus").click(function(e){
+    var trade = $(".trade");
+    $.get(this.href, function(data) {
+      trade.html(data);
+      $(".stock_amount").focus();
+
+      // Not pretty
+      amount = parseFloat($(".stock_amount").val());
+      traded_at = parseFloat($("#stock_traded_at").val());
+      if (amount > 0) {
+        $(".cost").html(Math.round(amount * traded_at * 100) / 100);
+      }
+      // Calculate cost when the user inserts amount
+      $(".stock_amount").keyup(function(){
+        amount    = parseFloat($(this).val());
+        traded_at = parseFloat($(this).parent().siblings("#stock_traded_at").val());
+        if (amount > 0)   $(".cost").html(Math.round(amount * traded_at * 100) / 100);
+      });
+
+      $("#new_stock, .edit_stock").submit(function(){
+        trade.fadeOut(200);
+      });
+    });
+    trade.modal({ modal:true,
+                  overlayClose:true });
+    return false;
+  });
+
+  // Datatable initializing
+  $("#quotes_table").dataTable({
+    "bJQueryUI": true,
+    "sPaginationType": "full_numbers",
+    "iDisplayLength": 25,
+    "aLengthMenu": [[25,50,100,-1],[25,50,100,"All"]],
+    "aoColumns": [
+      null, null, null,
+      { "sType": "percent" }, null, null, null
+    ]
+  });
+</script>

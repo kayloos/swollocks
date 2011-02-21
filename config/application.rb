@@ -11,6 +11,7 @@ module Boersboss
     config.encoding = "utf-8"
     config.time_zone = 'Copenhagen'
     config.filter_parameters += [:password]
+    config.action_mailer.default_url_options = { :host => 'localhost:3000' }
   end
 end
 

@@ -1,5 +1,5 @@
 class PortfoliosController < ApplicationController
-  before_filter :authenticate
+  before_filter :authenticate_user!
   before_filter :init_quotes
   before_filter :catch_no_quotes
 

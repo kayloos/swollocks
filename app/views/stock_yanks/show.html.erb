@@ -1,4 +1,24 @@
 <h1><%= @stock_yank.name %> history</h1>
+<table cellspacing="0" class="history">
+  <thead>
+    <tr>
+      <th class="date">Date</th>
+      <th>Low</th>
+      <th>High</th>
+      <th>Latest</th>
+      <th>Volume</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td class="date">Today</td>
+      <td><%= @stock[:day_low] %></td>
+      <td><%= @stock[:day_high] %></td>
+      <td><%= @stock[:last_trade_price_only] %></td>
+      <td><%= @stock[:volume] %></td>
+    </tr>
+  </tbody>
+</table>
 <%= form_tag stock_yank_path(@stock_yank.id), :method => 'get' do %>
   Start:
   <%= select_date 31.days.ago, :prefix => "start" %>

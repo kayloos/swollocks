@@ -3,18 +3,8 @@
 <head>
   <title><%= title %></title>
   <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
-  <%= stylesheet_link_tag '960' %>
-  <%= stylesheet_link_tag 'jquery.jgrowl' %>
-  <%= stylesheet_link_tag 'jquery-ui' %>
-  <%= stylesheet_link_tag 'table_jui' %>
-  <%= stylesheet_link_tag 'custom' %>
-  <%= javascript_include_tag 'jquery' %>
-  <%= javascript_include_tag 'rails' %>
-  <%= javascript_include_tag 'jquery-ui' %>
-  <%= javascript_include_tag 'jquery.dataTables.min.js' %>
-  <%= javascript_include_tag 'jquery.jgrowl_minimized.js' %>
-  <%= javascript_include_tag 'jquery.simplemodal' %>
-  <%= javascript_include_tag 'application' %>
+  <%= stylesheet_link_tag '960', 'jquery.jgrowl', 'jquery-ui', 'table_jui', 'custom' %>
+  <%= javascript_include_tag 'jquery', 'rails', 'jquery-ui', 'jquery.dataTables.min.js', 'jquery.jgrowl_minimized.js', 'jquery.simplemodal', 'application' %>
   <%= csrf_meta_tag %>
   <meta name="description" content="<%= @meta_description %>" />
   <meta name="keywords" content="<%= @meta_keywords %>" />
