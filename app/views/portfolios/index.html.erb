@@ -83,5 +83,6 @@
 <h1>
   <%= @user.name %>, <%= @user.email %><br />
 </h1>
-<%= session.inspect %>
-Aktierne blev opdateret sidst <%= quotes_updated_at.strftime("%H:%M:%S") %>
+<div style="color: #AAA; font-style:italic; text-align:center; margin: 10px 0 0 0;">
+  Aktierne blev opdateret sidst <%= quotes_updated_at.strftime("%H:%M:%S") %>
+</div>
