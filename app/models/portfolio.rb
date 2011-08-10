@@ -15,7 +15,7 @@
 
 class Portfolio < ActiveRecord::Base
   belongs_to :user
-  has_many :stocks
+  has_many :stocks, :include => :stock_yank
   validates     :name,          :presence  => true,
                                 :length    => { :within => 3..30 }
 
@@ -25,16 +25,21 @@ class Portfolio < ActiveRecord::Base
 
   attr_accessible       :name, :start_amount, :current_amount, :deliver_mail
 
-  def get_value(quotes=nil)
-    unless quotes
-      quotes = StockYank.get_all_stocks
-    end
+  def stock_value(quotes)
     value = 0
     stocks.each do |s|
       sy = s.stock_yank
-      value += quotes[sy.symbol][:last_trade_price_only].to_f * s.amount
+      value += s.value(quotes)
     end
 
-    return value.round(2)
+    return value
+  end
+
+  def total_value(quotes)
+    return (current_amount + stock_value(quotes))
+  end
+
+  def difference(quotes)
+    return (total_value(quotes) - start_amount)
   end
 end

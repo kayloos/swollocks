@@ -3,9 +3,7 @@
 <% if @portfolios == [] %>
   It looks like you haven't created a portfolio yet. You can make one in the form below.
 <% end %>
-<% @portfolios.each do |portfolio|
-  total_value = portfolio.current_amount.round + portfolio.get_value(quotes) unless (portfolio.stocks == [])
-  difference = total_value - portfolio.start_amount.round if total_value %>
+<% @portfolios.each do |portfolio| %>
 <div class="portfolio">
   <div class="summary">
     <h2>Summary</h2>
@@ -19,7 +17,7 @@
       <tr>
         <td>Difference</td>
         <td>
-    <%= difference.round(2) if difference %>
+    <%= portfolio.difference(quotes).round(2) %>
         </td>
       </tr>
       <tr>
@@ -31,16 +29,18 @@
       <tr>
         <td>Total value</td>
         <td>
-    <%= total_value.round(2) if total_value %>
+    <%= portfolio.total_value(quotes).round(2) %>
         </td>
       </tr>
+      <!--
       <tr>
         <td>Send mail?</td>
         <td>
-    <% if portfolio.deliver_mail then link_text = "Start mailing" else link_text = "Stop mailing" end %>
-    <%= link_to link_text, :controller => 'portfolios', :action => 'toggle_mail', :portfolio_id => portfolio.id %>
+    <% # if portfolio.deliver_mail then link_text = "Start mailing" else link_text = "Stop mailing" end %>
+    <% #= link_to link_text, :controller => 'portfolios', :action => 'toggle_mail', :portfolio_id => portfolio.id %>
         </td>
       </tr>
+      !-->
     </table>
   </div>
   <h2><%= link_to portfolio.name, edit_portfolio_path(portfolio.id) %></h2>
@@ -60,17 +60,15 @@
   <%
   portfolio.stocks.each do |s|
     sy = s.stock_yank
-    q = quotes[sy.symbol]
-    value = s.value(quotes)
   %>
       <tr>
         <td class="name"><%= link_to sy.name, stock_yank_path(sy.id) %></td>
         <td><%= s.traded_at %></td>
-        <td><%= q[:last_trade_price_only] %></td>
+        <td><%= s.latest(quotes).round(2) %></td>
         <td><%= s.amount %></td>
-        <td><%= value.round %></td>
-        <td><%= ( value - (s.traded_at * s.amount) ).round %></td>
-        <td><%= ((value / (s.traded_at * s.amount) - 1 )*100).round(2) %>%</td>
+        <td><%= s.value(quotes).round(2) %></td>
+        <td><%= s.earned(quotes).round(2) %></td>
+        <td><%= s.percent(quotes).round(2) %>%</td>
       </tr>
   <% end %>
     </tbody>
@@ -85,3 +83,5 @@
 <h1>
   <%= @user.name %>, <%= @user.email %><br />
 </h1>
+<%= session.inspect %>
+Aktierne blev opdateret sidst <%= quotes_updated_at.strftime("%H:%M:%S") %>

@@ -19,8 +19,24 @@ class Stock < ActiveRecord::Base
   attr_accessible       :stock_yank_id, :portfolio_id, :amount, :traded_at
 
   def value(quotes)
+    latest(quotes) * amount
+  end
+
+  def latest(quotes)
+    stock_quote(quotes)[:last_trade_price_only].to_f
+  end
+
+  def stock_quote(quotes)
     sy = stock_yank
     q = quotes[sy.symbol]
-    q[:last_trade_price_only].to_f * amount
+    return q
+  end
+
+  def earned(quotes)
+    value(quotes) - traded_at * amount
+  end
+
+  def percent(quotes)
+    ((value(quotes) / (traded_at * amount) - 1 )*100)
   end
 end
