@@ -5,7 +5,6 @@ module StocksHelper
   end
 
   def update_quotes
-    clear_quotes
     session[:quotes] = StockYank.get_all_stocks
     quotes[:expires_at] = 5.minutes.from_now
     quotes[:updated_at] = Time.now
