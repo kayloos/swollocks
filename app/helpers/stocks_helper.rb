@@ -31,6 +31,6 @@ module StocksHelper
     end
 
     def should_refresh?
-      !quotes.nil? && quotes[:expires_at] < Time.now
+      quotes[:expires_at] < Time.now
     end
 end
