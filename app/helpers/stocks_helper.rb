@@ -1,15 +1,14 @@
 module StocksHelper
   def init_quotes
     update_quotes if should_refresh?
-
     catch_no_quotes
   end
 
   def update_quotes
     clear_quotes
     session[:quotes] = StockYank.get_all_stocks
-    session[:quotes][:expires_at] = 5.minutes.from_now
-    session[:quotes][:updated_at] = Time.now
+    quotes[:expires_at] = 5.minutes.from_now
+    quotes[:updated_at] = Time.now
   end
 
   def quotes
@@ -17,18 +16,18 @@ module StocksHelper
   end
 
   def quotes_updated_at
-    session[:quotes][:updated_at]
+    quotes[:updated_at]
   end
 
   private
 
     def clear_quotes
-      session[:quotes] = nil
+      session[:quotes] = {}
     end
 
     def catch_no_quotes
       unless quotes
-        render :nothing => true, :text => "Ingen aktier i databasen"
+        raise "No quotes in database"
       end
     end
 
