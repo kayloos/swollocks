@@ -1,6 +1,6 @@
 module StocksHelper
   def init_quotes
-    update_quotes if should_refresh?
+    update_quotes# if should_refresh?
     catch_no_quotes
   end
 
