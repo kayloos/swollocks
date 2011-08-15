@@ -1,7 +1,13 @@
 module StocksHelper
+  class StockException < StandardError; end
   def init_quotes
     update_quotes if should_refresh?
-    catch_no_quotes
+
+    begin
+      catch_no_quotes
+    rescue StockException
+      redirect_to '/help'
+    end
   end
 
   def update_quotes
@@ -25,12 +31,12 @@ module StocksHelper
     end
 
     def catch_no_quotes
-      unless quotes
-        raise "No quotes in database"
+      unless quotes != nil || quotes
+        raise StockException, "No quotes in database"
       end
     end
 
     def should_refresh?
-      quotes[:expires_at] < Time.now
+      (session[:quotes].nil? || session[:quotes] == {}) || session[:quotes][:expires_at] < Time.now
     end
 end
