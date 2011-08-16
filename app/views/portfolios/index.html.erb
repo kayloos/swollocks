@@ -5,31 +5,31 @@
 <% end %>
 <% @portfolios.each do |portfolio| %>
 <div class="portfolio">
-  <div class="summary">
+  <div class="portfolio_summary">
     <h2>Summary</h2>
     <table cellspacing="0">
       <tr>
-        <td>Cash</td>
-        <td>
-    <%= portfolio.current_amount.round(2) %>
-        </td>
-      </tr>
-      <tr>
-        <td>Difference</td>
-        <td>
-    <%= portfolio.difference(quotes).round(2) %>
-        </td>
-      </tr>
-      <tr>
-        <td>Starting amount</td>
+        <th>Starting amount</th>
         <td>
     <%= portfolio.start_amount.round(2) %>
         </td>
       </tr>
       <tr>
-        <td>Total value</td>
+        <th>Total value</th>
         <td>
     <%= portfolio.total_value(quotes).round(2) %>
+        </td>
+      </tr>
+      <tr>
+        <th>Cash</th>
+        <td>
+    <%= portfolio.current_amount.round(2) %>
+        </td>
+      </tr>
+      <tr>
+        <th>Difference</th>
+        <td>
+    <%= portfolio.difference(quotes).round(2) %>
         </td>
       </tr>
       <!--
@@ -44,12 +44,16 @@
     </table>
   </div>
   <h2><%= link_to portfolio.name, edit_portfolio_path(portfolio.id) %></h2>
-  <table cellspacing="0" class="stock">
+  <table cellspacing="0" class="portfolio_stock">
     <thead>
       <tr>
         <th class="name">Name</th>
-        <th>Bought at</th>
         <th>Latest</th>
+        <th>Ask</th>
+        <th>Bid</th>
+        <th>Change</th>
+        <th>Change %</th>
+        <th>Bought at</th>
         <th>Amount</th>
         <th>Value</th>
         <th>Earned</th>
@@ -63,8 +67,12 @@
   %>
       <tr>
         <td class="name"><%= link_to sy.name, stock_yank_path(sy.id) %></td>
-        <td><%= s.traded_at %></td>
         <td><%= s.latest(quotes).round(2) %></td>
+        <td><%= s.ask(quotes) %></td>
+        <td><%= s.bid(quotes) %></td>
+        <td><%= s.change(quotes) %></td>
+        <td><%= s.change_in_percent(quotes) %></td>
+        <td><%= s.traded_at %></td>
         <td><%= s.amount %></td>
         <td><%= s.value(quotes).round(2) %></td>
         <td><%= s.earned(quotes).round(2) %></td>

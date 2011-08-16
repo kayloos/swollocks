@@ -26,6 +26,22 @@ class Stock < ActiveRecord::Base
     stock_quote(quotes)[:last_trade_price_only].to_f
   end
 
+  def ask(quotes)
+    stock_quote(quotes)[:ask].to_f
+  end
+
+  def bid(quotes)
+    stock_quote(quotes)[:bid].to_f
+  end
+
+  def change(quotes)
+    stock_quote(quotes)[:change]
+  end
+
+  def change_in_percent(quotes)
+    stock_quote(quotes)[:change_in_percent]
+  end
+
   def stock_quote(quotes)
     sy = stock_yank
     q = quotes[sy.symbol]

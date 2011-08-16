@@ -9,9 +9,11 @@ gem 'sass'
 gem 'googlecharts'
 gem 'devise'
 gem 'rails_admin', :git => 'git://github.com/sferik/rails_admin.git'
+gem 'newrelic_rpm'
 
 group :development do
   gem 'mongrel', '1.2.0.pre2'
+  gem 'thin'
   gem 'ruby-mysql'
   gem 'rspec-rails'
 end

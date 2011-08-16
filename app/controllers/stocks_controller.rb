@@ -1,5 +1,5 @@
 class StocksController < ApplicationController
-  before_filter :authenticate_user!
+  before_filter :authenticate_user!, :init_quotes
 
   def index
     @stock_yanks = StockYank.all

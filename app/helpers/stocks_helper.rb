@@ -3,11 +3,7 @@ module StocksHelper
   def init_quotes
     update_quotes if should_refresh?
 
-    begin
-      catch_no_quotes
-    rescue StockException
-      redirect_to '/help'
-    end
+    catch_no_quotes
   end
 
   def update_quotes
@@ -31,8 +27,8 @@ module StocksHelper
     end
 
     def catch_no_quotes
-      unless quotes != nil || quotes
-        raise StockException, "No quotes in database"
+      unless quotes || quotes != nil
+        raise StockException, "Unable to load quotes in to session hash"
       end
     end
 

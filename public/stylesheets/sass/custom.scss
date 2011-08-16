@@ -160,22 +160,23 @@ table {
     margin: 0;
   }
   .portfolio {
-    border-radius:10px;
+    border-radius: 10px;
     @include bgradient(#fefefe, #EEE);
     @include bshadow(0,0,2px,rgba(0,0,0,0.5));
     padding: 15px 15px;
-    margin:10px 0 20px 0;
-    font-size:12px;
+    margin: 10px 0 20px 0;
+    font-size: 12px;
     min-height: 115px;
     font-family: 'Lucida Grande', Helvetica, Arial, sans-serif;
     h2 {
       margin-bottom:5px;
     }
-    .stock {
-      text-align:left;
-      width:640px;
+    .portfolio_stock {
+      text-align: left;
+      width: 640px;
+      font-size: 10px;
       a {
-        font-style:normal;
+        font-style: normal;
         color: $two;
       }
       .name {
@@ -183,12 +184,17 @@ table {
         width: 140px;
       }
     }
-    .summary {
+    .portfolio_summary {
       width:220px;
       float:right;
-      td {
-        text-align:left;
+      th {
+        text-align: left;
+        border: 0;
+        font-style: normal;
       }
+      td {
+        text-align: right;
+    }
     }
   }
   .refresh_information {

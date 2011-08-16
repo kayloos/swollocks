@@ -22,7 +22,7 @@ class StockYank < ActiveRecord::Base
     end
     YahooStock::Quote.new(:stock_symbols => symbols,
                           :read_parameters => [:name, :symbol, :last_trade_price_only,
-                                               :change, :change_in_percent,:ask, :bid, 
+                                               :change, :change_in_percent, :ask, :bid, 
                                                :day_low, :day_high, :volume]).results(:to_hash).output
   end
 
