@@ -12,18 +12,23 @@ gem 'rails_admin', :git => 'git://github.com/sferik/rails_admin.git'
 gem 'newrelic_rpm'
 
 group :development do
-  gem 'mongrel', '1.2.0.pre2'
   gem 'thin'
   gem 'ruby-mysql'
-  gem 'rspec-rails'
 end
 
 group :test do
-  gem 'rspec'
   gem 'sqlite3-ruby', :require => 'sqlite3'
-  gem 'webrat', '0.7.1'
-  gem 'faker', '0.3.1'
-  gem 'factory_girl_rails', '1.0'
+  gem 'faker'
+  gem 'factory_girl_rails'
+end
+
+group :test, :development do
+  gem 'rspec'
+  gem 'rspec-rails'
+  gem 'webrat', "0.7.1"
+  gem 'autotest'
+  gem 'autotest-rails'
+  gem 'spork'
 end
 
 group :production do
