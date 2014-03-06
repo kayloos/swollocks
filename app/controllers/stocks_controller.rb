@@ -19,15 +19,15 @@ class StocksController < ApplicationController
   end
 
   def buy_trade
-    @stock = Stock.new(params[:stock])
+    @stock           = Stock.new(params[:stock])
     @stock.traded_at = @stock.traded_at.to_f
-    @portfolio = Portfolio.find(@stock.portfolio_id)
-    amount = @stock.amount.to_f
+    @portfolio       = Portfolio.find(@stock.portfolio_id)
+
+    amount    = @stock.amount.to_f
     traded_at = @stock.traded_at.to_f
-    value = amount * traded_at
+    value     = amount * traded_at
 
     unless @portfolio.current_amount < value
-
       if @portfolio.stocks.include?(@old_stock = Stock.find_by_stock_yank_id_and_portfolio_id(@stock.stock_yank_id, @portfolio.id))
         @old_stock.update_attributes(:amount => @old_stock.amount + amount,
                                      :traded_at => calculate_price(@old_stock.traded_at, traded_at,

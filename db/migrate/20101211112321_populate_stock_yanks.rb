@@ -1,3 +1,5 @@
+#<Encoding:UTF-8>
+
 class PopulateStockYanks < ActiveRecord::Migration
   def self.up
     StockYank.create!(:symbol => "MAERSK-A.CO", :name => "A.P. Møller Mærsk A")

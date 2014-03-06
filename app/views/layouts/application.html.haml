@@ -1,0 +1,27 @@
+!!!
+%html
+  %head
+    %title= title
+    %meta{'http-equiv' => "Content-Type", 'content' => "text/html; charset=utf-8"}
+    = stylesheet_link_tag '960', 'jquery.jgrowl', 'jquery-ui', 'table_jui', 'custom'
+    = javascript_include_tag 'jquery', 'rails', 'jquery-ui', 'jquery.dataTables.min.js', 'jquery.jgrowl_minimized.js', 'jquery.simplemodal', 'application'
+    = csrf_meta_tag
+    %meta{'name' => "description", 'content' => "#{@meta_description}"}
+    %meta{'name' => "keywords", 'content' => "#{@meta_keywords}"}
+
+    :plain
+      <!--[if !IE 7]>
+        <style type="text/css">
+          #wrap {display:table;height:100%}
+        </style>
+      <![endif]-->  
+    = render 'layouts/ga' if Rails.env.production?
+  %body
+    #wrap
+      = render 'layouts/header'
+      #main
+        = yield
+        - flash.each do |key, value|
+          %div{:class => "flash #{key}"} value
+        = debug(params) if Rails.env.development?
+    = #render 'layouts/footer'

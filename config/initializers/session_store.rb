@@ -2,7 +2,7 @@
 
 # Boersboss::Application.config.session_store :cookie_store, :key => '_boersboss_session'
 
-Boersboss::Application.config.session_store :active_record_store
+Swollocks::Application.config.session_store :active_record_store
 
 # Use the database for sessions instead of the cookie-based default,
 # which shouldn't be used to store highly confidential information

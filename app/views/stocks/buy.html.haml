@@ -1,0 +1,24 @@
+%table.info{:cellspacing => "0"}
+  - if @portfolio
+    %tr
+      %td{:style => "text-align:left;"} Available:
+      %td= @portfolio.current_amount
+  %tr
+    %td{:style => "text-align:left;"} Cost:
+    %td
+      %span.cost 0
+= form_for @stock, :url => {:action => 'buy_trade'}, :remote => true do |f|
+  = render 'shared/error_messages', :object => f.object
+  - unless @portfolio
+    = f.label :portfolio_id
+    = f.collection_select :portfolio_id, current_user.portfolios, :id, :name
+  - else
+    = f.hidden_field :portfolio_id
+  .field
+    = f.label :amount
+    %br/
+    = f.text_field :amount, :class => "stock_amount"
+  = f.hidden_field :traded_at
+  = f.hidden_field :stock_yank_id
+  .field
+    = f.submit "Buy"

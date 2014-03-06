@@ -20,10 +20,15 @@ class StockYank < ActiveRecord::Base
     StockYank.all(:limit => 200).each do |sy|
       symbols << sy.symbol
     end
-    YahooStock::Quote.new(:stock_symbols => symbols,
-                          :read_parameters => [:name, :symbol, :last_trade_price_only,
-                                               :change, :change_in_percent, :ask, :bid, 
-                                               :day_low, :day_high, :volume]).results(:to_hash).output
+    
+    if symbols.any?
+      return YahooStock::Quote.new(:stock_symbols => symbols,
+                                   :read_parameters => [:name, :symbol, :last_trade_price_only,
+                                                        :change, :change_in_percent, :ask, :bid, 
+                                                        :day_low, :day_high, :volume]).results(:to_hash).output
+    else
+      return []
+    end
   end
 
   def self.get_stocks(symbols)

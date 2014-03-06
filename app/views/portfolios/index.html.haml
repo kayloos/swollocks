@@ -1,0 +1,77 @@
+%h1 Portfolios
+%p{:style => "margin:0; padding:0;"}= link_to "Add new portfolio", new_portfolio_path
+- if @portfolios == []
+  It looks like you haven't created a portfolio yet. You can make one in the form below.
+- @portfolios.each do |portfolio|
+  .portfolio
+    .portfolio_summary
+      %h2 Summary
+      %table{:cellspacing => "0"}
+        %tr
+          %th Starting amount
+          %td
+            = portfolio.start_amount.round(2)
+        %tr
+          %th Total value
+          %td
+            = portfolio.total_value(quotes).round(2)
+        %tr
+          %th Cash
+          %td
+            = portfolio.current_amount.round(2)
+        %tr
+          %th Difference
+          %td
+            = portfolio.difference(quotes).round(2)
+        /
+          <tr>
+          <td>Send mail?</td>
+          <td>
+          </haml:block><haml:silent>     # if portfolio.deliver_mail then link_text = &quot;Start mailing&quot; else link_text = &quot;Stop mailing&quot; end
+          </haml:silent><haml:block></haml:block><haml:silent>     #= link_to link_text, :controller =&gt; 'portfolios', :action =&gt; 'toggle_mail', :portfolio_id =&gt; portfolio.id
+          </haml:silent><haml:block>        </td>
+          </tr>
+          \!
+    %h2= link_to portfolio.name, edit_portfolio_path(portfolio.id)
+    %table.portfolio_stock{:cellspacing => "0"}
+      %thead
+        %tr
+          %th.name Name
+          %th Latest
+          %th Ask
+          %th Bid
+          %th Change
+          %th Change %
+          %th Bought at
+          %th Amount
+          %th Value
+          %th Earned
+          %th Since start %
+      %tbody
+        - portfolio.stocks.each do |s|
+        - sy = s.stock_yank
+          %tr
+            %td.name= link_to sy.name, stock_yank_path(sy.id)
+            %td= s.latest(quotes).round(2)
+            %td= s.ask(quotes)
+            %td= s.bid(quotes)
+            %td= s.change(quotes)
+            %td= s.change_in_percent(quotes)
+            %td= s.traded_at.round(2)
+            %td= s.amount
+            %td= s.value(quotes).round(2)
+            %td= s.earned(quotes).round(2)
+            %td
+              = s.percent(quotes).round(2)
+              \%
+    = link_to "Fjern portefølje",                                      |
+      portfolio,                                                       |
+      :method     => :delete,                                          |
+      :confirm    => "Are you sure you want to destroy the portfolio?" |
+  %div{:style => "clear:both"}
+%h1
+  = @user.name
+  , #{@user.email}
+  %br/
+.refresh_information
+  Aktierne blev opdateret sidst #{quotes_updated_at.strftime("%H:%M:%S")}

@@ -1,4 +1,4 @@
-Boersboss::Application.configure do
+Swollocks::Application.configure do
   # Settings specified here will take precedence over those in config/environment.rb
 
   # In the development environment your application's code is reloaded on
@@ -11,7 +11,6 @@ Boersboss::Application.configure do
 
   # Show full error reports and disable caching
   config.consider_all_requests_local       = true
-  config.action_view.debug_rjs             = true
   config.action_controller.perform_caching = false
 
   # Don't care if the mailer can't send
@@ -22,5 +21,12 @@ Boersboss::Application.configure do
 
   # Only use best-standards-support built into browsers
   config.action_dispatch.best_standards_support = :builtin
-end
 
+  # Do not compress assets
+  config.assets.compress = false
+  config.assets.debug = true
+  config.assets.compile = false
+  config.serve_static_assets = false
+
+  config.action_mailer.default_url_options = { :host => "localhost:3000" }
+end

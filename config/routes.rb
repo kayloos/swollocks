@@ -1,4 +1,4 @@
-Boersboss::Application.routes.draw do
+Swollocks::Application.routes.draw do
   devise_for :users
 
   get "yank_proposals/new"
