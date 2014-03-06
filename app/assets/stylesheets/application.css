@@ -2,6 +2,7 @@
 *= require 960
 *= require jquery.jgrowl
 *= require jquery-ui
+*= require jquery.dataTables
 *= require table_jui
 *= require front
 *= require custom

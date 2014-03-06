@@ -50,7 +50,7 @@ class StockYanksController < ApplicationController
   def destroy
     if StockYank.destroy(params[:id])
       flash[:success] = "Stock destroyed"
-      Stock.destroy_all.where("stock_yank_id = ?", params[:id])
+      Stock.destroy_all("stock_yank_id = #{params[:id]}")
       update_quotes
       redirect_to stock_yanks_path
     else
@@ -64,15 +64,15 @@ class StockYanksController < ApplicationController
     def make_chart(days)
       days = days.reverse
       data = Hash.new
-      data[:dates] = Array.new
-      data[:lows] = Array.new
-      data[:highs] = Array.new
+      data[:dates]  = Array.new
+      data[:lows]   = Array.new
+      data[:highs]  = Array.new
       data[:closes] = Array.new
       modulo_value = days.count / 4
       days.each_with_index do |d, index|
-        data[:dates] << (index.modulo(modulo_value) == 0 ? d[0] : '')
-        data[:lows] << d[3].to_f
-        data[:highs] << d[2].to_f
+        data[:dates]  << (index.modulo(modulo_value) == 0 ? d[0] : '')
+        data[:lows]   << d[3].to_f
+        data[:highs]  << d[2].to_f
         data[:closes] << d[4].to_f
       end
       data[:max] = data[:highs].max.to_f

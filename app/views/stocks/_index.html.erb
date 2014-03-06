@@ -8,7 +8,8 @@
       <th>%</th>
       <th>Buy</th>
       <th>Sell</th>
-      <th></th>
+      <th>Volume</th>
+      <th>Action</th>
     </tr>
   </thead>
   <tbody>
@@ -25,15 +26,18 @@
         <td class=<%=raw td_class %>><%= q[:change_in_percent].sub(/[\+]/, '') %></td>
         <td>
           <%= q[:bid] %>
+        </td>
+        <td>
+          <%= q[:ask] %>
+        </td>
+        <td><%= q[:volume] %></td>
+        <td class="add_rm">
             <%= link_to "+",
               { :controller => "stocks", :action => "buy",
                 :stock => { 
                   :portfolio_id => (@portfolio ? @portfolio.id : ''),
                   :stock_yank_id => sy.id,
                   :traded_at => q[:last_trade_price_only] } }, :class => "plus" %>
-        </td>
-        <td>
-          <%= q[:ask] %>
           <% if stock %>
             <%= link_to "-",
               { :controller => "stocks", :action => "sell", :id => stock.id, :traded_at => q[:last_trade_price_only] },
@@ -41,8 +45,6 @@
           <% else %>
             <a class="disabled">-</a>
           <% end %>
-        </td>
-        <td class="add_rm">
         </td>
       </tr>
     <% else %>No quotes
@@ -91,11 +93,11 @@
   $("#quotes_table").dataTable({
     "bJQueryUI": true,
     "sPaginationType": "full_numbers",
-    "iDisplayLength": 25,
+    "iDisplayLength": 50,
     "aLengthMenu": [[25,50,100,-1],[25,50,100,"All"]],
     "aoColumns": [
       null, null, null,
-      { "sType": "percent" }, null, null, null
+      { "sType": "percent" }, null, null, null, null
     ]
   });
 </script>
