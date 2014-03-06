@@ -23,10 +23,10 @@ Swollocks::Application.configure do
   config.action_dispatch.best_standards_support = :builtin
 
   # Do not compress assets
-  config.assets.compress = false
+  # config.assets.compress = false
   config.assets.debug = true
-  config.assets.compile = false
-  config.serve_static_assets = false
+  # config.assets.compile = false
+  # config.serve_static_assets = false
 
   config.action_mailer.default_url_options = { :host => "localhost:3000" }
 end

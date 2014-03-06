@@ -19,11 +19,7 @@ module Swollocks
     config.time_zone = 'Copenhagen'
     config.filter_parameters += [:password]
     config.action_mailer.default_url_options = { :host => 'localhost:3000' }
-
     config.assets.enabled = true
-
     config.assets.version = '1.0'
-
-    config.assets.prefix = "/assets"
   end
 end

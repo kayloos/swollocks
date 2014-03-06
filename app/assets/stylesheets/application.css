@@ -1,4 +1,8 @@
 /* ...
-*= require_self
-*= require_tree .
+*= require 960
+*= require jquery.jgrowl
+*= require jquery-ui
+*= require table_jui
+*= require front
+*= require custom
 */

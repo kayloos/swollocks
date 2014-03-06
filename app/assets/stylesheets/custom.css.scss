@@ -1,12 +1,5 @@
 @import "bindings";
 /*Opera Fix Sticky Footer*/
-body:before {
-	content:"";
-	height:100%;
-	float:left;
-	width:0;
-	margin-top:-32767px;
-}
 body {
 	font-size:16px;
 	margin:0;
@@ -65,7 +58,7 @@ table {
     width: 960px;
     margin: 0 auto;
     padding: 18px 0 10px 0;
-    text-align:right;
+    position: relative;
     #logo {
       float:left;
       h1 {
@@ -74,7 +67,7 @@ table {
         letter-spacing: -3px;
         text-shadow: 1px 1px 0 white;
         a {
-          text-decoration:none;
+          text-decoration: none;
           font-family: 'ChunkFive', Helvetica, Arial, sans-serif;
           font-size: 36px;
           color: $four;
@@ -87,48 +80,42 @@ table {
         }
       }
     }
-    #nav {
-    text-align:right;
-      ul {
-        list-style: none;
-        display:inline;
-        padding: 0;
-        li {
-          display: inline;
-          margin-right: 5px;
-          a {
-            text-decoration: none;
-            font-style: italic;
-            font-size: 21px;
-            font-family: Georgia;
-            line-height: 0px;
-            color: #eee;
-            text-shadow:1px 1px 0 $one;
-            &:hover { color: #ccc; }
-          }
+    ul#nav {
+      position: absolute;
+      top: 0;
+      right: 0;
+      li {
+        margin: 13px 8px 0 0;
+        height: 40px;
+        font-size: 21px;
+        a {
+          text-decoration: none;
+          font-style: italic;
+          color: #eee;
+          text-shadow: 1px 1px 0 $one;
+          &:hover { color: #ccc; }
         }
       }
     }
   }
 }
-.trade {
+.trade-info {
   margin: 0;
   padding: 8px 5px;
   border-bottom: 1px solid #ccc;
   &:hover {
     background:#eeffeb;
   }
-  .add {
-    float:right;
-    display:block;
+  .trade-message {
+    width: 850px;
+  }
+  .trade-note {
+    width: 80px;
+    float: right;
   }
   .note {
     font-style:italic;
-    position:relative;
-    top: 5px;
-    padding:10px;
-    margin:10px;
-    display:block;
+    font-size: 0.7em;
   }
 }
 #main {
