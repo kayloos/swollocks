@@ -20,8 +20,8 @@ production:
   host: localhost
   encoding: unicode
   database: swollocks_production
-  user: swollocks
-  password: sL;%&wxK1!=
+  username: swollocks
+  password: hej
   port: 5433
   pool: 5
   timeout: 5000
