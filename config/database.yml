@@ -16,8 +16,13 @@ test:
   timeout: 5000
 
 production:
-  adapter: sqlite3
-  database: db/production.sqlite3
+  adapter: postgresql
+  host: localhost
+  encoding: unicode
+  database: swollocks_production
+  user: swollocks
+  password: sL;%&wxK1!=
+  port: 5433
   pool: 5
   timeout: 5000
 #production:
