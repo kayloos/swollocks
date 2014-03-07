@@ -6,11 +6,13 @@ gem 'Nas-yahoo_stock_kalus', '1.0.7'
 gem 'will_paginate', '~> 3.0.pre2'
 gem 'googlecharts'
 gem 'devise'
-gem 'sqlite3'
+
+gem 'pg'
 
 gem "haml-rails"
 
 group :development do
+  gem 'sqlite3'
   gem 'thin'
 end
 
