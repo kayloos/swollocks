@@ -74,15 +74,14 @@ ul {
   text-align:center;
   background: #d2ff52; /* old browsers */
   background: -moz-linear-gradient(top, #d2ff52 0%, #91e842 100%); /* firefox */
-
   background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,#d2ff52), color-stop(100%,#91e842)); /* webkit */
-
   filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#d2ff52', endColorstr='#91e842',GradientType=0 );
   margin: 0 80px 30px 80px;
   padding:10px 30px;
   border-radius: 5px;
-  -moz-border-radius: 15px;
-  -webkit-box-shadow: rgba(0,0,0,0.1) 0 0 2px 1px;
+  border: 1px solid rgba(0,0,0,0.2);
+  box-shadow: rgba(0,0,0,0.2) 0 0 4px 2px;
+  -moz-border-radius: 5px;
   -moz-box-shadow: 0 0 5px rgba(0,0,0,0.4);
   }
 /* LOGIN BOX ETC. */
@@ -131,7 +130,6 @@ ul {
     font-size: 24px;
     padding: 5px 15px;
     margin: 15px 0 0 0;
-    border: 0;
     float: none;
     cursor: pointer;
   }

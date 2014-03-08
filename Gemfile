@@ -7,7 +7,6 @@ gem 'will_paginate', '~> 3.0.pre2'
 gem 'googlecharts'
 gem 'devise'
 
-gem 'pg'
 
 gem "haml-rails"
 
@@ -27,6 +26,7 @@ group :test, :development do
 end
 
 group :production do
+  gem 'pg'
 end
 
 group :assets do
